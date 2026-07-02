@@ -10,7 +10,7 @@ export default function Navbar() {
     <header className="sticky top-0 z-40 border-b border-ink/5 bg-sand/90 backdrop-blur">
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-5 py-3">
         <Link to="/" className="flex items-center gap-2 font-display text-lg font-extrabold">
-          <span className="grid h-9 w-9 place-items-center rounded-xl bg-teal text-white"><GraduationCap size={18} /></span>
+          <img src="/favicon.png" alt="" className="h-9 w-9 rounded-xl" />
           Eritrea <span className="text-teal">Learn</span>
         </Link>
         <div className="flex items-center gap-4">

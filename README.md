@@ -1,56 +1,65 @@
-# Eritrea Learn Academy 🎓
+# Eritrea Learn Academy
 
-[![MERN](https://img.shields.io/badge/Stack-MERN-brightgreen)](#)
+A multilingual e-learning platform built for Eritrean learners. Courses in English, computer skills, world languages, and touch typing are taught in the learner's own language — Tigrigna, English, or Arabic — with placement testing, skill-appropriate lessons, and both theoretical and practical assessment.
 
-A teaching platform built for Eritreans — learn **English**, **computer skills**, and
-**world languages** (Arabic, Amharic, Korean, Chinese, Russian), taught in your own
-language: **Tigrigna, English, or Arabic**. Reading-, listening-, and practice-first
-(not video-first), with quizzes, flashcards, real exams, and a fun **typing course**.
+**Live demo:** [er-learn-academy.vercel.app](https://er-learn-academy.vercel.app)
 
-> Built by **Amar Hassen Mohammednur**. Inspired by the layout of Nahom Tech Academy.
+## Overview
 
-## ✨ Features
+- **Eight courses** — English, Computer Skills, Arabic, Amharic, Korean, Chinese, Russian, and Typing Mastery
+- **Adaptive enrollment** — learners choose an instruction language, take a short placement test, and are assigned a level automatically
+- **Multi-modal lessons** — reading lessons, listening lessons (Web Speech API), and hands-on practice tasks performed on the learner's own computer
+- **Assessment** — quizzes and flashcards for practice; theoretical (multiple-choice) and practical (task-based) final exams
+- **Typing Mastery** — a live words-per-minute trainer with accuracy tracking, progressing from home row to full-speed sentences
+- **Progress tracking** — per-course completion persisted to the learner's account
 
-- **8 courses** — English, Computer Skills, Arabic, Amharic, Korean, Chinese, Russian, Typing
-- **Smart enrollment** — pick your instruction language (Tigrigna / English / Arabic),
-  take a **placement test**, and get auto-assigned to Beginner / Intermediate / Advanced
-- **Learn by doing** — Reading lessons, **Listening** lessons (browser text-to-speech),
-  and **Practice** tasks (including real "do this on your computer" exercises)
-- **Quizzes & flashcards** with instant feedback
-- **Exams** — both **Theoretical** (MCQ) and **Practical** (task checklists)
-- **Typing Mastery** — live WPM + accuracy tester, home-row → speed drills, funny tips
-- Progress tracking per course · fully **mobile-responsive**
+## Architecture
 
-## 🧱 Tech Stack
-
-React 18 · Vite · Tailwind CSS · Framer Motion · Node.js · Express · Mongoose · MongoDB · JWT
-· Web Speech API (listening)
-
-## 🚀 Getting Started
-
-### Backend
-```bash
-cd backend && npm install
-cp .env.example .env       # set MONGODB_URI + JWT_SECRET
-npm run seed               # loads 8 courses, lessons, typing drills, quizzes, exams…
-npm run dev                # http://localhost:5003
+```
+eritrea-academy/
+├── backend/          Express REST API
+│   ├── models/       User (enrollments), Course, Lesson, Quiz,
+│   │                 Flashcard, Placement, Exam, TypingDrill
+│   └── routes/       /api/content · /api/auth
+└── frontend/         React app (Vite)
+    └── src/
+        └── pages/    Landing, Courses, CourseDetail (enrollment flow,
+                      lesson player, exams), Typing, Dashboard
 ```
 
-### Frontend
+## Tech Stack
+
+| Layer      | Technology                                             |
+| ---------- | ------------------------------------------------------ |
+| Frontend   | React 18, Vite, Tailwind CSS, Web Speech API           |
+| Backend    | Node.js, Express, Mongoose                             |
+| Database   | MongoDB Atlas                                          |
+| Security   | Helmet, rate limiting, input sanitization, JWT         |
+
+## Getting Started
+
+**Prerequisites:** Node.js 18+ and a MongoDB connection string.
+
 ```bash
-cd frontend && npm install
-npm run dev                # http://localhost:5173
+# API
+cd backend
+npm install
+cp .env.example .env   # configure environment
+npm run seed           # optional: load course catalog and lessons
+npm run dev
+
+# App
+cd frontend
+npm install
+npm run dev
 ```
 
-**Login:** `amar@erilearn.io` / `demo123`
+Environment variables are documented in [`backend/.env.example`](backend/.env.example) and [`frontend/.env.example`](frontend/.env.example).
 
-## 📝 Note on content
-Explain-video slots use YouTube placeholders — swap in your own recordings later.
-Typing drills follow a typing.com-style progression.
+## Author
 
-## ☁️ Deployment
-Two Vercel projects: `backend/` (env: `MONGODB_URI`, `JWT_SECRET`, `ALLOWED_ORIGINS`, `VERCEL=1`)
-and `frontend/` (env: `VITE_API_URL`). Seed once against Atlas.
+**Amar Hassen Mohammednur** — [github.com/Min-joona](https://github.com/Min-joona)
 
-## 📄 License
+## License
+
 MIT

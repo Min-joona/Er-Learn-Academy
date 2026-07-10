@@ -45,7 +45,7 @@ function Tester({ drill }) {
       {/* Text to type with per-character coloring */}
       <div
         onClick={() => inputRef.current?.focus()}
-        className="cursor-text rounded-2xl border-2 border-ink/10 bg-white p-6 font-mono text-xl leading-relaxed tracking-wide"
+        className="cursor-text rounded-2xl border-2 border-ink/10 bg-white p-4 md:p-6 font-mono text-lg md:text-xl leading-relaxed tracking-wide"
       >
         {drill.text.split('').map((ch, i) => {
           let cls = 'text-ink/30';

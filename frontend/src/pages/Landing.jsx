@@ -29,9 +29,9 @@ export default function Landing() {
             Built for Eritreans. Choose to learn in <strong>Tigrigna</strong>, <strong>English</strong>, or <strong>Arabic</strong>.
             Take a quick level test, then learn by reading, listening, and practicing — with quizzes and real exams.
           </p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Link to="/courses" className="btn-primary">Browse courses <ArrowRight size={18} /></Link>
-            <Link to="/typing" className="btn-outline"><Keyboard size={18} /> Try typing free</Link>
+          <div className="mt-8 flex flex-col md:flex-row gap-3">
+            <Link to="/courses" className="btn-primary w-full md:w-auto">Browse courses <ArrowRight size={18} /></Link>
+            <Link to="/typing" className="btn-outline w-full md:w-auto"><Keyboard size={18} /> Try typing free</Link>
           </div>
           <div className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-sm text-ink/60">
             {['No prior knowledge needed', 'Learn at your own pace', 'Theory + practical exams'].map((t) => (

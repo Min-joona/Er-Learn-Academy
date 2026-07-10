@@ -33,7 +33,7 @@ function EnrollFlow({ course, onDone }) {
 
   return (
     <div className="fixed inset-0 z-50 grid place-items-center bg-black/40 p-4" onClick={onDone}>
-      <div className="w-full max-w-lg rounded-3xl bg-white p-7" onClick={(e) => e.stopPropagation()}>
+      <div className="w-full max-w-lg rounded-3xl bg-white p-5 md:p-7" onClick={(e) => e.stopPropagation()}>
         {/* Step 1: instruction language */}
         {step === 1 && (
           <div>
@@ -103,7 +103,7 @@ function QuizModal({ quiz, onClose }) {
   const correct = picked === q.answer;
   return (
     <div className="fixed inset-0 z-50 grid place-items-center bg-black/40 p-4" onClick={onClose}>
-      <div className="w-full max-w-lg rounded-3xl bg-white p-7" onClick={(e) => e.stopPropagation()}>
+      <div className="w-full max-w-lg rounded-3xl bg-white p-5 md:p-7" onClick={(e) => e.stopPropagation()}>
         <div className="flex justify-between"><h3 className="font-display text-lg font-extrabold">{quiz.title}</h3><button onClick={onClose}><X /></button></div>
         <p className="mt-3 text-sm text-ink/50">Question {i + 1} of {quiz.questions.length}</p>
         <p className="mt-1 font-semibold">{q.prompt}</p>
@@ -175,7 +175,7 @@ export default function CourseDetail() {
               <p className="mt-1 text-xs text-ink/50">{enrollment.progress}% complete</p>
             </div>
           ) : (
-            <button onClick={startEnroll} className="btn-primary mt-5">
+            <button onClick={startEnroll} className="btn-primary mt-5 w-full md:w-auto">
               Enroll {course.price === 0 ? 'free' : `· $${course.price}`} <ChevronRight size={18} />
             </button>
           )}
@@ -198,7 +198,7 @@ export default function CourseDetail() {
       {/* Enrolled content tabs */}
       {enrollment && (
         <div className="mt-10">
-          <div className="flex gap-2 border-b border-ink/10">
+          <div className="flex gap-2 border-b border-ink/10 overflow-x-auto no-scrollbar pb-1">
             {[['lessons', ListChecks, 'Lessons'], ['quizzes', ClipboardCheck, 'Quizzes'], ['flashcards', Layers, 'Flashcards'], ['exams', Award, 'Exams']].map(([id, Icon, label]) => (
               <button key={id} onClick={() => setTab(id)} className={`flex items-center gap-1 px-4 py-3 text-sm font-semibold ${tab === id ? 'border-b-2 border-teal text-teal' : 'text-ink/50'}`}>
                 <Icon size={16} /> {label}
@@ -277,7 +277,7 @@ export default function CourseDetail() {
       {openQuiz && <QuizModal quiz={openQuiz} onClose={() => setOpenQuiz(null)} />}
       {openLesson && (
         <div className="fixed inset-0 z-50 grid place-items-center bg-black/40 p-4" onClick={() => setOpenLesson(null)}>
-          <div className="max-h-[85vh] w-full max-w-2xl overflow-y-auto rounded-3xl bg-white p-7" onClick={(e) => e.stopPropagation()}>
+          <div className="max-h-[85vh] w-full max-w-2xl overflow-y-auto rounded-3xl bg-white p-5 md:p-7" onClick={(e) => e.stopPropagation()}>
             <div className="flex items-start justify-between">
               <div>
                 <span className="pill bg-teal/10 text-teal">{openLesson.type} · {openLesson.level}</span>

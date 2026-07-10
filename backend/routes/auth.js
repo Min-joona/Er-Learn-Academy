@@ -5,7 +5,7 @@ const { protect } = require('../middleware/auth');
 
 const router = express.Router();
 const signToken = (id) => jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: '30d' });
-const publicUser = (u) => ({ _id: u._id, name: u.name, email: u.email, enrollments: u.enrollments });
+const publicUser = (u) => ({ _id: u._id, name: u.name, email: u.email, role: u.role, enrollments: u.enrollments });
 
 router.post('/register', async (req, res) => {
   try {

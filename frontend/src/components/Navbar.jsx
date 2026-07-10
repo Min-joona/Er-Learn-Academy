@@ -23,6 +23,9 @@ export default function Navbar() {
           {user ? (
             <>
               <NavLink to="/dashboard" className="text-sm font-semibold text-ink/70 hover:text-teal">My Learning</NavLink>
+              {user.role === 'admin' && (
+                <NavLink to="/admin" className="text-sm font-semibold text-purple-600 hover:text-purple-800">Admin Panel</NavLink>
+              )}
               <button onClick={() => { logout(); navigate('/'); }} className="text-ink/50 hover:text-ink" aria-label="Log out"><LogOut size={18} /></button>
             </>
           ) : (
@@ -47,6 +50,9 @@ export default function Navbar() {
           {user ? (
             <>
               <NavLink to="/dashboard" onClick={() => setIsOpen(false)} className="text-base font-semibold text-ink/80">My Learning</NavLink>
+              {user.role === 'admin' && (
+                <NavLink to="/admin" onClick={() => setIsOpen(false)} className="text-base font-semibold text-purple-600">Admin Panel</NavLink>
+              )}
               <button onClick={() => { setIsOpen(false); logout(); navigate('/'); }} className="text-left text-base font-semibold text-red-500">Log out</button>
             </>
           ) : (

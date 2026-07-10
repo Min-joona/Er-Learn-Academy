@@ -48,6 +48,7 @@ app.use(async (_req, res, next) => {
 app.get('/api/health', (_req, res) => res.json({ status: 'ok', service: 'eritrea-academy' }));
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/content', require('./routes/content'));
+app.use('/api/admin', require('./routes/admin'));
 
 app.post('/api/seed', async (req, res) => {
   if (!process.env.SEED_TOKEN || req.headers['x-seed-token'] !== process.env.SEED_TOKEN) {

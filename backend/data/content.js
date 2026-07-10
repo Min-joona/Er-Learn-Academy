@@ -235,7 +235,7 @@ const typingDrills = [
 ];
 
 const users = [
-  { name: 'Amar Hassen', email: 'amar@erilearn.io', password: 'demo123', enrollments: [
+  { name: 'Amar Hassen', email: 'amar@erilearn.io', password: 'demo123', role: 'admin', enrollments: [
     { courseSlug: 'english', instructionLanguage: 'Tigrigna', level: 'Intermediate', progress: 40, placementScore: 3 },
     { courseSlug: 'typing', instructionLanguage: 'English', level: 'Beginner', progress: 25 },
   ] },

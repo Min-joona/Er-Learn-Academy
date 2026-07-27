@@ -11,7 +11,9 @@ router.post('/courses', async (req, res) => res.status(201).json(await Course.cr
 router.put('/courses/:slug', async (req, res) => res.json(await Course.findOneAndUpdate({ slug: req.params.slug }, req.body, { new: true })));
 router.delete('/courses/:slug', async (req, res) => {
   await Course.findOneAndDelete({ slug: req.params.slug });
-  res.json({ message: 'Course deleted' });
+  await Lesson.deleteMany({ courseSlug: req.params.slug });
+  await Quiz.deleteMany({ courseSlug: req.params.slug });
+  res.json({ message: 'Course and associated content deleted' });
 });
 
 // Lessons
@@ -23,7 +25,20 @@ router.delete('/lessons/:id', async (req, res) => {
   res.json({ message: 'Lesson deleted' });
 });
 
-// For brevity in this iteration, we implemented CRUD for Courses and Lessons.
-// The same pattern can be easily extended for Quizzes and Exams.
+// Quizzes
+router.post('/quizzes', async (req, res) => res.status(201).json(await Quiz.create(req.body)));
+router.put('/quizzes/:id', async (req, res) => res.json(await Quiz.findByIdAndUpdate(req.params.id, req.body, { new: true })));
+router.delete('/quizzes/:id', async (req, res) => {
+  await Quiz.findByIdAndDelete(req.params.id);
+  res.json({ message: 'Quiz deleted' });
+});
+
+// Typing drills
+router.post('/typing-drills', async (req, res) => res.status(201).json(await TypingDrill.create(req.body)));
+router.put('/typing-drills/:id', async (req, res) => res.json(await TypingDrill.findByIdAndUpdate(req.params.id, req.body, { new: true })));
+router.delete('/typing-drills/:id', async (req, res) => {
+  await TypingDrill.findByIdAndDelete(req.params.id);
+  res.json({ message: 'Drill deleted' });
+});
 
 module.exports = router;

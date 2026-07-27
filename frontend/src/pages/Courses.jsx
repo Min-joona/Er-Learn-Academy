@@ -1,52 +1,91 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import api from '../api/client';
 
-const cats = ['All', 'English', 'Computer', 'Language', 'Typing'];
+const categories = [
+  { id: 'All', label: 'All', icon: '📋' },
+  { id: 'English', label: 'English', icon: '🌍' },
+  { id: 'Computer', label: 'Computer', icon: '💻' },
+  { id: 'Language', label: 'Languages', icon: '🗣️' },
+  { id: 'Typing', label: 'Typing', icon: '⌨️' },
+];
 
 export default function Courses() {
+  const [searchParams, setSearchParams] = useSearchParams();
   const [courses, setCourses] = useState([]);
-  const [cat, setCat] = useState('All');
   const [loading, setLoading] = useState(true);
+  const cat = searchParams.get('category') || 'All';
 
   useEffect(() => {
     setLoading(true);
-    api.get(`/api/content/courses?category=${cat}`).then(({ data }) => setCourses(data)).finally(() => setLoading(false));
+    api.get(`/api/content/courses?category=${cat}`).then(({ data }) => setCourses(data)).catch(() => {}).finally(() => setLoading(false));
   }, [cat]);
 
   return (
-    <div className="mx-auto max-w-7xl px-5 py-12">
-      <h1 className="font-display text-4xl font-extrabold">All courses</h1>
-      <p className="mt-1 text-ink/60">Choose what you want to master.</p>
+    <div className="pt-24 pb-16">
+      <div className="mx-auto max-w-7xl px-5">
+        <div className="text-center mb-10">
+          <h1 className="section-title text-4xl md:text-5xl">Explore courses</h1>
+          <p className="section-sub mx-auto">Find your perfect learning path.</p>
+        </div>
 
-      <div className="no-scrollbar mt-6 flex gap-2 overflow-x-auto">
-        {cats.map((c) => (
-          <button key={c} onClick={() => setCat(c)} className={`pill whitespace-nowrap border-2 px-4 py-2 ${cat === c ? 'border-teal bg-teal text-white' : 'border-ink/10 text-ink/60'}`}>{c}</button>
-        ))}
-      </div>
-
-      {loading ? (
-        <div className="grid place-items-center py-20"><div className="h-10 w-10 animate-spin rounded-full border-4 border-ink/10 border-t-teal" /></div>
-      ) : (
-        <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {courses.map((c) => (
-            <Link key={c.slug} to={`/courses/${c.slug}`} className="card group overflow-hidden p-0 transition hover:-translate-y-1">
-              <div className="relative aspect-video overflow-hidden">
-                <img src={c.image} alt={c.title} className="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
-                <span className="absolute left-3 top-3 rounded-full bg-white/90 px-3 py-1 text-lg">{c.flag}</span>
-                <span className="absolute right-3 top-3 pill bg-teal text-white">{c.price === 0 ? 'Free' : `$${c.price}`}</span>
-              </div>
-              <div className="p-5">
-                <h3 className="font-display text-lg font-bold">{c.title} <span className="text-sm font-normal text-ink/40">{c.titleTi}</span></h3>
-                <p className="mt-1 text-sm text-ink/60 line-clamp-2">{c.description}</p>
-                <div className="mt-3 flex flex-wrap gap-1">
-                  {c.focus.map((f) => <span key={f} className="pill bg-teal/10 text-teal">{f}</span>)}
-                </div>
-              </div>
-            </Link>
+        {/* Category Pills */}
+        <div className="flex flex-wrap justify-center gap-2 mb-10">
+          {categories.map((c) => (
+            <button
+              key={c.id}
+              onClick={() => setSearchParams(c.id === 'All' ? {} : { category: c.id })}
+              className={`inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 ${
+                cat === c.id ? 'bg-amber text-white shadow-lg shadow-amber/20' : 'bg-[#CFC89A]/5 text-[#CFC89A]/50 hover:bg-[#CFC89A]/10 hover:text-[#CFC89A] border border-[#CFC89A]/10'
+              }`}
+            >
+              <span>{c.icon}</span> {c.label}
+            </button>
           ))}
         </div>
-      )}
+
+        {/* Course Grid */}
+        {loading ? (
+          <div className="grid place-items-center py-20">
+            <div className="relative w-12 h-12">
+              <div className="absolute inset-0 rounded-full border-2 border-amber/20 animate-spin-slow" />
+              <div className="absolute inset-1 rounded-full border-2 border-transparent border-t-amber animate-spin" />
+            </div>
+          </div>
+        ) : courses.length === 0 ? (
+          <div className="text-center py-20">
+            <p className="text-4xl mb-4">📭</p>
+            <p className="text-[#CFC89A]/50">No courses in this category yet.</p>
+          </div>
+        ) : (
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {courses.map((c) => (
+              <Link key={c.slug} to={`/courses/${c.slug}`} className="card-hover group overflow-hidden p-0">
+                <div className="relative aspect-video overflow-hidden">
+                  <img src={c.image} alt={c.title} className="h-full w-full object-cover transition duration-700 group-hover:scale-110" loading="lazy" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#322938] via-transparent to-transparent" />
+                  <span className="absolute top-3 left-3 text-2xl drop-shadow-lg">{c.flag}</span>
+                  <span className="absolute top-3 right-3 pill-amber text-xs">{c.price === 0 ? 'Free' : `$${c.price}`}</span>
+                </div>
+                <div className="p-5">
+                  <h3 className="font-display font-bold text-lg text-[#CFC89A] group-hover:text-amber transition-colors">
+                    {c.title} <span className="text-sm font-normal text-[#CFC89A]/30">{c.titleTi}</span>
+                  </h3>
+                  <p className="text-sm text-[#CFC89A]/50 mt-1 line-clamp-2">{c.description}</p>
+                  <div className="mt-3 flex flex-wrap gap-1.5">
+                    {(c.focus || []).slice(0, 3).map((f) => (
+                      <span key={f} className="pill bg-amber/10 text-amber text-[10px]">{f}</span>
+                    ))}
+                    {(c.instructionLanguages || []).slice(0, 2).map((l) => (
+                      <span key={l} className="pill bg-[#CFC89A]/10 text-[#CFC89A]/40 text-[10px]">{l}</span>
+                    ))}
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 }

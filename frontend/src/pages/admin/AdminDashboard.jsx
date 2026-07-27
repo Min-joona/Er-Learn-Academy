@@ -1,89 +1,154 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import api from '../../api/client';
-import { Plus, Edit, Trash2, List } from 'lucide-react';
 
 export default function AdminDashboard() {
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [activeTab, setActiveTab] = useState('courses');
 
   const fetchCourses = async () => {
     try {
       const { data } = await api.get('/api/admin/courses');
       setCourses(data);
-    } catch (err) {
-      console.error(err);
-    } finally {
-      setLoading(false);
-    }
+    } catch (err) { console.error(err); }
+    finally { setLoading(false); }
   };
 
-  useEffect(() => {
-    fetchCourses();
-  }, []);
+  useEffect(() => { fetchCourses(); }, []);
+
+  const stats = useMemo(() => ({
+    total: courses.length,
+    free: courses.filter((c) => c.price === 0).length,
+    paid: courses.filter((c) => c.price > 0).length,
+    categories: [...new Set(courses.map((c) => c.category))].length,
+  }), [courses]);
 
   const handleDelete = async (slug) => {
-    if (!window.confirm('Are you sure you want to delete this course?')) return;
+    if (!window.confirm('Delete this course?')) return;
     try {
       await api.delete(`/api/admin/courses/${slug}`);
-      setCourses(courses.filter(c => c.slug !== slug));
-    } catch (err) {
-      console.error(err);
-      alert('Failed to delete course');
-    }
+      setCourses((prev) => prev.filter((c) => c.slug !== slug));
+    } catch (err) { alert('Failed to delete'); }
   };
 
-  if (loading) return <div className="p-10 text-center">Loading Admin Panel...</div>;
-
   return (
-    <div className="mx-auto max-w-7xl px-5 py-10">
-      <div className="flex justify-between items-center mb-8">
-        <h1 className="text-3xl font-display font-extrabold text-ink">Admin Dashboard</h1>
-        <Link to="/admin/courses/new" className="btn-primary flex items-center gap-2">
-          <Plus size={18} /> New Course
-        </Link>
-      </div>
+    <div className="pt-24 pb-16">
+      <div className="mx-auto max-w-7xl px-5">
+        {/* Header */}
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+          <div>
+            <h1 className="text-3xl font-display font-bold text-[#CFC89A]">Admin Panel</h1>
+            <p className="text-[#CFC89A]/50 mt-1">Manage your academy.</p>
+          </div>
+          <div className="flex gap-2">
+            <Link to="/admin/analytics" className="btn-outline py-2 px-4 text-sm">Analytics</Link>
+            <Link to="/admin/courses/new" className="btn-primary py-2 px-4 text-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256"><path d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z"></path></svg>
+              New Course
+            </Link>
+          </div>
+        </div>
 
-      <div className="overflow-x-auto bg-white rounded-2xl shadow-sm border border-ink/10">
-        <table className="w-full text-left border-collapse">
-          <thead>
-            <tr className="bg-ink/5 border-b border-ink/10">
-              <th className="p-4 font-semibold text-ink/70">Course</th>
-              <th className="p-4 font-semibold text-ink/70">Category</th>
-              <th className="p-4 font-semibold text-ink/70">Price</th>
-              <th className="p-4 font-semibold text-ink/70 text-right">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {courses.map((course) => (
-              <tr key={course._id} className="border-b border-ink/5 last:border-0 hover:bg-sand/30">
-                <td className="p-4">
-                  <div className="font-bold flex items-center gap-2">
-                    <span className="text-2xl">{course.flag}</span>
-                    {course.title}
-                  </div>
-                  <div className="text-sm text-ink/60">{course.slug}</div>
-                </td>
-                <td className="p-4">{course.category}</td>
-                <td className="p-4">${course.price}</td>
-                <td className="p-4 text-right flex items-center justify-end gap-2">
-                  <Link to={`/admin/courses/${course.slug}/lessons`} className="p-2 text-teal bg-teal/10 rounded-lg hover:bg-teal/20" title="Manage Lessons">
-                    <List size={18} />
-                  </Link>
-                  <Link to={`/admin/courses/${course.slug}/edit`} className="p-2 text-blue-600 bg-blue-100 rounded-lg hover:bg-blue-200" title="Edit Course">
-                    <Edit size={18} />
-                  </Link>
-                  <button onClick={() => handleDelete(course.slug)} className="p-2 text-red-600 bg-red-100 rounded-lg hover:bg-red-200" title="Delete Course">
-                    <Trash2 size={18} />
-                  </button>
-                </td>
-              </tr>
-            ))}
-            {courses.length === 0 && (
-              <tr><td colSpan="4" className="p-8 text-center text-ink/50">No courses found.</td></tr>
+        {/* Stats */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+          {[
+            { label: 'Total Courses', value: stats.total, color: 'text-amber' },
+            { label: 'Free Courses', value: stats.free, color: 'text-sage' },
+            { label: 'Paid Courses', value: stats.paid, color: 'text-amber' },
+            { label: 'Categories', value: stats.categories, color: 'text-[#CFC89A]' },
+          ].map((s) => (
+            <div key={s.label} className="card p-5 text-center">
+              <div className={`text-2xl font-bold ${s.color} tabular-nums`}>{s.value}</div>
+              <div className="text-xs text-[#CFC89A]/40 mt-1">{s.label}</div>
+            </div>
+          ))}
+        </div>
+
+        {/* Tabs */}
+        <div className="flex gap-1 border-b border-[#CFC89A]/10 mb-6">
+          {[
+            { id: 'courses', label: 'Courses', icon: '📚' },
+            { id: 'users', label: 'Users', icon: '👥' },
+          ].map((t) => (
+            <button key={t.id} onClick={() => setActiveTab(t.id)} className={`flex items-center gap-1.5 px-4 py-3 text-sm font-medium border-b-2 transition-all ${activeTab === t.id ? 'text-amber border-amber' : 'text-[#CFC89A]/40 border-transparent hover:text-[#CFC89A]/70'}`}>
+              <span>{t.icon}</span> {t.label}
+            </button>
+          ))}
+        </div>
+
+        {/* Courses Table */}
+        {activeTab === 'courses' && (
+          <div className="rounded-2xl border border-[#CFC89A]/10 overflow-hidden">
+            <div className="overflow-x-auto">
+              <table className="w-full text-left">
+                <thead>
+                  <tr className="bg-[#CFC89A]/5 border-b border-[#CFC89A]/10">
+                    <th className="p-4 text-xs font-semibold text-[#CFC89A]/40 uppercase tracking-wider">Course</th>
+                    <th className="p-4 text-xs font-semibold text-[#CFC89A]/40 uppercase tracking-wider hidden md:table-cell">Category</th>
+                    <th className="p-4 text-xs font-semibold text-[#CFC89A]/40 uppercase tracking-wider hidden sm:table-cell">Price</th>
+                    <th className="p-4 text-xs font-semibold text-[#CFC89A]/40 uppercase tracking-wider text-right">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {courses.map((course) => (
+                    <tr key={course._id} className="border-b border-[#CFC89A]/5 hover:bg-[#CFC89A]/[0.02] transition-colors">
+                      <td className="p-4">
+                        <div className="flex items-center gap-3">
+                          <span className="text-xl">{course.flag}</span>
+                          <div>
+                            <p className="font-semibold text-[#CFC89A] text-sm">{course.title}</p>
+                            <p className="text-xs text-[#CFC89A]/30">{course.slug}</p>
+                          </div>
+                        </div>
+                      </td>
+                      <td className="p-4 text-sm text-[#CFC89A]/50 hidden md:table-cell">
+                        <span className="pill bg-[#CFC89A]/5 text-[#CFC89A]/50 text-[10px]">{course.category}</span>
+                      </td>
+                      <td className="p-4 text-sm text-[#CFC89A]/60 hidden sm:table-cell">${course.price}</td>
+                      <td className="p-4 text-right">
+                        <div className="flex items-center justify-end gap-1.5">
+                          <Link to={`/admin/courses/${course.slug}/lessons`} className="p-2 rounded-lg bg-amber/10 text-amber hover:bg-amber/20 transition-colors" title="Lessons">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256"><path d="M216,40H40A16,16,0,0,0,24,56V200a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A16,16,0,0,0,216,40ZM96,152H80a8,8,0,0,1,0-16H96a8,8,0,0,1,0,16Zm0-32H80a8,8,0,0,1,0-16H96a8,8,0,0,1,0,16Zm48,32H112a8,8,0,0,1,0-16h32a8,8,0,0,1,0,16Zm0-32H112a8,8,0,0,1,0-16h32a8,8,0,0,1,0,16Zm56,32H160a8,8,0,0,1,0-16h40a8,8,0,0,1,0,16Zm0-32H160a8,8,0,0,1,0-16h40a8,8,0,0,1,0,16Z"></path></svg>
+                          </Link>
+                          <Link to={`/admin/courses/${course.slug}/quizzes`} className="p-2 rounded-lg bg-sage/10 text-sage hover:bg-sage/20 transition-colors" title="Quizzes">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256"><path d="M236,80a8,8,0,0,1-8,8H216v32a8,8,0,0,1-16,0V88H168a8,8,0,0,1,0-16h32V40a8,8,0,0,1,16,0V72h32A8,8,0,0,1,236,80ZM92,172H44a8,8,0,0,0,0,16H92a8,8,0,0,0,0-16Zm60,0H116a8,8,0,0,0,0,16h36a8,8,0,0,0,0-16ZM92,140H44a8,8,0,0,0,0,16H92a8,8,0,0,0,0-16Zm60,0H116a8,8,0,0,0,0,16h36a8,8,0,0,0,0-16ZM92,108H44a8,8,0,0,0,0,16H92a8,8,0,0,0,0-16Zm60,0H116a8,8,0,0,0,0,16h36a8,8,0,0,0,0-16Zm40-24a8,8,0,0,0,8-8V60h16a8,8,0,0,0,0-16H200V28a8,8,0,0,0-16,0V44H168a8,8,0,0,0,0,16h16V76A8,8,0,0,0,192,84Zm32,28v96a16,16,0,0,1-16,16H48a16,16,0,0,1-16-16V56A16,16,0,0,1,48,40h96a8,8,0,0,1,0,16H48V208H208V112a8,8,0,0,1,16,0Z"></path></svg>
+                          </Link>
+                          <Link to={`/admin/courses/${course.slug}/edit`} className="p-2 rounded-lg bg-amber/10 text-amber hover:bg-amber/20 transition-colors" title="Edit">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256"><path d="M227.32,73.37,182.63,28.69a16,16,0,0,0-22.63,0L36.69,152A15.86,15.86,0,0,0,32,163.31V208a16,16,0,0,0,16,16H92.69A15.86,15.86,0,0,0,104,219.31L227.32,96a16,16,0,0,0,0-22.63ZM92.69,208H48V163.31l88-88L180.69,120ZM192,108.69,147.31,64l24-24L216,84.69Z"></path></svg>
+                          </Link>
+                          <button onClick={() => handleDelete(course.slug)} className="p-2 rounded-lg bg-rust/10 text-rust hover:bg-rust/20 transition-colors" title="Delete">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256"><path d="M216,48H176V40a24,24,0,0,0-24-24H104A24,24,0,0,0,80,40v8H40a8,8,0,0,0,0,16h8V208a16,16,0,0,0,16,16H192a16,16,0,0,0,16-16V64h8a8,8,0,0,0,0-16ZM96,40a8,8,0,0,1,8-8h48a8,8,0,0,1,8,8v8H96Zm96,168H64V64H192ZM112,104v64a8,8,0,0,1-16,0V104a8,8,0,0,1,16,0Zm48,0v64a8,8,0,0,1-16,0V104a8,8,0,0,1,16,0Z"></path></svg>
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            {courses.length === 0 && !loading && (
+              <div className="text-center py-12 text-[#CFC89A]/30">
+                <p className="text-3xl mb-2">📭</p>
+                <p>No courses yet. Create your first one.</p>
+              </div>
             )}
-          </tbody>
-        </table>
+            {loading && (
+              <div className="text-center py-12">
+                <div className="relative w-8 h-8 mx-auto"><div className="absolute inset-0 rounded-full border-2 border-amber/20 animate-spin-slow" /><div className="absolute inset-1 rounded-full border-2 border-transparent border-t-amber animate-spin" /></div>
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* Users tab placeholder */}
+        {activeTab === 'users' && (
+          <div className="card text-center py-12">
+            <p className="text-3xl mb-3">👥</p>
+            <p className="text-[#CFC89A]/50">User management coming soon. Check analytics for insights.</p>
+            <Link to="/admin/analytics" className="btn-outline mt-4 py-2 px-4 text-sm inline-flex">View analytics</Link>
+          </div>
+        )}
       </div>
     </div>
   );

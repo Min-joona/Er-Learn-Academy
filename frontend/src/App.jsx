@@ -16,6 +16,14 @@ const CourseForm = lazy(() => import('./pages/admin/CourseForm'));
 const LessonManager = lazy(() => import('./pages/admin/LessonManager'));
 const QuizManager = lazy(() => import('./pages/admin/QuizManager'));
 const Analytics = lazy(() => import('./pages/admin/Analytics'));
+const FlashcardManager = lazy(() => import('./pages/admin/FlashcardManager'));
+const FlashcardForm = lazy(() => import('./pages/admin/FlashcardForm'));
+const ExamManager = lazy(() => import('./pages/admin/ExamManager'));
+const ExamForm = lazy(() => import('./pages/admin/ExamForm'));
+const TypingDrillManager = lazy(() => import('./pages/admin/TypingDrillManager'));
+const TypingDrillForm = lazy(() => import('./pages/admin/TypingDrillForm'));
+const PlacementManager = lazy(() => import('./pages/admin/PlacementManager'));
+const PlacementForm = lazy(() => import('./pages/admin/PlacementForm'));
 const TeacherDashboard = lazy(() => import('./pages/teacher/TeacherDashboard'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 
@@ -64,6 +72,18 @@ export default function App() {
             <Route path="/admin/courses/:slug/lessons" element={suspense(adminGuard(<LessonManager />))} />
             <Route path="/admin/courses/:slug/quizzes" element={suspense(adminGuard(<QuizManager />))} />
             <Route path="/admin/analytics" element={suspense(adminGuard(<Analytics />))} />
+            <Route path="/admin/courses/:slug/flashcards" element={suspense(adminGuard(<FlashcardManager />))} />
+            <Route path="/admin/courses/:slug/flashcards/:id" element={suspense(adminGuard(<FlashcardForm />))} />
+            <Route path="/admin/courses/:slug/flashcards/:id/edit" element={suspense(adminGuard(<FlashcardForm />))} />
+            <Route path="/admin/courses/:slug/exams" element={suspense(adminGuard(<ExamManager />))} />
+            <Route path="/admin/courses/:slug/exams/:id" element={suspense(adminGuard(<ExamForm />))} />
+            <Route path="/admin/courses/:slug/exams/:id/edit" element={suspense(adminGuard(<ExamForm />))} />
+            <Route path="/admin/courses/:slug/typing-drills" element={suspense(adminGuard(<TypingDrillManager />))} />
+            <Route path="/admin/courses/:slug/typing-drills/:id" element={suspense(adminGuard(<TypingDrillForm />))} />
+            <Route path="/admin/courses/:slug/typing-drills/:id/edit" element={suspense(adminGuard(<TypingDrillForm />))} />
+            <Route path="/admin/courses/:slug/placement" element={suspense(adminGuard(<PlacementManager />))} />
+            <Route path="/admin/courses/:slug/placement/:id" element={suspense(adminGuard(<PlacementForm />))} />
+            <Route path="/admin/courses/:slug/placement/:id/edit" element={suspense(adminGuard(<PlacementForm />))} />
             <Route path="*" element={suspense(<NotFound />)} />
           </Routes>
         </main>

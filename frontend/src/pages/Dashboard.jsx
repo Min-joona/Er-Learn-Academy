@@ -48,7 +48,7 @@ function generateWeekRhythm() {
 
 export default function Dashboard() {
   const { user } = useAuth();
-  const { theme, toggleTheme } = useTheme();
+  const { dark: theme, toggle: toggleTheme } = useTheme();
   const [activeSection, setActiveSection] = useState('overview');
 
   const mock = useMemo(() => ({
@@ -187,7 +187,7 @@ export default function Dashboard() {
                           <span className="text-[10px] text-white/20">·</span>
                           <span className="text-[10px] text-white/30">{mock.following} Following</span>
                           <span className="text-[10px] text-white/20">·</span>
-                          <span className="text-[10px] text-white/30">{mock.badges} Badges</span>
+                            <span className="text-[10px] text-white/30">{mock.badgeCount} Badges</span>
                         </div>
                       </div>
                     </div>
@@ -345,17 +345,20 @@ export default function Dashboard() {
                     <span className="text-[10px] text-amber">{mock.badges.length} earned</span>
                   </div>
                   <div className="grid grid-cols-2 gap-3">
-                    {mock.badges.map((b, i) => (
-                      <div key={i} className="flex items-center gap-3 rounded-lg bg-white/[0.02] border border-white/[0.04] p-3">
-                        <div className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0" style={{ background: `${b.color}22` }}>
-                          <b.icon size={18} className="text-amber" weight="fill" />
+                    {mock.badges.map((b, i) => {
+                      const IconComp = b.icon;
+                      return (
+                        <div key={i} className="flex items-center gap-3 rounded-lg bg-white/[0.02] border border-white/[0.04] p-3">
+                          <div className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0" style={{ background: `${b.color}22` }}>
+                            <IconComp size={18} className="text-amber" weight="fill" />
+                          </div>
+                          <div>
+                            <p className="text-[11px] text-white/60 font-medium">{b.name}</p>
+                            <p className="text-[9px] text-white/15">{b.date}</p>
+                          </div>
                         </div>
-                        <div>
-                          <p className="text-[11px] text-white/60 font-medium">{b.name}</p>
-                          <p className="text-[9px] text-white/15">{b.date}</p>
-                        </div>
-                      </div>
-                    ))}
+                      );
+                    })}
                   </div>
                 </div>
               </div>

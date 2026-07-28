@@ -25,6 +25,7 @@ const TypingDrillForm = lazy(() => import('./pages/admin/TypingDrillForm'));
 const PlacementManager = lazy(() => import('./pages/admin/PlacementManager'));
 const PlacementForm = lazy(() => import('./pages/admin/PlacementForm'));
 const TeacherDashboard = lazy(() => import('./pages/teacher/TeacherDashboard'));
+const Settings = lazy(() => import('./pages/Settings'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 
 function PageLoader() {
@@ -64,6 +65,7 @@ export default function App() {
             <Route path="/courses/:slug" element={suspense(<CourseDetail />)} />
             <Route path="/typing" element={suspense(<Typing />)} />
             <Route path="/dashboard" element={suspense(guard(<Dashboard />))} />
+            <Route path="/settings" element={suspense(guard(<Settings />))} />
             <Route path="/teacher" element={suspense(adminGuard(<TeacherDashboard />))} />
             <Route path="/admin" element={suspense(adminGuard(<AdminDashboard />))} />
             <Route path="/admin/courses" element={suspense(adminGuard(<AdminDashboard />))} />

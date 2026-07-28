@@ -145,6 +145,9 @@ export default function Navbar() {
               <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-amber to-rust flex items-center justify-center text-white text-xs font-bold">
                 {user.name?.charAt(0)?.toUpperCase() || 'U'}
               </div>
+              <Link to="/settings" className="w-8 h-8 rounded-lg flex items-center justify-center text-[#CFC89A]/30 hover:text-amber transition-colors" title="Settings">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256"><path d="M232,117.87v20.26a8,8,0,0,1-5.69,7.65l-18.29,5.47a86.45,86.45,0,0,1-9.42,15.91l6.79,19.33a8,8,0,0,1-2.88,9l-14.32,11.14a8,8,0,0,1-9.29.6l-16.89-10.12a86.27,86.27,0,0,1-18.42,0L127.1,207.07a8,8,0,0,1-9.29-.6l-14.32-11.14a8,8,0,0,1-2.88-9l6.79-19.33a86.45,86.45,0,0,1-9.42-15.91l-18.29-5.47A8,8,0,0,1,74,138.13V117.87a8,8,0,0,1,5.69-7.65l18.29-5.47a86.45,86.45,0,0,1,9.42-15.91l-6.79-19.33a8,8,0,0,1,2.88-9l14.32-11.14a8,8,0,0,1,9.29-.6l16.89,10.12a86.27,86.27,0,0,1,18.42,0l16.89-10.12a8,8,0,0,1,9.29.6l14.32,11.14a8,8,0,0,1,2.88,9l-6.79,19.33a86.45,86.45,0,0,1,9.42,15.91l18.29,5.47A8,8,0,0,1,232,117.87ZM128,164a36,36,0,1,0-36-36A36,36,0,0,0,128,164Z"></path></svg>
+              </Link>
               <button onClick={handleLogout} className="px-3 py-2 text-sm text-[#CFC89A]/50 hover:text-rust transition-colors" title="Logout">
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 256 256"><path d="M112,216a8,8,0,0,1-8,8H48a16,16,0,0,1-16-16V48A16,16,0,0,1,48,32h56a8,8,0,0,1,0,16H48V208h56A8,8,0,0,1,112,216Zm109.66-93.66-40-40a8,8,0,0,0-11.32,11.32L196.69,120H104a8,8,0,0,0,0,16h92.69l-26.35,26.34a8,8,0,0,0,11.32,11.32l40-40A8,8,0,0,0,221.66,122.34Z"></path></svg>
               </button>
@@ -174,6 +177,7 @@ export default function Navbar() {
           <MobileLink to="/courses" onClick={() => setIsOpen(false)}>Courses</MobileLink>
           <MobileLink to="/typing" onClick={() => setIsOpen(false)}>Typing</MobileLink>
           {user && <MobileLink to="/dashboard" onClick={() => setIsOpen(false)}>Dashboard</MobileLink>}
+          {user && <MobileLink to="/settings" onClick={() => setIsOpen(false)}>Settings</MobileLink>}
           {user?.role === 'admin' && <MobileLink to="/admin" onClick={() => setIsOpen(false)}>Admin Panel</MobileLink>}
           {user?.role === 'teacher' && <MobileLink to="/teacher" onClick={() => setIsOpen(false)}>Teacher Panel</MobileLink>}
           {user ? (

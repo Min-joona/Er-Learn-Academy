@@ -60,4 +60,27 @@ router.post('/progress', protect, async (req, res) => {
   res.json({ user: publicUser(req.user) });
 });
 
+// Update name / change password.
+router.put('/settings', protect, async (req, res) => {
+  try {
+    const { name, currentPassword, newPassword } = req.body;
+    if (name) req.user.name = name;
+
+    if (currentPassword && newPassword) {
+      const user = await User.findById(req.user._id).select('+password');
+      if (!(await user.matchPassword(currentPassword))) {
+        return res.status(400).json({ message: 'Current password is incorrect' });
+      }
+      user.password = newPassword;
+      await user.save();
+    } else {
+      await req.user.save();
+    }
+
+    res.json({ user: publicUser(req.user), message: 'Settings updated' });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
 module.exports = router;

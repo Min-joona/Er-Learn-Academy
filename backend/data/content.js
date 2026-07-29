@@ -5,6 +5,9 @@
 const TRI = ['Tigrigna', 'English', 'Arabic'];
 const LEVELS = ['Beginner', 'Intermediate', 'Advanced'];
 
+const koreanLessons = require('./korean_lessons');
+const { typingLessons, typingDrills: newTypingDrills } = require('./typing_lessons');
+
 const courses = [
   {
     slug: 'english', title: 'English', titleTi: 'እንግሊዝኛ', category: 'English', flag: '🇬🇧',
@@ -36,10 +39,10 @@ const courses = [
   },
   {
     slug: 'korean', title: 'Korean', titleTi: 'ኮርያኛ', category: 'Language', flag: '🇰🇷',
-    description: 'Start with Hangul and reach real conversation — reading, listening, and practice.',
-    price: 39, levels: LEVELS, instructionLanguages: ['English', 'Tigrigna'], focus: ['Reading', 'Listening', 'Practice'],
+    description: 'Start with Hangul and reach real conversation — reading, listening, and practice. Based on howtostudykorean.com.',
+    price: 0, levels: LEVELS, instructionLanguages: ['English', 'Tigrigna'], focus: ['Reading', 'Listening', 'Practice'],
     image: 'https://images.unsplash.com/photo-1538485399081-7191377e8241?w=800&h=500&fit=crop',
-    modules: ['Hangul basics', 'Greetings', 'Numbers', 'Everyday phrases', 'Listening practice'],
+    modules: ['Hangul: consonants & vowels', 'Syllable blocks & reading', 'Greetings & introductions', 'Basic sentence structure', 'Numbers & counters', 'Verbs & tenses', 'Everyday vocabulary', 'Grammar foundations', 'Shopping & food', 'Directions & travel'],
   },
   {
     slug: 'chinese', title: 'Chinese (Mandarin)', titleTi: 'ቻይንኛ', category: 'Language', flag: '🇨🇳',
@@ -57,10 +60,10 @@ const courses = [
   },
   {
     slug: 'typing', title: 'Typing Mastery', titleTi: 'ኪቦርድ', category: 'Typing', flag: '⌨️',
-    description: 'Learn to type fast without looking — the fun way. Home row to full speed, with games and challenges.',
-    price: 0, levels: LEVELS, instructionLanguages: ['English'], focus: ['Practice', 'Typing'],
+    description: 'Master touch typing with a proven progression — home row to full speed. Based on the typing.com skill-building method.',
+    price: 0, levels: ['Beginner', 'Intermediate', 'Advanced'], instructionLanguages: ['English'], focus: ['Practice', 'Typing'],
     image: 'https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=800&h=500&fit=crop',
-    modules: ['Home row (asdf jkl;)', 'Top row', 'Bottom row', 'Capitals & punctuation', 'Numbers row', 'Speed drills', 'Real sentences'],
+    modules: ['Getting Started: J, F, Space', 'U, R, K & D, E, I', 'C, G, N & T, S, L', 'O, B, A, Period, Comma', 'W, X, Q, Y, P, Z, Enter', 'Common words & home row', 'Top & bottom row words', 'Shift, capitals & punctuation', 'Sentences & paragraphs', 'Speed drills & numbers'],
   },
 ];
 
@@ -294,32 +297,7 @@ The verb comes at the end, and it changes based on the subject.` },
   { courseSlug: 'amharic', level: 'Intermediate', order: 2, title: 'Practice: Write About Your Family', type: 'Practice',
     practiceTask: 'Write 4 sentences in Amharic about your family. Include: how many people, their names, and where they live. Use the Amharic Fidäl script.' },
 
-  // Korean — Extended
-  { courseSlug: 'korean', level: 'Beginner', order: 2, title: 'Listen: Korean Greetings', type: 'Listening',
-    listenText: 'Annyeonghaseyo. Je ireum-eun Sara-imnida. Mannaseo bangawoyo. Kamsahamnida. Jo-eun haru doeseyo.',
-    body: 'Listen to common Korean greetings and introductions. Notice the formal verb endings (-imnida, -seyo).' },
-  { courseSlug: 'korean', level: 'Beginner', order: 3, title: 'Hangul: Vowels & Consonants', type: 'Reading',
-    body: `Hangul vowels:
-- ㅏ (a), ㅑ (ya), ㅓ (eo), ㅕ (yeo)
-- ㅗ (o), ㅛ (yo), ㅜ (u), ㅠ (yu)
-- ㅡ (eu), ㅣ (i)
-
-Block formation: consonant + vowel + (optional final consonant)
-
-Example: 한 (h + a + n) = 한 (han)
-글 (g + eu + l) = 글 (geul) => 한글 (Hangul)` },
-  { courseSlug: 'korean', level: 'Intermediate', order: 1, title: 'Korean Sentence Structure', type: 'Reading',
-    body: `Korean is Subject-Object-Verb (SOV).
-
-- "I eat rice" → 저는 밥을 먹어요 (Jeoneun bap-eul meogeoyo)
-  Subject: 저는 (I)
-  Object: 밥을 (rice)
-  Verb: 먹어요 (eat)
-
-Particles:
-- 은/는 (eun/neun) — subject/topic marker
-- 을/를 (eul/reul) — object marker
-- 에 (e) — location/time marker` },
+  ...koreanLessons,
 
   // Chinese — Extended
   { courseSlug: 'chinese', level: 'Beginner', order: 2, title: 'Listen: Mandarin Greetings', type: 'Listening',
@@ -1367,14 +1345,8 @@ Tens: тридцать, сорок, пятьдесят, шестьдесят, с
 
 This is your final speaking/writing practice for the A1 course!` },
 
-  // Korean, Chinese, Amharic — one reading each
-  { courseSlug: 'korean', level: 'Beginner', order: 1, title: 'Hangul: The Korean Alphabet', type: 'Reading',
-    body: `Hangul is famously logical. Consonants + vowels form blocks:
+  ...typingLessons,
 
-- ㄱ (g/k), ㄴ (n), ㅁ (m)
-- ㅏ (a), ㅓ (eo), ㅗ (o)
-
-안녕하세요 (annyeonghaseyo) = "hello".` },
   { courseSlug: 'chinese', level: 'Beginner', order: 1, title: 'Pinyin & the Four Tones', type: 'Reading',
     body: `Mandarin is tonal. The syllable "ma" changes meaning by tone:
 
@@ -1417,10 +1389,22 @@ const placements = [
     { prompt: '"Shukran" means:', options: ['Hello', 'Thank you', 'Please'], answer: 1 },
     { prompt: '"Sabah al-khayr" means:', options: ['Good evening', 'Good morning', 'Good night'], answer: 1 },
   ] },
-  { courseSlug: 'korean', questions: [
-    { prompt: 'The Korean alphabet is called:', options: ['Kanji', 'Hangul', 'Hiragana'], answer: 1 },
-    { prompt: '"Annyeonghaseyo" means:', options: ['Thank you', 'Hello', 'Goodbye'], answer: 1 },
-  ] },
+  { courseSlug: 'korean', title: 'Korean Placement — Basic', level: 'Beginner',
+    questions: [
+      { question: 'Do you already know how to read Hangul?', options: ['Yes, I can read all of it', 'I know some letters', 'No, I cannot', 'What is Hangul?'], correctIndex: 0 },
+      { question: 'What does "안녕하세요" mean?', options: ['Thank you', 'Hello', 'Goodbye', 'Please'], correctIndex: 1 },
+      { question: 'How do you say "rice/meal" in Korean?', options: ['물', '밥', '김치', '고기'], correctIndex: 1 },
+      { question: 'Which is the correct sentence structure in Korean?', options: ['Subject-Verb-Object', 'Subject-Object-Verb', 'Verb-Subject-Object', 'Object-Subject-Verb'], correctIndex: 1 },
+      { question: 'What does "감사합니다" mean?', options: ['Sorry', 'Hello', 'Thank you', 'Goodbye'], correctIndex: 2 },
+    ] },
+  { courseSlug: 'korean', title: 'Korean Placement — Full', level: 'Beginner',
+    questions: [
+      { question: 'How do you say "I want to eat kimchi"?', options: ['김치 먹어요', '김치 먹고 싶어요', '김치 먹을 거예요', '김치 먹어도 돼요'], correctIndex: 1 },
+      { question: 'Which of these means "expensive"?', options: ['싸요', '비싸요', '좋아요', '맛있어요'], correctIndex: 1 },
+      { question: 'What is "Let\'s go" in Korean?', options: ['갑시다', '가요', '가지 마요', '가고 있어요'], correctIndex: 0 },
+      { question: 'How do you say "I can speak Korean"?', options: ['한국어를 해요', '한국어를 할 수 있어요', '한국어를 하고 싶어요', '한국어를 해야 돼요'], correctIndex: 1 },
+      { question: 'Which is correct: "I am a student"?', options: ['저는 학생이에요', '저는 학생이 아니에요', '저는 선생님이에요', '저는 의사예요'], correctIndex: 0 },
+    ] },
   { courseSlug: 'chinese', questions: [
     { prompt: 'Mandarin Chinese uses:', options: ['An alphabet', 'Characters (hanzi)', 'A syllabary'], answer: 1 },
     { prompt: '"Nǐ hǎo" means:', options: ['Thank you', 'Hello', 'Goodbye'], answer: 1 },
@@ -1469,10 +1453,38 @@ const quizzes = [
     { prompt: '"Shukran" means:', options: ['Hello', 'Thank you', 'Goodbye'], answer: 1, explanation: 'Shukran = thank you in Arabic.' },
     { prompt: 'How many letters in the Arabic alphabet?', options: ['26', '28', '32'], answer: 1, explanation: 'Arabic has 28 letters.' },
   ] },
-  { courseSlug: 'korean', title: 'Hangul Check', level: 'Beginner', questions: [
-    { prompt: '한글 (Hangul) is:', options: ['Chinese characters', 'The Korean alphabet', 'Japanese writing'], answer: 1, explanation: 'Hangul is the Korean alphabet, created in the 15th century.' },
-    { prompt: '"안녕하세요" means:', options: ['Thank you', 'Hello', 'Goodbye'], answer: 1, explanation: 'Annyeonghaseyo = Hello (formal).' },
-  ] },
+  { courseSlug: 'korean', title: 'Unit 0: Hangul Basics', level: 'Beginner',
+    questions: [
+      { question: 'How many basic consonants does Hangul have?', options: ['8', '10', '14', '24'], correctIndex: 1 },
+      { question: 'Which Hangul vowel sounds like "a" in "father"?', options: ['ㅓ', 'ㅏ', 'ㅗ', 'ㅡ'], correctIndex: 1 },
+      { question: 'What is the silent consonant used at the start of a syllable?', options: ['ㄱ', 'ㅇ', 'ㅎ', 'ㄴ'], correctIndex: 1 },
+      { question: 'Which is the correct way to write "ga" in Hangul?', options: ['아', '가', '카', '나'], correctIndex: 1 },
+      { question: 'What is the 받침 (batchim)?', options: ['A vowel', 'The final consonant in a block', 'A double consonant', 'A tense sound'], correctIndex: 1 },
+    ] },
+  { courseSlug: 'korean', title: 'Unit 1 Part 1: Greetings & Basics', level: 'Beginner',
+    questions: [
+      { question: 'What does 안녕하세요 mean?', options: ['Thank you', 'Hello', 'Goodbye', 'Sorry'], correctIndex: 1 },
+      { question: 'In Korean sentence structure, where does the verb go?', options: ['Beginning', 'Middle', 'End', 'Anywhere'], correctIndex: 2 },
+      { question: 'Which particle marks the topic of a sentence?', options: ['을/를', '에', '은/는', '이/가'], correctIndex: 2 },
+      { question: 'How do you say "I am a student"?', options: ['저는 학생이에요', '저는 학생이 아니에요', '저는 선생님이에요', '학생은 저예요'], correctIndex: 0 },
+      { question: 'What is the object particle for a word ending in a consonant?', options: ['를', '은', '을', '는'], correctIndex: 2 },
+    ] },
+  { courseSlug: 'korean', title: 'Unit 1 Part 2: Verbs & Numbers', level: 'Beginner',
+    questions: [
+      { question: 'What is the Sino-Korean number for 5?', options: ['오', '육', '삼', '칠'], correctIndex: 0 },
+      { question: 'What is the Native Korean number for 1?', options: ['일', '하나', '둘', '한'], correctIndex: 1 },
+      { question: 'How do you say "I want to go" in Korean?', options: ['가고 싶어요', '가요', '갈 수 있어요', '가야 돼요'], correctIndex: 0 },
+      { question: 'What is the past tense of 가다 (to go)?', options: ['가요', '갔어요', '갈 거예요', '가고 있어요'], correctIndex: 1 },
+      { question: 'How do you say "delicious" in Korean?', options: ['비싸요', '맛있어요', '재미있어요', '좋아요'], correctIndex: 1 },
+    ] },
+  { courseSlug: 'korean', title: 'Unit 2: More Grammar', level: 'Beginner',
+    questions: [
+      { question: 'What does 왼쪽 mean?', options: ['Right', 'Straight', 'Left', 'Behind'], correctIndex: 2 },
+      { question: 'How do you say "Let\'s go" in Korean?', options: ['갑시다', '가요', '가고 있어요', '갈 거예요'], correctIndex: 0 },
+      { question: 'How do you say "must not" in Korean?', options: ['아/어도 돼요', '(으)면 안 돼요', '안 ~아/어요', '(으)ㄹ 수 있어요'], correctIndex: 1 },
+      { question: 'What is the counter for people?', options: ['개', '명', '권', '잔'], correctIndex: 1 },
+      { question: 'How do you say "more expensive than" in Korean?', options: ['보다 싸요', '보다 비싸요', '제일 비싸요', '더 싸요'], correctIndex: 1 },
+    ] },
   { courseSlug: 'russian', title: 'Alphabet & Greetings', level: 'Beginner', questions: [
     { prompt: 'How many letters does the Russian alphabet have?', options: ['26', '33', '31'], answer: 1, explanation: 'The Russian alphabet has 33 letters — 10 vowels, 21 consonants, and 2 signs.' },
     { prompt: '"Здравствуйте" is:', options: ['Goodbye (formal)', 'Hello (formal)', 'Thank you'], answer: 1, explanation: 'Здравствуйте is the formal way to say hello in Russian.' },
@@ -1529,10 +1541,71 @@ const flashcards = [
     { front: 'يكتب (yaktubu)', back: 'He writes' }, { front: 'يقرأ (yaqra\'u)', back: 'He reads' },
     { front: 'يتكلم (yatakallamu)', back: 'He speaks' }, { front: 'يذهب (yathhabu)', back: 'He goes' },
   ] },
-  { courseSlug: 'korean', title: 'Korean Particles', cards: [
-    { front: '은/는', back: 'Subject/topic marker' }, { front: '을/를', back: 'Object marker' },
-    { front: '에', back: 'Time/location marker' }, { front: '에서', back: 'Action location ("at/in")' },
-  ] },
+  { courseSlug: 'korean', title: 'Hangul', level: 'Beginner',
+    cards: [
+      { front: 'ㄱ', back: 'g/k (giyeok)' },
+      { front: 'ㄴ', back: 'n (nieun)' },
+      { front: 'ㄷ', back: 'd/t (digeut)' },
+      { front: 'ㄹ', back: 'r/l (rieul)' },
+      { front: 'ㅁ', back: 'm (mieum)' },
+      { front: 'ㅂ', back: 'b/p (bieup)' },
+      { front: 'ㅅ', back: 's (siot)' },
+      { front: 'ㅇ', back: 'silent/ng (ieung)' },
+      { front: 'ㅏ', back: 'a (father)' },
+      { front: 'ㅓ', back: 'eo (um)' },
+    ] },
+  { courseSlug: 'korean', title: 'Greetings & Basics', level: 'Beginner',
+    cards: [
+      { front: '안녕하세요', back: 'Hello', example: '안녕하세요, 만나서 반가워요' },
+      { front: '감사합니다', back: 'Thank you', example: '감사합니다, 선생님' },
+      { front: '죄송합니다', back: 'I\'m sorry', example: '죄송합니다, 늦었어요' },
+      { front: '네', back: 'Yes' },
+      { front: '아니요', back: 'No' },
+      { front: '저', back: 'I / me (humble)' },
+      { front: '학생', back: 'student', example: '저는 학생이에요' },
+      { front: '선생님', back: 'teacher', example: '선생님이에요?' },
+      { front: '만나서 반가워요', back: 'Nice to meet you' },
+      { front: '이름', back: 'name', example: '이름이 뭐예요?' },
+    ] },
+  { courseSlug: 'korean', title: 'Numbers', level: 'Beginner',
+    cards: [
+      { front: '일', back: '1 (Sino-Korean)' },
+      { front: '이', back: '2 (Sino-Korean)' },
+      { front: '삼', back: '3 (Sino-Korean)' },
+      { front: '사', back: '4 (Sino-Korean)' },
+      { front: '오', back: '5 (Sino-Korean)' },
+      { front: '하나', back: '1 (Native Korean)' },
+      { front: '둘', back: '2 (Native Korean)' },
+      { front: '셋', back: '3 (Native Korean)' },
+      { front: '넷', back: '4 (Native Korean)' },
+      { front: '다섯', back: '5 (Native Korean)' },
+    ] },
+  { courseSlug: 'korean', title: 'Common Verbs', level: 'Beginner',
+    cards: [
+      { front: '가다', back: 'to go', example: '학교에 가요' },
+      { front: '오다', back: 'to come', example: '친구가 와요' },
+      { front: '먹다', back: 'to eat', example: '밥을 먹어요' },
+      { front: '마시다', back: 'to drink', example: '물을 마셔요' },
+      { front: '보다', back: 'to see/watch', example: '영화를 봐요' },
+      { front: '듣다', back: 'to listen', example: '음악을 들어요' },
+      { front: '읽다', back: 'to read', example: '책을 읽어요' },
+      { front: '쓰다', back: 'to write/use', example: '편지를 써요' },
+      { front: '하다', back: 'to do', example: '공부해요' },
+      { front: '배우다', back: 'to learn', example: '한국어를 배워요' },
+    ] },
+  { courseSlug: 'korean', title: 'Food & Shopping', level: 'Beginner',
+    cards: [
+      { front: '김치', back: 'kimchi' },
+      { front: '비빔밥', back: 'bibimbap' },
+      { front: '불고기', back: 'bulgogi' },
+      { front: '떡볶이', back: 'spicy rice cakes' },
+      { front: '물', back: 'water' },
+      { front: '커피', back: 'coffee' },
+      { front: '얼마예요?', back: 'How much is it?' },
+      { front: '주세요', back: 'Please give me', example: '물 주세요' },
+      { front: '비싸요', back: 'It\'s expensive' },
+      { front: '할인', back: 'discount' },
+    ] },
   { courseSlug: 'russian', title: 'Russian Alphabet', cards: [
     { front: 'А а', back: 'a (like "father")' }, { front: 'Б б', back: 'b (like "book")' },
     { front: 'В в', back: 'v (like "voice")' }, { front: 'Г г', back: 'g (like "go")' },
@@ -1660,19 +1733,47 @@ const exams = [
     'Say "I have a brother/friend" and "I don\'t have a sister" in Russian.',
     'Say goodbye in both formal and informal Russian.',
   ] },
+  { courseSlug: 'korean', level: 'Beginner', kind: 'Theoretical', title: 'Korean A1 — Theoretical Exam',
+    sections: [
+      {
+        title: 'Hangul & Pronunciation', type: 'multiple-choice',
+        questions: [
+          { question: 'Which vowel is horizontal?', options: ['ㅏ', 'ㅗ', 'ㅓ', 'ㅣ'], correctIndex: 1 },
+          { question: 'How many representative final consonant sounds are there?', options: ['5', '7', '10', '14'], correctIndex: 1 },
+          { question: 'Which is a tense consonant?', options: ['ㅋ', 'ㄲ', 'ㅌ', 'ㅊ'], correctIndex: 1 },
+        ]
+      },
+      {
+        title: 'Grammar & Vocabulary', type: 'multiple-choice',
+        questions: [
+          { question: 'What does "저는 물을 마셔요" mean?', options: ['I drink water', 'I eat rice', 'I see water', 'I want water'], correctIndex: 0 },
+          { question: 'Which is correct future tense of 가다?', options: ['가요', '갔어요', '갈 거예요', '가고 있어요'], correctIndex: 2 },
+          { question: 'What particle marks the location of an action?', options: ['에', '에서', '은/는', '을/를'], correctIndex: 1 },
+        ]
+      },
+    ] },
+  { courseSlug: 'korean', level: 'Beginner', kind: 'Practical', title: 'Korean A1 — Practical Speaking',
+    sections: [
+      {
+        title: 'Self-Introduction', type: 'speaking',
+        questions: [
+          { question: 'Introduce yourself in Korean: say your name, where you are from, and one thing about yourself.' },
+          { question: 'Say 3 foods you like in Korean.' },
+          { question: 'Describe your daily routine: what time you wake up and what you do in the morning.' },
+        ]
+      },
+      {
+        title: 'Situational Speaking', type: 'speaking',
+        questions: [
+          { question: 'Order a dish at a Korean restaurant. Include a greeting, what you want, and saying thank you.' },
+          { question: 'Ask for directions to the subway station.' },
+          { question: 'Count from 1 to 10 in both Sino-Korean and Native Korean.' },
+        ]
+      },
+    ] },
 ];
 
-// Typing drills — structured like typing.com progression.
-const typingDrills = [
-  { level: 'Beginner', order: 1, title: 'Home Row: asdf jkl;', text: 'asdf jkl; asdf jkl; fjfj dkdk slsl a;a; fdsa jkl;', targetWpm: 15, tip: 'Rest your fingers on a-s-d-f and j-k-l-;. Never look down!' },
-  { level: 'Beginner', order: 2, title: 'Home Row Words', text: 'dad sad lad fall glass ask flask salad gall',  targetWpm: 18, tip: 'Keep wrists floating, not resting on the desk.' },
-  { level: 'Beginner', order: 3, title: 'Top Row: qwerty', text: 'qwer tyui op quiet power tower query type write', targetWpm: 20, tip: 'Reach up from the home row, then come right back.' },
-  { level: 'Intermediate', order: 4, title: 'Bottom Row: zxcvbnm', text: 'zxcv bnm, zebra vacuum climb number brave mix', targetWpm: 25, tip: 'The trickiest row — slow down for accuracy first.' },
-  { level: 'Intermediate', order: 5, title: 'Capitals & Punctuation', text: 'The quick Brown Fox! Is it ready? Yes, it is.', targetWpm: 30, tip: 'Use the opposite hand\'s Shift key for capitals.' },
-  { level: 'Intermediate', order: 6, title: 'The Number Row', text: '1 2 3 4 5 6 7 8 9 0 room 101 has 25 chairs and 3 desks', targetWpm: 28, tip: 'Numbers are a stretch — glance only if you must.' },
-  { level: 'Advanced', order: 7, title: 'Real Sentences', text: 'Practice a little every day and your speed will climb without you noticing.', targetWpm: 40, tip: 'Think in whole words, not single letters.' },
-  { level: 'Advanced', order: 8, title: 'Speed Challenge', text: 'The five boxing wizards jump quickly while the lazy dog watches from afar.', targetWpm: 45, tip: 'Aim for a steady rhythm rather than bursts.' },
-];
+const typingDrills = newTypingDrills;
 
 const users = [
   { name: 'Amar Hassen', email: 'amar@erilearn.io', password: 'demo123', role: 'admin', enrollments: [

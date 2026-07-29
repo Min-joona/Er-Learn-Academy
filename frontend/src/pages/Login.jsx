@@ -57,18 +57,18 @@ export default function Login() {
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
           <canvas ref={canvasRef} width="400" height="400" className="w-20 h-20 mx-auto mb-4" />
-          <h1 className="text-3xl md:text-4xl font-display font-bold text-[#ECE5CE]">Welcome back</h1>
-          <p className="text-[#ECE5CE]/50 mt-1">Continue your learning journey.</p>
+          <h1 className="text-3xl md:text-4xl font-display font-bold text-foreground">Welcome back</h1>
+          <p className="text-foreground/50 mt-1">Continue your learning journey.</p>
         </div>
 
         <form onSubmit={submit} className="card p-6 md:p-8 space-y-5">
           <div>
-            <label className="block text-sm font-medium text-[#ECE5CE]/70 mb-1.5">Email</label>
+            <label className="block text-sm font-medium text-foreground/70 mb-1.5">Email</label>
             <input className="input" type="email" placeholder="you@example.com" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} required />
           </div>
           <div>
             <div className="flex items-center justify-between mb-1.5">
-              <label className="text-sm font-medium text-[#ECE5CE]/70">Password</label>
+              <label className="text-sm font-medium text-foreground/70">Password</label>
               <button type="button" onClick={() => toast('Password reset coming soon')} className="text-xs text-amber/60 hover:text-amber transition-colors">Forgot password?</button>
             </div>
             <input className="input" type="password" placeholder="Your password" value={form.password} onChange={(e) => setForm({ ...form, password: e.target.value })} required />
@@ -84,7 +84,7 @@ export default function Login() {
           </button>
 
           <div className="text-center">
-            <p className="text-sm text-[#ECE5CE]/40">
+            <p className="text-sm text-foreground/40">
               New here? <Link to="/register" className="text-amber hover:text-amber/80 font-medium">Create an account</Link>
             </p>
           </div>

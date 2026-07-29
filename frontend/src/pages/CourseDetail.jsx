@@ -55,16 +55,16 @@ export default function CourseDetail() {
         <div className="grid md:grid-cols-2 gap-8 mb-10">
           <div className="relative overflow-hidden rounded-2xl aspect-video group">
             <img src={course.image} alt={course.title} className="h-full w-full object-cover transition duration-700 group-hover:scale-105" />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#774F38]/50 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-base/50 to-transparent" />
             <span className="absolute bottom-4 left-4 text-4xl">{course.flag}</span>
           </div>
           <div className="flex flex-col justify-center">
-            <h1 className="text-3xl md:text-4xl font-display font-bold text-[#ECE5CE]">{course.title}</h1>
-            {course.titleTi && <p className="text-[#ECE5CE]/30 font-display text-lg mt-1">{course.titleTi}</p>}
-            <p className="mt-3 text-[#ECE5CE]/60 leading-relaxed">{course.description}</p>
+            <h1 className="text-3xl md:text-4xl font-display font-bold text-foreground">{course.title}</h1>
+            {course.titleTi && <p className="text-foreground/30 font-display text-lg mt-1">{course.titleTi}</p>}
+            <p className="mt-3 text-foreground/60 leading-relaxed">{course.description}</p>
             <div className="flex flex-wrap gap-2 mt-4">
               {(course.focus || []).map((f) => <span key={f} className="pill-amber text-xs">{f}</span>)}
-              {(course.instructionLanguages || []).map((l) => <span key={l} className="pill bg-[#ECE5CE]/10 text-[#ECE5CE]/40 text-xs">in {l}</span>)}
+              {(course.instructionLanguages || []).map((l) => <span key={l} className="pill bg-foreground/10 text-foreground/40 text-xs">in {l}</span>)}
             </div>
 
             {enrollment ? (
@@ -73,9 +73,9 @@ export default function CourseDetail() {
                   <span className="text-sm font-medium text-amber">
                     <span className="mr-2">✓</span>Enrolled · {enrollment.level}
                   </span>
-                  <span className="text-xs text-[#ECE5CE]/40">{enrollment.progress}%</span>
+                  <span className="text-xs text-foreground/40">{enrollment.progress}%</span>
                 </div>
-                <div className="h-2 rounded-full bg-[#ECE5CE]/10 overflow-hidden">
+                <div className="h-2 rounded-full bg-foreground/10 overflow-hidden">
                   <div className="h-full rounded-full bg-gradient-to-r from-amber to-rust transition-all duration-500" style={{ width: `${enrollment.progress}%` }} />
                 </div>
               </div>
@@ -91,12 +91,12 @@ export default function CourseDetail() {
         {/* Modules */}
         {course.modules?.length > 0 && (
           <div className="mb-10">
-            <h2 className="text-xl font-display font-bold text-[#ECE5CE] mb-4">What you'll learn</h2>
+            <h2 className="text-xl font-display font-bold text-foreground mb-4">What you'll learn</h2>
             <div className="grid sm:grid-cols-2 gap-2">
               {(course.modules).map((m, i) => (
-                <div key={i} className="flex items-center gap-3 rounded-xl border border-[#ECE5CE]/10 bg-[#ECE5CE]/5 px-4 py-3">
+                <div key={i} className="flex items-center gap-3 rounded-xl border border-foreground/10 bg-foreground/5 px-4 py-3">
                   <span className="grid h-7 w-7 shrink-0 place-items-center rounded-lg bg-amber/10 text-xs font-bold text-amber">{i + 1}</span>
-                  <span className="text-sm text-[#ECE5CE]/70">{m}</span>
+                  <span className="text-sm text-foreground/70">{m}</span>
                 </div>
               ))}
             </div>
@@ -106,7 +106,7 @@ export default function CourseDetail() {
         {/* Enrolled Tabs */}
         {enrollment && (
           <>
-            <div className="flex gap-1 border-b border-[#ECE5CE]/10 pb-1 mb-6 overflow-x-auto no-scrollbar">
+            <div className="flex gap-1 border-b border-foreground/10 pb-1 mb-6 overflow-x-auto no-scrollbar">
               {[
                 { id: 'lessons', label: 'Lessons', icon: '📖' },
                 { id: 'quizzes', label: 'Quizzes', icon: '📝' },
@@ -117,7 +117,7 @@ export default function CourseDetail() {
                   key={t.id}
                   onClick={() => setTab(t.id)}
                   className={`flex items-center gap-1.5 px-4 py-3 text-sm font-medium rounded-t-lg transition-all ${
-                    tab === t.id ? 'text-amber border-b-2 border-amber bg-amber/5' : 'text-[#ECE5CE]/40 hover:text-[#ECE5CE]/70'
+                    tab === t.id ? 'text-amber border-b-2 border-amber bg-amber/5' : 'text-foreground/40 hover:text-foreground/70'
                   }`}
                 >
                   <span>{t.icon}</span> {t.label}
@@ -129,16 +129,16 @@ export default function CourseDetail() {
             {tab === 'lessons' && (
               <div className="space-y-2">
                 {myLessons.map((l) => (
-                  <button key={l._id} onClick={() => setOpenLesson(l)} className="flex w-full items-center gap-4 rounded-xl border border-[#ECE5CE]/10 bg-[#ECE5CE]/[0.02] px-5 py-4 text-left transition-all hover:border-amber/30 hover:bg-amber/[0.02] group">
+                  <button key={l._id} onClick={() => setOpenLesson(l)} className="flex w-full items-center gap-4 rounded-xl border border-foreground/10 bg-foreground/[0.02] px-5 py-4 text-left transition-all hover:border-amber/30 hover:bg-amber/[0.02] group">
                     <span className="text-xl">{l.type === 'Reading' ? '📖' : l.type === 'Listening' ? '🎧' : '✏️'}</span>
                     <div className="flex-1">
-                      <p className="font-medium text-[#ECE5CE] group-hover:text-amber transition-colors">{l.title}</p>
-                      <p className="text-xs text-[#ECE5CE]/40">{l.type} · {l.level}</p>
+                      <p className="font-medium text-foreground group-hover:text-amber transition-colors">{l.title}</p>
+                      <p className="text-xs text-foreground/40">{l.type} · {l.level}</p>
                     </div>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256" className="text-[#ECE5CE]/20 group-hover:text-amber/50 transition-colors"><path d="M181.66,133.66l-80,80a8,8,0,0,1-11.32-11.32L164.69,128,90.34,53.66a8,8,0,0,1,11.32-11.32l80,80A8,8,0,0,1,181.66,133.66Z"></path></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256" className="text-foreground/20 group-hover:text-amber/50 transition-colors"><path d="M181.66,133.66l-80,80a8,8,0,0,1-11.32-11.32L164.69,128,90.34,53.66a8,8,0,0,1,11.32-11.32l80,80A8,8,0,0,1,181.66,133.66Z"></path></svg>
                   </button>
                 ))}
-                {myLessons.length === 0 && <p className="text-center py-10 text-[#ECE5CE]/30">Lessons coming soon for this level.</p>}
+                {myLessons.length === 0 && <p className="text-center py-10 text-foreground/30">Lessons coming soon for this level.</p>}
               </div>
             )}
 
@@ -148,13 +148,13 @@ export default function CourseDetail() {
                 {quizzes.map((q) => (
                   <div key={q._id} className="card flex items-center justify-between">
                     <div>
-                      <p className="font-semibold text-[#ECE5CE]">{q.title}</p>
-                      <p className="text-xs text-[#ECE5CE]/40">{q.questions?.length || 0} questions</p>
+                      <p className="font-semibold text-foreground">{q.title}</p>
+                      <p className="text-xs text-foreground/40">{q.questions?.length || 0} questions</p>
                     </div>
                     <button onClick={() => setOpenQuiz(q)} className="btn-primary py-2 px-4 text-sm">Start</button>
                   </div>
                 ))}
-                {quizzes.length === 0 && <p className="text-[#ECE5CE]/30 col-span-2 text-center py-10">No quizzes yet.</p>}
+                {quizzes.length === 0 && <p className="text-foreground/30 col-span-2 text-center py-10">No quizzes yet.</p>}
               </div>
             )}
 
@@ -163,12 +163,12 @@ export default function CourseDetail() {
               <div className="grid sm:grid-cols-2 gap-4">
                 {flashcards.map((d) => (
                   <div key={d._id} className="card">
-                    <p className="font-semibold text-[#ECE5CE]">{d.title}</p>
-                    <p className="text-xs text-[#ECE5CE]/40">{d.cards?.length || 0} cards</p>
+                    <p className="font-semibold text-foreground">{d.title}</p>
+                    <p className="text-xs text-foreground/40">{d.cards?.length || 0} cards</p>
                     <button onClick={() => { setOpenFlashcard(d); setFlashcardIdx(0); }} className="btn-outline mt-3 py-2 px-4 text-sm">Review</button>
                   </div>
                 ))}
-                {flashcards.length === 0 && <p className="text-[#ECE5CE]/30 col-span-2 text-center py-10">No flashcards yet.</p>}
+                {flashcards.length === 0 && <p className="text-foreground/30 col-span-2 text-center py-10">No flashcards yet.</p>}
               </div>
             )}
 
@@ -178,19 +178,19 @@ export default function CourseDetail() {
                 {exams.map((ex) => (
                   <div key={ex._id} className="card">
                     <div className="flex items-center justify-between">
-                      <p className="font-semibold text-[#ECE5CE]">{ex.title}</p>
+                      <p className="font-semibold text-foreground">{ex.title}</p>
                       <span className={`pill text-xs ${ex.kind === 'Practical' ? 'pill-rust' : 'pill-amber'}`}>{ex.kind}</span>
                     </div>
                     {ex.kind === 'Practical' ? (
-                      <ol className="mt-3 list-decimal space-y-1 pl-5 text-sm text-[#ECE5CE]/60">
+                      <ol className="mt-3 list-decimal space-y-1 pl-5 text-sm text-foreground/60">
                         {ex.tasks?.map((t, i) => <li key={i}>{t}</li>)}
                       </ol>
                     ) : (
-                      <p className="mt-2 text-sm text-[#ECE5CE]/50">{ex.questions?.length || 0} questions</p>
+                      <p className="mt-2 text-sm text-foreground/50">{ex.questions?.length || 0} questions</p>
                     )}
                   </div>
                 ))}
-                {exams.length === 0 && <p className="text-[#ECE5CE]/30 text-center py-10">No exams yet.</p>}
+                {exams.length === 0 && <p className="text-foreground/30 text-center py-10">No exams yet.</p>}
               </div>
             )}
           </>
@@ -203,13 +203,13 @@ export default function CourseDetail() {
       {/* Lesson Modal */}
       {openLesson && (
         <div className="fixed inset-0 z-50 grid place-items-center bg-black/60 backdrop-blur-sm p-4" onClick={() => setOpenLesson(null)}>
-          <div className="max-h-[85vh] w-full max-w-2xl overflow-y-auto rounded-2xl border border-[#ECE5CE]/10 bg-[#774F38] p-6 md:p-8 shadow-2xl" onClick={(e) => e.stopPropagation()}>
+          <div className="max-h-[85vh] w-full max-w-2xl overflow-y-auto rounded-2xl border border-foreground/10 bg-base p-6 md:p-8 shadow-2xl" onClick={(e) => e.stopPropagation()}>
             <div className="flex items-start justify-between mb-4">
               <div>
                 <span className="pill-amber text-xs">{openLesson.type} · {openLesson.level}</span>
-                <h2 className="mt-2 text-2xl font-display font-bold text-[#ECE5CE]">{openLesson.title}</h2>
+                <h2 className="mt-2 text-2xl font-display font-bold text-foreground">{openLesson.title}</h2>
               </div>
-              <button onClick={() => setOpenLesson(null)} className="text-[#ECE5CE]/30 hover:text-[#ECE5CE] transition-colors">
+              <button onClick={() => setOpenLesson(null)} className="text-foreground/30 hover:text-foreground transition-colors">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256"><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"></path></svg>
               </button>
             </div>
@@ -220,13 +220,13 @@ export default function CourseDetail() {
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256"><path d="M155.51,24.81a8,8,0,0,0-8.42.88L77.25,80H32A16,16,0,0,0,16,96v64a16,16,0,0,0,16,16H77.25l69.84,54.31A8,8,0,0,0,160,224V32A8,8,0,0,0,155.51,24.81ZM32,96H72v64H32ZM144,207.64,80,158V98l64-49.57ZM200,96v64a8,8,0,0,1-16,0V96a8,8,0,0,1,16,0Zm24-24V184a8,8,0,0,1-16,0V72a8,8,0,0,1,16,0Z"></path></svg>
                   Play audio
                 </button>
-                <p className="text-sm text-[#ECE5CE]/60">“{openLesson.listenText}”</p>
+                <p className="text-sm text-foreground/60">“{openLesson.listenText}”</p>
               </div>
             )}
 
-            <div className="space-y-3 text-[#ECE5CE]/70 leading-relaxed whitespace-pre-line">
+            <div className="space-y-3 text-foreground/70 leading-relaxed whitespace-pre-line">
               {openLesson.body?.split('\n').map((line, i) => (
-                <p key={i}>{line.replace(/\*\*(.+?)\*\*/g, '<strong class="text-[#ECE5CE]">$1</strong>')}</p>
+                <p key={i}>{line.replace(/\*\*(.+?)\*\*/g, '<strong class="text-foreground">$1</strong>')}</p>
               ))}
             </div>
 
@@ -236,7 +236,7 @@ export default function CourseDetail() {
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256"><path d="M227.32,73.37,182.63,28.69a16,16,0,0,0-22.63,0L36.69,152A15.86,15.86,0,0,0,32,163.31V208a16,16,0,0,0,16,16H92.69A15.86,15.86,0,0,0,104,219.31L227.32,96a16,16,0,0,0,0-22.63ZM92.69,208H48V163.31l88-88L180.69,120ZM192,108.69,147.31,64l24-24L216,84.69Z"></path></svg>
                   Your task
                 </p>
-                <p className="mt-1 text-sm text-[#ECE5CE]/60">{openLesson.practiceTask}</p>
+                <p className="mt-1 text-sm text-foreground/60">{openLesson.practiceTask}</p>
               </div>
             )}
 
@@ -262,9 +262,9 @@ export default function CourseDetail() {
               <p className="text-xs text-amber font-medium mb-4">
                 {flashcardIdx + 1} / {openFlashcard.cards.length}
               </p>
-              <p className="text-2xl font-bold text-[#ECE5CE] mb-2">{openFlashcard.cards[flashcardIdx].front}</p>
-              <p className="text-sm text-[#ECE5CE]/50">{openFlashcard.cards[flashcardIdx].back}</p>
-              <p className="mt-6 text-xs text-[#ECE5CE]/30">Click to flip</p>
+              <p className="text-2xl font-bold text-foreground mb-2">{openFlashcard.cards[flashcardIdx].front}</p>
+              <p className="text-sm text-foreground/50">{openFlashcard.cards[flashcardIdx].back}</p>
+              <p className="mt-6 text-xs text-foreground/30">Click to flip</p>
             </div>
           </div>
         </div>
@@ -296,14 +296,14 @@ function EnrollModal({ course, onDone }) {
 
   return (
     <div className="fixed inset-0 z-50 grid place-items-center bg-black/60 backdrop-blur-sm p-4" onClick={onDone}>
-      <div className="w-full max-w-lg rounded-2xl border border-[#ECE5CE]/10 bg-[#774F38] p-6 md:p-8 shadow-2xl" onClick={(e) => e.stopPropagation()}>
+      <div className="w-full max-w-lg rounded-2xl border border-foreground/10 bg-base p-6 md:p-8 shadow-2xl" onClick={(e) => e.stopPropagation()}>
         {step === 1 && (
           <div>
-            <h2 className="text-2xl font-display font-bold text-[#ECE5CE]">Choose language</h2>
-            <p className="text-sm text-[#ECE5CE]/50 mt-1">Which language should we teach in?</p>
+            <h2 className="text-2xl font-display font-bold text-foreground">Choose language</h2>
+            <p className="text-sm text-foreground/50 mt-1">Which language should we teach in?</p>
             <div className="mt-5 space-y-2">
               {(course.instructionLanguages || []).map((l) => (
-                <button key={l} onClick={() => setLang(l)} className={`flex items-center justify-between w-full rounded-xl border-2 px-4 py-3 text-left font-medium transition-all ${lang === l ? 'border-amber bg-amber/5 text-[#ECE5CE]' : 'border-[#ECE5CE]/10 text-[#ECE5CE]/50 hover:border-[#ECE5CE]/30'}`}>
+                <button key={l} onClick={() => setLang(l)} className={`flex items-center justify-between w-full rounded-xl border-2 px-4 py-3 text-left font-medium transition-all ${lang === l ? 'border-amber bg-amber/5 text-foreground' : 'border-foreground/10 text-foreground/50 hover:border-foreground/30'}`}>
                   {l} {lang === l && <span className="text-amber">✓</span>}
                 </button>
               ))}
@@ -316,20 +316,20 @@ function EnrollModal({ course, onDone }) {
           !placement ? (
             <div className="grid place-items-center py-10">
               <div className="relative w-10 h-10"><div className="absolute inset-0 rounded-full border-2 border-amber/20 animate-spin-slow" /><div className="absolute inset-1 rounded-full border-2 border-transparent border-t-amber animate-spin" /></div>
-              <p className="mt-3 text-sm text-[#ECE5CE]/50">Loading placement test...</p>
+              <p className="mt-3 text-sm text-foreground/50">Loading placement test...</p>
             </div>
           ) : (
             <div>
-              <h2 className="text-2xl font-display font-bold text-[#ECE5CE]">Level test</h2>
-              <p className="text-sm text-[#ECE5CE]/50 mt-1">Answer honestly to get placed at the right level.</p>
+              <h2 className="text-2xl font-display font-bold text-foreground">Level test</h2>
+              <p className="text-sm text-foreground/50 mt-1">Answer honestly to get placed at the right level.</p>
               <div className="mt-5 max-h-[50vh] space-y-4 overflow-y-auto pr-1 no-scrollbar">
                 {placement.questions?.map((q, i) => (
-                  <div key={i} className="rounded-xl border border-[#ECE5CE]/10 p-4">
-                    <p className="font-medium text-sm text-[#ECE5CE]">{i + 1}. {q.prompt}</p>
+                  <div key={i} className="rounded-xl border border-foreground/10 p-4">
+                    <p className="font-medium text-sm text-foreground">{i + 1}. {q.prompt}</p>
                     <div className="mt-2 space-y-1.5">
                       {q.options?.map((opt, oi) => (
-                        <button key={oi} onClick={() => setAnswers({ ...answers, [i]: oi })} className={`flex items-center w-full rounded-lg border-2 px-3 py-2 text-left text-sm transition-all ${answers[i] === oi ? 'border-amber bg-amber/5 text-[#ECE5CE]' : 'border-[#ECE5CE]/10 text-[#ECE5CE]/50 hover:border-[#ECE5CE]/30'}`}>
-                          <span className={`w-5 h-5 rounded-full border-2 mr-2 flex items-center justify-center ${answers[i] === oi ? 'border-amber bg-amber text-white' : 'border-[#ECE5CE]/20'}`}>
+                        <button key={oi} onClick={() => setAnswers({ ...answers, [i]: oi })} className={`flex items-center w-full rounded-lg border-2 px-3 py-2 text-left text-sm transition-all ${answers[i] === oi ? 'border-amber bg-amber/5 text-foreground' : 'border-foreground/10 text-foreground/50 hover:border-foreground/30'}`}>
+                          <span className={`w-5 h-5 rounded-full border-2 mr-2 flex items-center justify-center ${answers[i] === oi ? 'border-amber bg-amber text-white' : 'border-foreground/20'}`}>
                             {answers[i] === oi && <span className="text-[10px]">✓</span>}
                           </span>
                           {opt}
@@ -379,24 +379,24 @@ function QuizModal({ quiz, onClose }) {
 
   return (
     <div className="fixed inset-0 z-50 grid place-items-center bg-black/60 backdrop-blur-sm p-4" onClick={onClose}>
-      <div className="w-full max-w-lg rounded-2xl border border-[#ECE5CE]/10 bg-[#774F38] p-6 md:p-8 shadow-2xl" onClick={(e) => e.stopPropagation()}>
+      <div className="w-full max-w-lg rounded-2xl border border-foreground/10 bg-base p-6 md:p-8 shadow-2xl" onClick={(e) => e.stopPropagation()}>
         <div className="flex items-center justify-between mb-2">
-          <h3 className="font-display font-bold text-lg text-[#ECE5CE]">{quiz.title}</h3>
-          <button onClick={onClose} className="text-[#ECE5CE]/30 hover:text-[#ECE5CE]"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 256 256"><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"></path></svg></button>
+          <h3 className="font-display font-bold text-lg text-foreground">{quiz.title}</h3>
+          <button onClick={onClose} className="text-foreground/30 hover:text-foreground"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 256 256"><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"></path></svg></button>
         </div>
         <div className="flex gap-1 mb-4">
           {quiz.questions.map((_, idx) => (
-            <div key={idx} className={`h-1 flex-1 rounded-full transition-colors ${idx < i ? (results[idx] ? 'bg-amber' : 'bg-rust') : idx === i ? 'bg-amber/50' : 'bg-[#ECE5CE]/10'}`} />
+            <div key={idx} className={`h-1 flex-1 rounded-full transition-colors ${idx < i ? (results[idx] ? 'bg-amber' : 'bg-rust') : idx === i ? 'bg-amber/50' : 'bg-foreground/10'}`} />
           ))}
         </div>
-        <p className="text-xs text-[#ECE5CE]/40 mb-1">Question {i + 1} of {quiz.questions.length}</p>
-        <p className="font-medium text-[#ECE5CE] mb-3">{q.prompt}</p>
+        <p className="text-xs text-foreground/40 mb-1">Question {i + 1} of {quiz.questions.length}</p>
+        <p className="font-medium text-foreground mb-3">{q.prompt}</p>
         <div className="space-y-2">
           {q.options.map((opt, oi) => {
             const showCorrect = picked !== null && oi === q.answer;
             const showWrong = picked === oi && oi !== q.answer;
             return (
-              <button key={oi} onClick={() => handlePick(oi)} className={`flex w-full items-center justify-between rounded-xl border-2 px-4 py-3 text-left text-sm transition-all ${showCorrect ? 'border-amber bg-amber/10 text-[#ECE5CE]' : showWrong ? 'border-rust bg-rust/10 text-[#ECE5CE]' : 'border-[#ECE5CE]/10 text-[#ECE5CE]/60 hover:border-[#ECE5CE]/30'}`}>
+              <button key={oi} onClick={() => handlePick(oi)} className={`flex w-full items-center justify-between rounded-xl border-2 px-4 py-3 text-left text-sm transition-all ${showCorrect ? 'border-amber bg-amber/10 text-foreground' : showWrong ? 'border-rust bg-rust/10 text-foreground' : 'border-foreground/10 text-foreground/60 hover:border-foreground/30'}`}>
                 {opt}
                 {showCorrect && <span className="text-amber">✓</span>}
                 {showWrong && <span className="text-rust">✗</span>}

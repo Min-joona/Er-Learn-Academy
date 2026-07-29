@@ -21,20 +21,20 @@ export default function FlashcardManager() {
       <div className="mx-auto max-w-5xl px-5">
         <div className="flex items-center justify-between mb-6">
           <div>
-            <h1 className="text-2xl font-display font-bold text-[#ECE5CE]">Flashcards</h1>
-            <p className="text-[#ECE5CE]/40 text-sm mt-1">{slug}</p>
+            <h1 className="text-2xl font-display font-bold text-foreground">Flashcards</h1>
+            <p className="text-foreground/40 text-sm mt-1">{slug}</p>
           </div>
           <Link to={`/admin/courses/${slug}/flashcards/new`} className="btn-primary py-2 px-4 text-sm">+ New Flashcard</Link>
         </div>
         {cards.length === 0 ? (
-          <div className="card p-12 text-center text-[#ECE5CE]/30">No flashcards yet.</div>
+          <div className="card p-12 text-center text-foreground/30">No flashcards yet.</div>
         ) : (
           <div className="grid gap-3">
             {cards.map((c) => (
               <div key={c._id} className="card p-4 flex items-center justify-between">
                 <div className="flex-1 min-w-0">
-                  <p className="text-[#ECE5CE] font-medium truncate">{c.front}</p>
-                  <p className="text-[#ECE5CE]/40 text-xs truncate mt-0.5">{c.back}</p>
+                  <p className="text-foreground font-medium truncate">{c.front}</p>
+                  <p className="text-foreground/40 text-xs truncate mt-0.5">{c.back}</p>
                 </div>
                 <div className="flex gap-2 ml-4 shrink-0">
                   <Link to={`/admin/courses/${slug}/flashcards/${c._id}/edit`} className="btn-outline py-1 px-3 text-xs">Edit</Link>

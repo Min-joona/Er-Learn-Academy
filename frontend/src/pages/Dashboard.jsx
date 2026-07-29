@@ -108,7 +108,7 @@ export default function Dashboard() {
           <Link key={item.label} to={item.to} title={item.label}
             className="w-10 h-10 rounded-xl flex items-center justify-center text-white/30 hover:text-amber hover:bg-amber/10 transition-all group relative">
             <item.icon size={20} />
-            <span className="absolute left-12 top-1/2 -translate-y-1/2 bg-[#5A3A28] text-[#ECE5CE] text-[10px] px-2 py-1 rounded-md opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity whitespace-nowrap z-50 border border-white/5">
+            <span className="absolute left-12 top-1/2 -translate-y-1/2 bg-base-dark text-foreground text-[10px] px-2 py-1 rounded-md opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity whitespace-nowrap z-50 border border-white/5">
               {item.label}
             </span>
           </Link>
@@ -121,7 +121,7 @@ export default function Dashboard() {
           {/* Top bar */}
           <div className="flex items-center justify-between mb-6">
             <div>
-              <h1 className="text-xl font-display font-bold text-[#ECE5CE]">Dashboard</h1>
+              <h1 className="text-xl font-display font-bold text-foreground">Dashboard</h1>
               <p className="text-xs text-white/25 mt-0.5">Welcome back, {mock.name.split(' ')[0]}</p>
             </div>
             <div className="flex items-center gap-3">
@@ -148,7 +148,7 @@ export default function Dashboard() {
                 <span className="absolute -top-0.5 -right-0.5 w-3.5 h-3.5 bg-amber rounded-full text-[8px] font-bold text-[#5A3A28] flex items-center justify-center">2</span>
               </button>
               <button onClick={toggleTheme} className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center text-white/30 hover:text-amber transition-colors">
-                {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
+                {theme ? <Sun size={16} /> : <Moon size={16} />}
               </button>
               <div className="w-8 h-8 rounded-full bg-amber/20 flex items-center justify-center text-amber text-xs font-bold">
                 {mock.avatar}
@@ -163,18 +163,18 @@ export default function Dashboard() {
 
               {/* Profile Banner */}
               <div className="relative rounded-2xl overflow-hidden border border-white/[0.06]">
-                <div className="h-28 bg-gradient-to-r from-amber/10 via-sage/5 to-[#5A3A28] relative">
+                <div className="h-28 bg-gradient-to-r from-amber/10 via-sage/5 to-base-dark relative">
                   <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(circle at 30% 50%, #E08E79 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
                 </div>
                 <div className="px-5 pb-4">
                   <div className="flex items-end justify-between -mt-10">
                     <div className="flex items-end gap-4">
-                      <div className="w-[72px] h-[72px] rounded-2xl bg-gradient-to-br from-amber to-rust flex items-center justify-center text-2xl font-bold text-white shadow-lg border-2 border-[#5A3A28] shrink-0">
+                      <div className="w-[72px] h-[72px] rounded-2xl bg-gradient-to-br from-amber to-rust flex items-center justify-center text-2xl font-bold text-white shadow-lg border-2 border-base-dark shrink-0">
                         {mock.avatar}
                       </div>
                       <div className="pb-0.5">
                         <div className="flex items-center gap-2">
-                          <h2 className="text-lg font-bold text-[#ECE5CE]">{mock.name}</h2>
+                          <h2 className="text-lg font-bold text-foreground">{mock.name}</h2>
                           <span className="text-xs bg-amber/10 text-amber px-2 py-0.5 rounded-full font-medium">@{mock.username}</span>
                           <span className="flex items-center gap-1 text-[10px] bg-white/5 text-white/40 px-2 py-0.5 rounded-full">
                             <Fire size={10} weight="fill" className="text-amber" /> {mock.stats.streak}d
@@ -385,7 +385,7 @@ export default function Dashboard() {
               {/* Streak Widget */}
               <div className="rounded-xl border border-white/[0.06] bg-white/[0.02] p-5 text-center">
                 <Fire size={28} className="mx-auto text-amber mb-2" weight="fill" />
-                <div className="text-lg font-bold text-[#ECE5CE]">{mock.stats.streak} DAY STREAK</div>
+                <div className="text-lg font-bold text-foreground">{mock.stats.streak} DAY STREAK</div>
                 <p className="text-[10px] text-white/20 mt-0.5 mb-4">Streak active today 🔥</p>
                 <div className="flex justify-center gap-2">
                   {days.map((d, i) => {
@@ -473,7 +473,7 @@ export default function Dashboard() {
       </Link>
 
       {/* Mobile bottom nav */}
-      <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-[#5A3A28]/95 backdrop-blur-lg border-t border-white/[0.06] z-50 flex justify-around py-2 px-2">
+      <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-base-dark/95 backdrop-blur-lg border-t border-white/[0.06] z-50 flex justify-around py-2 px-2">
         {navItems.slice(0, 5).map((item) => (
           <Link key={item.label} to={item.to}
             className="flex flex-col items-center gap-0.5 px-2 py-1 rounded-lg text-white/25 hover:text-amber transition-colors">

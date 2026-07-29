@@ -209,8 +209,8 @@ export default function Landing() {
               ))}
             </h1>
 
-            <p className="hero-sub mt-6 text-lg md:text-xl text-[#ECE5CE]/60 max-w-xl leading-relaxed">
-              Master English, computer skills, and world languages with lessons taught in <strong className="text-[#ECE5CE]">Tigrigna</strong>, <strong className="text-[#ECE5CE]">English</strong>, or <strong className="text-[#ECE5CE]">Arabic</strong>.
+            <p className="hero-sub mt-6 text-lg md:text-xl text-foreground/60 max-w-xl leading-relaxed">
+              Master English, computer skills, and world languages with lessons taught in <strong className="text-foreground">Tigrigna</strong>, <strong className="text-foreground">English</strong>, or <strong className="text-foreground">Arabic</strong>.
             </p>
 
             <div className="hero-cta mt-8 flex flex-col sm:flex-row gap-3">
@@ -230,7 +230,7 @@ export default function Landing() {
                   <span className="stat-number text-2xl md:text-3xl font-bold text-amber">
                     <AnimatedCounter value={s.value} suffix={s.suffix} isVisible={true} />
                   </span>
-                  <span className="text-xs text-[#ECE5CE]/40">{s.label}</span>
+                  <span className="text-xs text-foreground/40">{s.label}</span>
                 </div>
               ))}
             </div>
@@ -238,7 +238,7 @@ export default function Landing() {
         </div>
       </section>
 
-      <section ref={statsSectionRef} className="py-16 md:py-20 border-y border-[#ECE5CE]/5">
+      <section ref={statsSectionRef} className="py-16 md:py-20 border-y border-foreground/5">
         <div className="mx-auto max-w-7xl px-5">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {[
@@ -252,7 +252,7 @@ export default function Landing() {
                 <div className="text-3xl md:text-4xl font-bold text-amber tabular-nums">
                   <AnimatedCounter value={s.value} suffix="" isVisible={statsVisible} />
                 </div>
-                <div className="text-sm text-[#ECE5CE]/40 mt-1">{s.label}</div>
+                <div className="text-sm text-foreground/40 mt-1">{s.label}</div>
               </div>
             ))}
           </div>
@@ -270,15 +270,15 @@ export default function Landing() {
             {features.map((f) => (
               <AnimatedSection key={f.title} className="card-hover p-6 md:p-8 group">
                 <span className="text-3xl mb-4 block group-hover:scale-110 transition-transform duration-300">{f.icon}</span>
-                <h3 className="font-display font-bold text-lg text-[#ECE5CE] mb-2">{f.title}</h3>
-                <p className="text-sm text-[#ECE5CE]/50 leading-relaxed">{f.desc}</p>
+                <h3 className="font-display font-bold text-lg text-foreground mb-2">{f.title}</h3>
+                <p className="text-sm text-foreground/50 leading-relaxed">{f.desc}</p>
               </AnimatedSection>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="py-16 md:py-24 bg-[#774F38]/30">
+      <section className="py-16 md:py-24 bg-base/30">
         <div className="mx-auto max-w-7xl px-5">
           <div className="flex items-end justify-between mb-10">
             <div>
@@ -295,13 +295,13 @@ export default function Landing() {
               <Link key={c.slug} to={`/courses/${c.slug}`} className="course-card-landing card-hover group overflow-hidden p-0">
                 <div className="relative aspect-video overflow-hidden">
                   <img src={c.image} alt={c.title} className="h-full w-full object-cover transition duration-700 group-hover:scale-110" loading="lazy" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#774F38] via-transparent to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-base via-transparent to-transparent" />
                   <span className="absolute top-3 left-3 text-2xl drop-shadow-lg">{c.flag}</span>
                   <span className="absolute top-3 right-3 pill-amber text-xs">{c.price === 0 ? 'Free' : `$${c.price}`}</span>
                 </div>
                 <div className="p-5">
-                  <h3 className="font-display font-bold text-lg text-[#ECE5CE] group-hover:text-amber transition-colors">{c.title}</h3>
-                  <p className="text-sm text-[#ECE5CE]/50 mt-1 line-clamp-2">{c.description}</p>
+                  <h3 className="font-display font-bold text-lg text-foreground group-hover:text-amber transition-colors">{c.title}</h3>
+                  <p className="text-sm text-foreground/50 mt-1 line-clamp-2">{c.description}</p>
                   <div className="mt-3 flex flex-wrap gap-1.5">
                     {(c.focus || []).slice(0, 3).map((f) => (
                       <span key={f} className="pill bg-amber/10 text-amber text-[10px]">{f}</span>
@@ -313,7 +313,7 @@ export default function Landing() {
           </div>
 
           {courses.length === 0 && (
-            <div className="text-center py-16 text-[#ECE5CE]/30">
+            <div className="text-center py-16 text-foreground/30">
               <p>Courses loading...</p>
             </div>
           )}
@@ -337,11 +337,11 @@ export default function Landing() {
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-amber to-rust flex items-center justify-center text-white text-sm font-bold">{t.avatar}</div>
                   <div>
-                    <p className="font-semibold text-sm text-[#ECE5CE]">{t.name}</p>
-                    <p className="text-xs text-[#ECE5CE]/40">{t.role}</p>
+                    <p className="font-semibold text-sm text-foreground">{t.name}</p>
+                    <p className="text-xs text-foreground/40">{t.role}</p>
                   </div>
                 </div>
-                <p className="text-sm text-[#ECE5CE]/60 leading-relaxed italic">"{t.text}"</p>
+                <p className="text-sm text-foreground/60 leading-relaxed italic">"{t.text}"</p>
                 <div className="mt-4 flex gap-0.5">
                   {[1, 2, 3, 4, 5].map((s) => (
                     <svg key={s} xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 256 256" className="text-amber"><path d="M234.29,114.85l-45,38.83L203,211.75a16.4,16.4,0,0,1-24.5,17.82L128,198.49,77.47,229.57A16.4,16.4,0,0,1,53,211.75l13.76-58.07-45-38.83A16.46,16.46,0,0,1,31.08,86l59-4.76,22.76-55.08a16.36,16.36,0,0,1,30.27,0l22.75,55.08,59,4.76a16.46,16.46,0,0,1,9.37,28.86Z"></path></svg>
@@ -357,7 +357,7 @@ export default function Landing() {
         <div className="absolute inset-0 bg-gradient-to-r from-amber/5 via-rust/5 to-amber/5" />
         <div className="relative mx-auto max-w-4xl px-5 text-center">
           <h2 className="section-title text-3xl md:text-5xl">Ready to start learning?</h2>
-          <p className="text-[#ECE5CE]/50 mt-4 text-lg max-w-xl mx-auto">Join hundreds of Eritrean students mastering new skills. Free courses available.</p>
+          <p className="text-foreground/50 mt-4 text-lg max-w-xl mx-auto">Join hundreds of Eritrean students mastering new skills. Free courses available.</p>
           <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
             <Link to="/register" className="btn-primary text-base px-10 py-4">
               Get started free
@@ -368,38 +368,38 @@ export default function Landing() {
         </div>
       </section>
 
-      <footer className="border-t border-[#ECE5CE]/5 py-12">
+      <footer className="border-t border-foreground/5 py-12">
         <div className="mx-auto max-w-7xl px-5">
           <div className="grid md:grid-cols-4 gap-8">
             <div className="md:col-span-2">
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-amber to-rust flex items-center justify-center text-white text-xs font-bold">EA</div>
-                <span className="font-display font-bold text-lg text-[#ECE5CE]">EritreaAcademy</span>
+                <span className="font-display font-bold text-lg text-foreground">EritreaAcademy</span>
               </div>
-              <p className="text-sm text-[#ECE5CE]/40 max-w-sm">
+              <p className="text-sm text-foreground/40 max-w-sm">
                 Empowering Eritrean learners with quality education in their own language. English, computer skills, world languages, and typing.
               </p>
             </div>
             <div>
-              <h4 className="font-semibold text-sm text-[#ECE5CE] mb-3">Learn</h4>
+              <h4 className="font-semibold text-sm text-foreground mb-3">Learn</h4>
               <div className="flex flex-col gap-2">
-                <Link to="/courses" className="text-sm text-[#ECE5CE]/40 hover:text-[#ECE5CE] transition-colors">Courses</Link>
-                <Link to="/courses?category=English" className="text-sm text-[#ECE5CE]/40 hover:text-[#ECE5CE] transition-colors">English</Link>
-                <Link to="/courses?category=Computer" className="text-sm text-[#ECE5CE]/40 hover:text-[#ECE5CE] transition-colors">Computer Skills</Link>
-                <Link to="/typing" className="text-sm text-[#ECE5CE]/40 hover:text-[#ECE5CE] transition-colors">Typing</Link>
+                <Link to="/courses" className="text-sm text-foreground/40 hover:text-foreground transition-colors">Courses</Link>
+                <Link to="/courses?category=English" className="text-sm text-foreground/40 hover:text-foreground transition-colors">English</Link>
+                <Link to="/courses?category=Computer" className="text-sm text-foreground/40 hover:text-foreground transition-colors">Computer Skills</Link>
+                <Link to="/typing" className="text-sm text-foreground/40 hover:text-foreground transition-colors">Typing</Link>
               </div>
             </div>
             <div>
-              <h4 className="font-semibold text-sm text-[#ECE5CE] mb-3">Connect</h4>
+              <h4 className="font-semibold text-sm text-foreground mb-3">Connect</h4>
               <div className="flex flex-col gap-2">
-                <a href="mailto:support@erilearn.io" className="text-sm text-[#ECE5CE]/40 hover:text-[#ECE5CE] transition-colors">Support</a>
-                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-sm text-[#ECE5CE]/40 hover:text-[#ECE5CE] transition-colors">Facebook</a>
-                <a href="https://t.me" target="_blank" rel="noopener noreferrer" className="text-sm text-[#ECE5CE]/40 hover:text-[#ECE5CE] transition-colors">Telegram</a>
-                <a href="mailto:info@erilearn.io" className="text-sm text-[#ECE5CE]/40 hover:text-[#ECE5CE] transition-colors">Email</a>
+                <a href="mailto:support@erilearn.io" className="text-sm text-foreground/40 hover:text-foreground transition-colors">Support</a>
+                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-sm text-foreground/40 hover:text-foreground transition-colors">Facebook</a>
+                <a href="https://t.me" target="_blank" rel="noopener noreferrer" className="text-sm text-foreground/40 hover:text-foreground transition-colors">Telegram</a>
+                <a href="mailto:info@erilearn.io" className="text-sm text-foreground/40 hover:text-foreground transition-colors">Email</a>
               </div>
             </div>
           </div>
-          <div className="mt-10 pt-6 border-t border-[#ECE5CE]/5 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#ECE5CE]/30">
+          <div className="mt-10 pt-6 border-t border-foreground/5 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-foreground/30">
             <p>© {new Date().getFullYear()} Eritrea Academy. All rights reserved.</p>
             <p>Made with purpose for Eritrean learners worldwide.</p>
           </div>

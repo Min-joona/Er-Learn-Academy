@@ -4,23 +4,37 @@
 @tailwind utilities;
 
 :root {
-  --color-surface: #ECE5CE;
-  --color-base: #774F38;
-  --color-sage: #C5E0DC;
-  --color-amber: #E08E79;
-  --color-rust: #F1D4AF;
+  --color-base: 236, 229, 206;
+  --color-base-light: 245, 240, 224;
+  --color-base-dark: 216, 208, 176;
+  --color-foreground: 90, 58, 40;
+  --color-surface: 245, 240, 224;
+  --color-sage: 197, 224, 220;
+  --color-amber: 224, 142, 121;
+  --color-rust: 241, 212, 175;
   --transition-default: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   --transition-smooth: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-html { scroll-behavior: smooth; }
+.dark {
+  --color-base: 119, 79, 56;
+  --color-base-light: 140, 102, 80;
+  --color-base-dark: 90, 58, 40;
+  --color-foreground: 236, 229, 206;
+  --color-surface: 90, 58, 40;
+  --color-sage: 197, 224, 220;
+  --color-amber: 224, 142, 121;
+  --color-rust: 241, 212, 175;
+}
+
+html { scroll-behavior: smooth; transition: background-color var(--transition-default), color var(--transition-default); }
 html.lenis { scroll-behavior: auto; }
 .lenis.lenis-smooth { scroll-behavior: auto; }
 .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
 .lenis.lenis-stopped { overflow: hidden; }
 .lenis.lenis-smooth iframe { pointer-events: none; }
 
-body { @apply bg-base text-[#ECE5CE]/90 font-sans antialiased overflow-x-hidden; min-height: 100vh; }
+body { @apply bg-base text-foreground/90 font-sans antialiased overflow-x-hidden; min-height: 100vh; }
 
 ::selection { @apply bg-amber/30 text-white; }
 ::-webkit-scrollbar { width: 6px; }
@@ -28,23 +42,23 @@ body { @apply bg-base text-[#ECE5CE]/90 font-sans antialiased overflow-x-hidden;
 ::-webkit-scrollbar-thumb { @apply bg-sage/30 rounded-full hover:bg-sage/50; }
 
 @layer components {
-  .glass { @apply bg-[#774F38]/80 backdrop-blur-xl border border-[#ECE5CE]/10; }
-  .glass-light { @apply bg-[#ECE5CE]/10 backdrop-blur-md border border-[#ECE5CE]/10; }
-  .card { @apply rounded-2xl border border-[#ECE5CE]/10 bg-[#774F38]/50 p-6 backdrop-blur-sm transition-all duration-300 hover:border-amber/30 hover:shadow-lg hover:shadow-amber/5; }
+  .glass { @apply bg-base/80 backdrop-blur-xl border border-foreground/10; }
+  .glass-light { @apply bg-foreground/10 backdrop-blur-md border border-foreground/10; }
+  .card { @apply rounded-2xl border border-foreground/10 bg-base/50 p-6 backdrop-blur-sm transition-all duration-300 hover:border-amber/30 hover:shadow-lg hover:shadow-amber/5; }
   .card-hover { @apply card cursor-pointer hover:-translate-y-1 hover:shadow-xl hover:shadow-amber/10; }
   .btn { @apply inline-flex items-center justify-center gap-2 rounded-xl px-6 py-3 font-semibold transition-all duration-300 relative overflow-hidden; }
   .btn-primary { @apply btn bg-amber text-white hover:bg-amber/90 hover:shadow-lg hover:shadow-amber/25 active:scale-[0.98]; }
-  .btn-ghost { @apply btn text-[#ECE5CE]/70 hover:text-[#ECE5CE] hover:bg-[#ECE5CE]/10; }
-  .btn-outline { @apply btn border-2 border-[#ECE5CE]/20 text-[#ECE5CE]/80 hover:border-amber/50 hover:text-amber; }
+  .btn-ghost { @apply btn text-foreground/70 hover:text-foreground hover:bg-foreground/10; }
+  .btn-outline { @apply btn border-2 border-foreground/20 text-foreground/80 hover:border-amber/50 hover:text-amber; }
   .btn-rust { @apply btn bg-rust text-white hover:bg-rust/90 hover:shadow-lg hover:shadow-rust/25; }
-  .input { @apply w-full rounded-xl border-2 border-[#ECE5CE]/15 bg-[#774F38]/60 px-4 py-3 text-[#ECE5CE] outline-none transition-all duration-300 placeholder:text-[#ECE5CE]/30 focus:border-amber/50 focus:bg-[#774F38]/80 focus:shadow-lg focus:shadow-amber/5; }
+  .input { @apply w-full rounded-xl border-2 border-foreground/15 bg-base/60 px-4 py-3 text-foreground outline-none transition-all duration-300 placeholder:text-foreground/30 focus:border-amber/50 focus:bg-base/80 focus:shadow-lg focus:shadow-amber/5; }
   .pill { @apply inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold; }
   .pill-amber { @apply pill bg-amber/15 text-amber; }
   .pill-sage { @apply pill bg-sage/15 text-sage; }
   .pill-rust { @apply pill bg-rust/15 text-rust; }
-  .section-title { @apply font-display text-3xl md:text-4xl font-bold text-[#ECE5CE]; }
-  .section-sub { @apply text-[#ECE5CE]/50 mt-2 max-w-2xl; }
-  .gradient-text { @apply bg-gradient-to-r from-amber via-[#E08E79] to-rust bg-clip-text text-transparent; }
+  .section-title { @apply font-display text-3xl md:text-4xl font-bold text-foreground; }
+  .section-sub { @apply text-foreground/50 mt-2 max-w-2xl; }
+  .gradient-text { @apply bg-gradient-to-r from-amber to-rust bg-clip-text text-transparent; }
   .gradient-border { @apply relative; }
   .gradient-border::before { content: ''; @apply absolute inset-0 rounded-2xl bg-gradient-to-r from-amber/20 to-rust/20 -z-10 blur-xl opacity-0 transition-opacity duration-300; }
   .gradient-border:hover::before { @apply opacity-100; }
@@ -60,7 +74,7 @@ body { @apply bg-base text-[#ECE5CE]/90 font-sans antialiased overflow-x-hidden;
 .split-text { overflow: hidden; }
 .split-text .char { display: inline-block; transform: translateY(100%); opacity: 0; }
 
-.typing-cursor { display: inline-block; width: 2px; height: 1.2em; background: #E08E79; margin-left: 1px; animation: blink 1s step-end infinite; vertical-align: text-bottom; }
+.typing-cursor { display: inline-block; width: 2px; height: 1.2em; background: rgb(var(--color-amber)); margin-left: 1px; animation: blink 1s step-end infinite; vertical-align: text-bottom; }
 @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
 .parallax-section { will-change: transform; }

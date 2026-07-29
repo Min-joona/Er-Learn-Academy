@@ -6,11 +6,14 @@ export default {
     extend: {
       fontFamily: { sans: ['Lexend', 'system-ui', 'sans-serif'], display: ['Lexend', 'system-ui', 'sans-serif'], mono: ['JetBrains Mono', 'Fira Code', 'monospace'] },
       colors: {
-        surface: { DEFAULT: '#ECE5CE', light: '#F5F0E0', dark: '#D8D0B0' },
-        base: { DEFAULT: '#774F38', light: '#8C6650', dark: '#5A3A28', foreground: '#ECE5CE' },
-        sage: { DEFAULT: '#C5E0DC', light: '#D8EDEA', dark: '#A8C8C4' },
-        amber: { DEFAULT: '#E08E79', light: '#E8A894', dark: '#C87A64' },
-        rust: { DEFAULT: '#F1D4AF', light: '#F7E4CA', dark: '#E0C09A' },
+        base: 'rgba(var(--color-base), <alpha-value>)',
+        'base-light': 'rgba(var(--color-base-light), <alpha-value>)',
+        'base-dark': 'rgba(var(--color-base-dark), <alpha-value>)',
+        foreground: 'rgba(var(--color-foreground), <alpha-value>)',
+        surface: 'rgba(var(--color-surface), <alpha-value>)',
+        sage: 'rgba(var(--color-sage), <alpha-value>)',
+        amber: 'rgba(var(--color-amber), <alpha-value>)',
+        rust: 'rgba(var(--color-rust), <alpha-value>)',
       },
       animation: { 'fade-in': 'fadeIn 0.6s ease-out', 'slide-up': 'slideUp 0.6s ease-out', 'slide-down': 'slideDown 0.4s ease-out', 'scale-in': 'scaleIn 0.4s ease-out', 'glow': 'glow 2s ease-in-out infinite alternate', 'float': 'float 6s ease-in-out infinite', 'shimmer': 'shimmer 2s linear infinite', 'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite', 'spin-slow': 'spin 8s linear infinite', 'wiggle': 'wiggle 1s ease-in-out infinite' },
       keyframes: {

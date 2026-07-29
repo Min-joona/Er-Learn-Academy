@@ -57,8 +57,8 @@ export default function Register() {
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
           <canvas ref={canvasRef} width="400" height="400" className="w-20 h-20 mx-auto mb-4" />
-          <h1 className="text-3xl md:text-4xl font-display font-bold text-[#ECE5CE]">Create account</h1>
-          <p className="text-[#ECE5CE]/50 mt-1">Start learning in minutes.</p>
+          <h1 className="text-3xl md:text-4xl font-display font-bold text-foreground">Create account</h1>
+          <p className="text-foreground/50 mt-1">Start learning in minutes.</p>
         </div>
 
         <form onSubmit={submit} className="card p-6 md:p-8 space-y-4">
@@ -69,7 +69,7 @@ export default function Register() {
             { id: 'confirmPassword', label: 'Confirm password', type: 'password', placeholder: 'Repeat password' },
           ].map((f) => (
             <div key={f.id}>
-              <label className="block text-sm font-medium text-[#ECE5CE]/70 mb-1.5">{f.label}</label>
+              <label className="block text-sm font-medium text-foreground/70 mb-1.5">{f.label}</label>
               <input className="input" type={f.type} placeholder={f.placeholder} value={form[f.id]} onChange={(e) => setForm({ ...form, [f.id]: e.target.value })} required minLength={f.id === 'password' || f.id === 'confirmPassword' ? 6 : undefined} />
             </div>
           ))}
@@ -83,7 +83,7 @@ export default function Register() {
             ) : 'Create account'}
           </button>
 
-          <p className="text-center text-sm text-[#ECE5CE]/40">
+          <p className="text-center text-sm text-foreground/40">
             Already a member? <Link to="/login" className="text-amber hover:text-amber/80 font-medium">Sign in</Link>
           </p>
         </form>

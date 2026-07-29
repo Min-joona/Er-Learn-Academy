@@ -53,7 +53,7 @@ const courses = [
     description: 'The Cyrillic alphabet, pronunciation, and everyday Russian — taught step by step.',
     price: 39, levels: LEVELS, instructionLanguages: ['English', 'Tigrigna', 'Arabic'], focus: ['Reading', 'Listening', 'Practice'],
     image: 'https://images.unsplash.com/photo-1520106212299-d99c443e4568?w=800&h=500&fit=crop',
-    modules: ['Cyrillic alphabet', 'Pronunciation', 'Greetings', 'Numbers & basics', 'Reading practice'],
+    modules: ['Alphabet & phonetics', 'Unit 1: "Hello!"', 'Unit 2: Ordering coffee', 'Unit 3: Professions', 'Unit 4: Daily activities', 'Unit 5: Where are you from?', 'Unit 6: Daily routine', 'Unit 7: Making plans', 'Unit 8: Travel experiences', 'Unit 9: Family & living', 'Unit 10: At a restaurant', 'Unit 11: Future plans', 'Unit 12: Shopping', 'Unit 13: At the supermarket', 'Unit 14: Hobbies', 'Unit 15: Describing places', 'Unit 16: Health', 'Unit 17: Clothing', 'Reading practice', 'Grammar review', 'Final review'],
   },
   {
     slug: 'typing', title: 'Typing Mastery', titleTi: 'ኪቦርድ', category: 'Typing', flag: '⌨️',
@@ -265,7 +265,7 @@ Letters change shape depending on their position in a word.` },
 
 Arabic verbs follow patterns based on root letters. Most roots have 3 letters.` },
   { courseSlug: 'arabic', level: 'Intermediate', order: 2, title: 'Listen: At the Market', type: 'Listening',
-    listenText: 'Fi al-sooq ashtaraytu khubz wa laban wa fawakeh. Al-tamat ghaliat lakin al-khiyar rakhees. Ba'duha thahabtu ila al-bayt.',
+    listenText: 'Fi al-sooq ashtaraytu khubz wa laban wa fawakeh. Al-tamat ghaliat lakin al-khiyar rakhees. Baduha thahabtu ila al-bayt.',
     body: 'Listen to the short story about shopping at the market. Try to identify the items mentioned.' },
 
   // Amharic — Extended
@@ -342,46 +342,1030 @@ Dates: Year-Month-Day order
 
 Common measure words: 个 (gè — general), 本 (běn — books), 张 (zhāng — flat objects), 杯 (bēi — drinks)` },
 
-  // Russian — Extended
-  { courseSlug: 'russian', level: 'Beginner', order: 1, title: 'The Cyrillic Alphabet', type: 'Reading',
-    body: `Russian uses the Cyrillic alphabet. Some letters look familiar but sound different:
+  // Russian — A1 Complete Course (21 units based on Gateway to Russia structure)
+  // Unit 0: Alphabet & Phonetics
+  { courseSlug: 'russian', level: 'Beginner', order: 1, title: 'The Russian Alphabet', type: 'Reading',
+    body: `The Russian alphabet has 33 letters. Here are the first 10:
 
-- А а — "a"
-- Б б — "b"
-- В в — "v" (not "b"!)
-- Г г — "g"
-- Д д — "d"
+А а — "a" (like "father")
+Б б — "b" (like "book")
+В в — "v" (like "voice")
+Г г — "g" (like "go")
+Д д — "d" (like "door")
+Е е — "ye" (like "yes")
+Ё ё — "yo" (like "york")
+Ж ж — "zh" (like "treasure")
+З з — "z" (like "zebra")
+И и — "ee" (like "see")
 
-Others are new: Ж, Ц, Ш, Щ.` },
-  { courseSlug: 'russian', level: 'Beginner', order: 2, title: 'Listen: Russian Greetings', type: 'Listening',
-    listenText: 'Privet. Zdravstvuyte. Kak dela? Khorosho, spasibo. Do svidaniya.',
-    body: 'Listen to informal and formal Russian greetings, then repeat.' },
-  { courseSlug: 'russian', level: 'Beginner', order: 3, title: 'Russian Numbers 1-20', type: 'Reading',
-    body: `Russian numbers 1-10:
-1. один (adin)
-2. два (dva)
-3. три (tri)
-4. четыре (chityre)
-5. пять (pyat')
-6. шесть (shest')
-7. семь (syem')
-8. восемь (vosyem')
-9. девять (dyevyat')
-10. десять (dyesyat')
+The next 10:
+Й й — "y" (short, like "boy")
+К к — "k" (like "kite")
+Л л — "l" (like "love")
+М м — "m" (like "mom")
+Н н — "n" (like "no")
+О о — "o" (like "more")
+П п — "p" (like "park")
+Р р — "r" (rolled r)
+С с — "s" (like "sun")
+Т т — "t" (like "top")
 
-11-20 are formed by adding -надцать (-nadtsat) to 1-9: одиннадцать (adinadtsat) = 11.` },
-  { courseSlug: 'russian', level: 'Intermediate', order: 1, title: 'Russian Cases: Nominative & Accusative', type: 'Reading',
-    body: `Russian has 6 grammatical cases! For now, focus on two:
+And the rest:
+У у — "oo" (like "boot")
+Ф ф — "f" (like "fox")
+Х х — "kh" (like "Bach")
+Ц ц — "ts" (like "cats")
+Ч ч — "ch" (like "chip")
+Ш ш — "sh" (like "shop")
+Щ щ — "shch" (like "fresh cheese")
+Ъ ъ — hard sign (no sound)
+Ы ы — "i" (like "ill" but deeper)
+Ь ь — soft sign (softens previous consonant)
+Э э — "e" (like "met")
+Ю ю — "yu" (like "you")
+Я я — "ya" (like "yard")` },
+  { courseSlug: 'russian', level: 'Beginner', order: 2, title: 'Vowels & Consonants', type: 'Reading',
+    body: `Russian vowels divide into hard and soft pairs:
 
-**Nominative** (dictionary form): "This is a **book**." — Это **книга**.
-**Accusative** (direct object): "I read a **book**." — Я читаю **книгу**.
+**Hard vowels:** А, О, У, Ы, Э
+**Soft vowels:** Я, Ё, Ю, И, Е
 
-The ending changes. For feminine nouns (-а → -у):
-Книга → Книгу
+Soft vowels make the preceding consonant soft (palatalized).
 
-For masculine nouns, no change for inanimate objects.` },
-  { courseSlug: 'russian', level: 'Intermediate', order: 2, title: 'Practice: Describe Your Family in Russian', type: 'Practice',
-    practiceTask: 'Write 5 sentences in Russian describing your family. Include: how many people, their names (in Russian script), and one fact about each person. Use the vocabulary you\'ve learned.' },
+**Voiced/voiceless consonant pairs:**
+Б→П, В→Ф, Г→К, Д→Т, Ж→Ш, З→С
+
+At the end of a word, voiced consonants become voiceless:
+- хлеб → sounds like "hlyep" (П sound)
+- город → sounds like "gorot" (Т sound)` },
+  { courseSlug: 'russian', level: 'Beginner', order: 3, title: 'Listen: Russian Sounds', type: 'Listening',
+    listenText: 'Ah, oh, oo, ee, eh. Bah, vah, gah, dah, zhah. Pah, fah, kah, tah, sah. Rah, lah, mah, nah.',
+    body: 'Listen to the basic Russian sounds and repeat. Focus on the difference between hard and soft vowels.' },
+  { courseSlug: 'russian', level: 'Beginner', order: 4, title: 'Practice: Write the Alphabet', type: 'Practice',
+    practiceTask: 'Write the full Russian alphabet from memory. Then write these words in Russian: мама (mom), папа (dad), дом (house), кот (cat). Check your writing against the alphabet chart.' },
+
+  // Unit 1: "Hello!" — based on Gateway to Russia Unit 1
+  { courseSlug: 'russian', level: 'Beginner', order: 5, title: 'Dialog: On the Train', type: 'Reading',
+    body: `Read the dialog between passengers on the Moscow-Vladivostok train:
+
+**Maria:** Здравствуйте! Давайте познакомимся. Я Мария.
+*Hello! Let's get to know each other. I'm Maria.*
+
+**John:** Здравствуйте! Я Джон.
+*Hello! I'm John.*
+
+**Anna I.:** О! Очень приятно! Меня зовут Анна Ивановна. А это Петя. Петя — мой внук.
+*Oh, very nice! My name is Anna Ivanovna. And this is Petya. He's my grandson.*
+
+**Petya:** А это мой кот Мурзик.
+*And this is my cat Murzik.*` },
+  { courseSlug: 'russian', level: 'Beginner', order: 6, title: 'Learn the Phrases', type: 'Reading',
+    body: `Key phrases from Unit 1:
+
+1. Здравствуйте! — Hello!
+2. Как вас зовут? — What is your name? (formal)
+3. Меня зовут Джон. — My name is John.
+4. Я Джон. — I am John.
+5. Очень приятно! — Very nice (to meet you)!
+6. Это Джон. — This is John.
+
+Note: "Меня зовут" literally means "they call me". You can also use "Я + name".` },
+  { courseSlug: 'russian', level: 'Beginner', order: 7, title: 'Listen: What is Your Name?', type: 'Listening',
+    listenText: 'Zdravstvuyte! Kak vas zovut? Menya zovut Mariya. A vas? Menya zovut Dzhon. Ochen priyatno!',
+    body: 'Listen to two people meeting and asking each other\'s names. Notice the formal "вас" (you).' },
+  { courseSlug: 'russian', level: 'Beginner', order: 8, title: 'This is John', type: 'Reading',
+    body: `Introducing other people:
+
+1. Это Джон. — This is John.
+2. Я Мария. А это Джон. — I'm Maria. And this is John.
+3. Это мой друг Джон. — This is my friend John.
+
+**Vocabulary:** друг (friend), мой (my), это (this is)` },
+  { courseSlug: 'russian', level: 'Beginner', order: 9, title: 'Formal & Informal Speech', type: 'Reading',
+    body: `Russian distinguishes formal (вы) and informal (ты) address:
+
+| English | Formal | Informal |
+|---------|--------|----------|
+| you | вы (вас) | ты (тебя) |
+| What's your name? | Как вас зовут? | Как тебя зовут? |
+| Hello/Hi | Здравствуйте! | Привет! |
+| Excuse me | Извините! | Извини! |
+| Goodbye | До свидания! | Пока! |
+
+**Formal (вы):** older people, higher status, work, first meetings
+**Informal (ты):** friends, relatives, children` },
+  { courseSlug: 'russian', level: 'Beginner', order: 10, title: 'Listen: How Are You? (Formal)', type: 'Listening',
+    listenText: 'Zdravstvuyte! Kak dela? Khorosho. A u vas? Normalno. Kak u vas dela? Otlichno. Kak vy? Khorosho.',
+    body: `Formal ways to ask "how are you":
+- Как дела? — How are things?
+- Как у вас дела? — How are things with you?
+- Как вы? — How are you?
+
+Answers: Хорошо (good), Нормально (fine), Отлично (excellent).` },
+  { courseSlug: 'russian', level: 'Beginner', order: 11, title: 'Listen: How Are You? (Informal)', type: 'Listening',
+    listenText: 'Privet! Kak dela? Otlichno. A u tebya? Khorosho. Kak u tebya dela? Normalno. Kak ty? Khorosho.',
+    body: `Informal versions using "ты" instead of "вы":
+- Как дела? — How are things? (same)
+- Как у тебя дела? — How are things with you?
+- Как ты? — How are you?
+
+Always use Привет (hi) in informal situations.` },
+  { courseSlug: 'russian', level: 'Beginner', order: 12, title: 'Russian Names', type: 'Reading',
+    body: `Russian names = First name + Patronymic + Last name
+
+**Patronymic** comes from father's name:
+- Иван → Иванович (son), Ивановна (daughter)
+- Александр → Александрович, Александровна
+
+**Common male:** Александр (Sasha), Сергей (Seryozha), Иван (Vanya)
+**Common female:** Мария (Masha), Анна (Anya), Наталья (Natasha)
+
+**Last names by gender:** Смирнов (m) / Смирнова (f) / Смирновы (family)` },
+  { courseSlug: 'russian', level: 'Beginner', order: 13, title: 'Unit 1 Vocabulary Practice', type: 'Practice',
+    practiceTask: `Write 5 sentences in Russian using vocabulary from this unit:
+
+Key words to use: Здравствуйте, Привет, Меня зовут..., Это..., Очень приятно, Как дела?, Хорошо, До свидания, Пока
+Example: "Здравствуйте! Меня зовут Анна. Очень приятно!"` },
+
+  // Unit 2: Ordering coffee
+  { courseSlug: 'russian', level: 'Beginner', order: 14, title: 'Listen: At the Café', type: 'Listening',
+    listenText: 'Mozhno chashku kofe? Pozhaluysta. Vot, voz-mite. Spasibo. Skolko eto stoit? Eto stoit sto rubley.',
+    body: `Key café phrases:
+- Можно чашку кофе? — May I have a cup of coffee?
+- Пожалуйста — Please / Here you are
+- Сколько это стоит? — How much does it cost?
+- Спасибо — Thank you` },
+  { courseSlug: 'russian', level: 'Beginner', order: 15, title: 'Ordering Drinks', type: 'Reading',
+    body: `Useful café vocabulary:
+
+**Drinks:**
+- кофе — coffee
+- чай — tea
+- сок — juice
+- вода — water
+- молоко — milk
+
+**Phrases:**
+- Можно... — May I have...
+- Я буду... — I'll have...
+- Пожалуйста — Please
+- Спасибо — Thank you
+
+Example: "Можно чашку чая, пожалуйста?" — May I have a cup of tea, please?` },
+  { courseSlug: 'russian', level: 'Beginner', order: 16, title: 'Numbers 1-100', type: 'Reading',
+    body: `Russian numbers:
+
+1-10: один, два, три, четыре, пять, шесть, семь, восемь, девять, десять
+11-20: одиннадцать, двенадцать, тринадцать, четырнадцать, пятнадцать, шестнадцать, семнадцать, восемнадцать, девятнадцать, двадцать
+
+Tens: двадцать (20), тридцать (30), сорок (40), пятьдесят (50), шестьдесят (60), семьдесят (70), восемьдесят (80), девяносто (90), сто (100)
+
+21 = двадцать один (20 + 1), 35 = тридцать пять (30 + 5)` },
+  { courseSlug: 'russian', level: 'Beginner', order: 17, title: 'Practice: Order at a Café', type: 'Practice',
+    practiceTask: 'Write a short dialog in Russian where you order a drink at a café. Include: greeting, what you want, saying please, asking the price, saying thank you. Example: "Здравствуйте! Можно чашку кофе, пожалуйста? Сколько это стоит? Спасибо!"' },
+
+  // Unit 3: Professions
+  { courseSlug: 'russian', level: 'Beginner', order: 18, title: 'Talking About Jobs', type: 'Reading',
+    body: `Common professions in Russian:
+
+- врач — doctor
+- учитель — teacher
+- инженер — engineer
+- студент — student
+- программист — programmer
+- медсестра — nurse
+- водитель — driver
+- продавец — shop assistant
+
+**Grammar:** use "Я — врач" (I am a doctor). No "am/is/are" in Russian present tense!
+
+Example: "Кто вы по профессии?" — What is your profession?` },
+  { courseSlug: 'russian', level: 'Beginner', order: 19, title: 'Listen: What Do You Do?', type: 'Listening',
+    listenText: 'Kto vy po professii? Ya vrach. A kto on? On inzhener. Chem ona zanimaetsya? Ona uchitel. Ya student.',
+    body: 'Listen to people talking about their professions. Notice that Russian drops the verb "to be" in the present tense.' },
+  { courseSlug: 'russian', level: 'Beginner', order: 20, title: 'Gender of Professions', type: 'Reading',
+    body: `Many profession names have masculine and feminine forms:
+
+**Masculine → Feminine:**
+- студент → студентка (student)
+- учитель → учительница (teacher)
+- продавец → продавщица (shop assistant)
+- артист → артистка (performer)
+
+Some are the same for both genders:
+- врач (doctor)
+- инженер (engineer)
+- программист (programmer)
+
+Example: "Она врач" — She is a doctor. "Он студент" — He is a student.` },
+  { courseSlug: 'russian', level: 'Beginner', order: 21, title: 'Practice: Introduce Your Profession', type: 'Practice',
+    practiceTask: 'Write 4 sentences in Russian: (1) your name, (2) your profession, (3) where you work/study, (4) one thing you like about your job. If you are a student, say "Я студент / студентка".' },
+
+  // Unit 4: Daily Activities
+  { courseSlug: 'russian', level: 'Beginner', order: 22, title: 'Common Daily Verbs', type: 'Reading',
+    body: `Essential daily routine verbs:
+
+- делать — to do
+- работать — to work
+- читать — to read
+- писать — to write
+- говорить — to speak
+- слушать — to listen
+- смотреть — to watch
+- готовить — to cook
+- есть — to eat
+- пить — to drink
+
+**Present tense conjugation (-ать verbs):**
+Я делаю (I do), Ты делаешь (you do), Он/она делает (he/she does), Мы делаем (we do), Вы делаете (you do), Они делают (they do)` },
+  { courseSlug: 'russian', level: 'Beginner', order: 23, title: 'Listen: A Day in the Life', type: 'Listening',
+    listenText: 'Ya vstayu v sem utra. Ya zavtrakayu. Potom ya rabotayu. Vecherom ya chitayu knigu. Ya lozhus spat v odinnadtsat.',
+    body: `Listen to a description of a typical day:
+Я встаю в семь утра. — I wake up at 7am.
+Я завтракаю. — I have breakfast.
+Потом я работаю. — Then I work.
+Вечером я читаю книгу. — In the evening I read a book.` },
+  { courseSlug: 'russian', level: 'Beginner', order: 24, title: 'What Are You Doing?', type: 'Reading',
+    body: `Asking "What are you doing?" in Russian:
+
+**Что ты делаешь?** — What are you doing? (informal)
+**Что вы делаете?** — What are you doing? (formal)
+
+Answers:
+- Я читаю — I am reading
+- Я слушаю музыку — I am listening to music
+- Я смотрю телевизор — I am watching TV
+- Я готовлю обед — I am cooking dinner
+
+**Present tense =** same form for "I do" and "I am doing". There is no separate present continuous in Russian.` },
+  { courseSlug: 'russian', level: 'Beginner', order: 25, title: 'Practice: Describe Your Daily Routine', type: 'Practice',
+    practiceTask: 'Write 6 sentences in Russian about your daily routine. Use at least 4 different verbs. Include: what time you wake up, what you eat for breakfast, what you do during the day, and what you do in the evening.' },
+
+  // Unit 5: Where Are You From?
+  { courseSlug: 'russian', level: 'Beginner', order: 26, title: 'Countries & Nationalities', type: 'Reading',
+    body: `Countries in Russian:
+
+- Россия — Russia
+- Америка — America
+- Англия — England
+- Эритрея — Eritrea
+- Франция — France
+- Германия — Germany
+- Китай — China
+- Япония — Japan
+
+**Question:** Откуда вы? — Where are you from? (formal)
+**Answer:** Я из Эритреи. — I am from Eritrea.
+
+Note: after "из" (from), the country name goes into genitive case: Россия → из России.` },
+  { courseSlug: 'russian', level: 'Beginner', order: 27, title: 'Listen: Where Are You From?', type: 'Listening',
+    listenText: 'Otkuda vy? Ya iz Rossii. A vy oktuda? Ya iz Ameriki. Ochen priyatno! Ochen priyatno!',
+    body: 'Listen to people asking and answering where they are from. Pay attention to the genitive case endings after "из".' },
+  { courseSlug: 'russian', level: 'Beginner', order: 28, title: 'Nationalities', type: 'Reading',
+    body: `Nationalities in Russian (masculine / feminine):
+
+- русский / русская — Russian
+- американец / американка — American
+- англичанин / англичанка — English
+- эритреец / эритрейка — Eritrean
+- француз / француженка — French
+- китаец / китаянка — Chinese
+
+**Question:** Кто вы по национальности? — What is your nationality?
+**Answer:** Я русский / русская. — I am Russian (m/f).` },
+  { courseSlug: 'russian', level: 'Beginner', order: 29, title: 'Practice: Introduce Your Country', type: 'Practice',
+    practiceTask: 'Write 4 sentences: (1) say your name, (2) say where you are from, (3) say your nationality, (4) say what language you speak. Example: "Меня зовут Джон. Я из Америки. Я американец. Я говорю по-английски."' },
+
+  // Unit 6: Daily Routine & Time
+  { courseSlug: 'russian', level: 'Beginner', order: 30, title: 'Telling Time', type: 'Reading',
+    body: `Asking and telling time:
+
+**Который час?** — What time is it?
+
+**Сейчас...** — It is currently...
+- час — one o'clock
+- два часа — two o'clock
+- три часа — three o'clock
+- четыре часа — four o'clock
+- пять часов — five o'clock
+- ... (шесть, семь, восемь, девять, десять, одиннадцать, двенадцать часов)
+
+**Half hours:** половина второго — half past one (literally "half of two")
+**Minutes:** пять минут второго — five past one (literally "five minutes of two")` },
+  { courseSlug: 'russian', level: 'Beginner', order: 31, title: 'Listen: What Time Do You Wake Up?', type: 'Listening',
+    listenText: 'Kotory chas? Seichas vosem chasov utra. Ya vstayu v sem chasov. Vo skolko ty vstayosh? Ya vstayu v vosem chasov.',
+    body: `Key time questions:
+- Во сколько ты встаёшь? — What time do you wake up?
+- Я встаю в семь часов. — I wake up at 7 o'clock.
+- Во сколько ты работаешь? — What time do you work?` },
+  { courseSlug: 'russian', level: 'Beginner', order: 32, title: 'Days of the Week', type: 'Reading',
+    body: `Days of the week in Russian:
+
+- понедельник — Monday
+- вторник — Tuesday
+- среда — Wednesday
+- четверг — Thursday
+- пятница — Friday
+- суббота — Saturday
+- воскресенье — Sunday
+
+**Useful phrases:**
+- сегодня — today
+- завтра — tomorrow
+- вчера — yesterday
+- каждый день — every day
+- в понедельник — on Monday` },
+  { courseSlug: 'russian', level: 'Beginner', order: 33, title: 'Practice: Describe Your Week', type: 'Practice',
+    practiceTask: 'Write 5 sentences in Russian about your weekly schedule. Include: what time you wake up each day, what you do on specific days, and what you do on weekends. Example: "Я встаю в семь часов каждый день. В понедельник я работаю."' },
+
+  // Unit 7: Making Plans
+  { courseSlug: 'russian', level: 'Beginner', order: 34, title: 'Let\'s Meet Up!', type: 'Reading',
+    body: `Making plans in Russian:
+
+**Давайте встретимся...** — Let's meet...
+- сегодня — today
+- завтра — tomorrow
+- в субботу — on Saturday
+- на следующей неделе — next week
+
+**Accepting:**
+- Хорошо — OK / Good
+- Да, давайте — Yes, let's
+- С удовольствием — With pleasure
+
+**Declining:**
+- Извините, я занят — Sorry, I'm busy (male)
+- Извините, я занята — Sorry, I'm busy (female)
+- К сожалению, не могу — Unfortunately, I can't` },
+  { courseSlug: 'russian', level: 'Beginner', order: 35, title: 'Listen: Let\'s Meet on Sunday', type: 'Listening',
+    listenText: 'Davayte vstretimsya v voskresenye. Vo skolko? V tri chasa. Gde? V parke. Khorosho. Do vstrechi!',
+    body: `Key phrases from the dialog:
+- Давайте встретимся в воскресенье. — Let's meet on Sunday.
+- Во сколько? — At what time?
+- Где? — Where?
+- До встречи! — See you!` },
+  { courseSlug: 'russian', level: 'Beginner', order: 36, title: 'Places in the City', type: 'Reading',
+    body: `Common city locations:
+
+- парк — park
+- ресторан — restaurant
+- кафе — café
+- кино — cinema
+- театр — theatre
+- музей — museum
+- библиотека — library
+- магазин — shop/store
+
+**Question:** Где мы встретимся? — Where will we meet?
+**Answer:** В парке / В кафе / В кино
+
+Note: after "в" (in/at), some words change case: парк → в парке (prepositional case).` },
+  { courseSlug: 'russian', level: 'Beginner', order: 37, title: 'Practice: Plan a Meeting', type: 'Practice',
+    practiceTask: 'Write a dialog in Russian where you plan to meet a friend. Include: a greeting, suggesting a day, agreeing on a time, choosing a place, and saying goodbye. Example: "Привет! Давай встретимся в субботу. — Хорошо. В два часа? — Да, в парке. — До встречи!"' },
+
+  // Unit 8: Travel Experiences
+  { courseSlug: 'russian', level: 'Beginner', order: 38, title: 'Have You Been To...?', type: 'Reading',
+    body: `Asking about travel experiences:
+
+**Ты был(а) в...?** — Have you been to...?
+- был (masculine), была (feminine)
+
+**Я был(а) в...** — I have been to...
+- Москве — Moscow (prepositional case)
+- Санкт-Петербурге — St. Petersburg
+- Сибири — Siberia
+- Европе — Europe
+
+**Я не был(а) в...** — I haven't been to...
+- никогда — never
+
+Example: "Ты был в Москве? — Да, я был в Москве. Очень красивый город."` },
+  { courseSlug: 'russian', level: 'Beginner', order: 39, title: 'Listen: Travel Stories', type: 'Listening',
+    listenText: 'Vy byli v Sibiri? Da, ya byl v Sibiri proshlym letom. Ochen krasivo! A vy? Ya ne byl, no ochen khochu.',
+    body: 'Listen to people discussing their travel experiences. Notice the use of past tense and the prepositional case after "в".' },
+  { courseSlug: 'russian', level: 'Beginner', order: 40, title: 'Past Tense Verbs', type: 'Reading',
+    body: `Russian past tense is simpler than present!
+
+**Form:** remove -ть from infinitive, add -л (m), -ла (f), -ло (n), -ли (pl)
+
+| Infinitive | He (m) | She (f) | They (pl) |
+|-----------|--------|---------|-----------|
+| быть (to be) | был | была | были |
+| читать (to read) | читал | читала | читали |
+| работать (to work) | работал | работала | работали |
+| говорить (to speak) | говорил | говорила | говорили |
+| ехать (to go/travel) | ехал | ехала | ехали |
+
+Example: "Я был в России." (I was in Russia.) "Она была в Москве." (She was in Moscow.)` },
+  { courseSlug: 'russian', level: 'Beginner', order: 41, title: 'Practice: Talk About Travel', type: 'Practice',
+    practiceTask: 'Write 5 sentences in Russian about travel. Say: (1) where you have been, (2) where you haven\'t been, (3) where you want to go, (4) what you liked, (5) one fact about a place you visited. Use past tense verbs.' },
+
+  // Unit 9: Family
+  { courseSlug: 'russian', level: 'Beginner', order: 42, title: 'Family Members', type: 'Reading',
+    body: `Family vocabulary:
+
+- мама — mom
+- папа — dad
+- брат — brother
+- сестра — sister
+- сын — son
+- дочь — daughter
+- дедушка — grandfather
+- бабушка — grandmother
+- муж — husband
+- жена — wife
+- дядя — uncle
+- тётя — aunt
+
+**Question:** У тебя есть брат? — Do you have a brother?
+**Answer:** Да, у меня есть брат. / Нет, у меня нет брата.` },
+  { courseSlug: 'russian', level: 'Beginner', order: 43, title: 'Listen: My Family', type: 'Listening',
+    listenText: 'U menya bolshaya semya. U menya yest mama, papa i dve sestry. Moy brat zhivyot v Moskve. A gde zhivyot tvoya semya?',
+    body: 'Listen to descriptions of families. Key pattern: "У меня есть..." (I have... literally "By me there is...").' },
+  { courseSlug: 'russian', level: 'Beginner', order: 44, title: 'Possession: "I Have"', type: 'Reading',
+    body: `In Russian, "I have" is expressed as "У меня есть" (literally "by me there is"):
+
+- У меня есть брат. — I have a brother.
+- У тебя есть сестра? — Do you have a sister?
+- У него есть машина. — He has a car.
+- У неё есть книга. — She has a book.
+- У них есть дом. — They have a house.
+
+**Negative:** У меня нет... — I don't have...
+- У меня нет брата. — I don't have a brother. (note: brother goes into genitive case)` },
+  { courseSlug: 'russian', level: 'Beginner', order: 45, title: 'Practice: Describe Your Family', type: 'Practice',
+    practiceTask: 'Write 6 sentences in Russian about your family. Say: how many people, their names, their professions, where they live, and one interesting fact about your family.' },
+
+  // Unit 10: At a Restaurant
+  { courseSlug: 'russian', level: 'Beginner', order: 46, title: 'Restaurant Phrases', type: 'Reading',
+    body: `Key restaurant phrases:
+
+- Можно меню? — May I have the menu?
+- Я хочу заказать... — I want to order...
+- Приятного аппетита! — Enjoy your meal!
+- Счёт, пожалуйста! — The check, please!
+- Это очень вкусно! — This is very tasty!
+
+**Vocabulary:**
+- меню — menu
+- закуска — appetizer
+- суп — soup
+- салат — salad
+- горячее — main course
+- десерт — dessert
+- счёт — bill/check
+- чаевые — tip` },
+  { courseSlug: 'russian', level: 'Beginner', order: 47, title: 'Listen: At the Restaurant', type: 'Listening',
+    listenText: 'Mozhno menyu? Pozhaluysta. Chto vy posovetuyete? Ya rekomenduyu sup i salat. Ya vozmu sup i salat. Nalivayte chay!',
+    body: `Key phrases:
+- Что вы посоветуете? — What do you recommend?
+- Я возьму... — I'll take...
+- Приятного аппетита! — Enjoy your meal!` },
+  { courseSlug: 'russian', level: 'Beginner', order: 48, title: 'Food Vocabulary', type: 'Reading',
+    body: `Common food words:
+
+- хлеб — bread
+- масло — butter
+- сыр — cheese
+- мясо — meat
+- рыба — fish
+- овощи — vegetables
+- фрукты — fruits
+- рис — rice
+- картошка — potatoes
+- сахар — sugar
+- соль — salt
+- перец — pepper
+
+**Adjective:** вкусный (tasty), горячий (hot), холодный (cold)` },
+  { courseSlug: 'russian', level: 'Beginner', order: 49, title: 'Practice: Order at a Restaurant', type: 'Practice',
+    practiceTask: 'Write a restaurant dialog in Russian. Include: asking for the menu, ordering food and drinks, saying the food is tasty, asking for the check, and paying. Example: "Здравствуйте! Можно меню? Я хочу заказать салат и суп. Счёт, пожалуйста!"' },
+
+  // Unit 11: Future Plans
+  { courseSlug: 'russian', level: 'Beginner', order: 50, title: 'Talking About the Future', type: 'Reading',
+    body: `Two ways to talk about future in Russian:
+
+**1. Future with быть (to be) + imperfective infinitive:**
+- Я буду работать. — I will work.
+- Он будет читать. — He will read.
+- Мы будем учиться. — We will study.
+
+**Conjugation of быть:**
+Я буду, Ты будешь, Он/она будет, Мы будем, Вы будете, Они будут
+
+**2. Perfective verbs (single completed action):**
+- Я куплю — I will buy (and complete the action)
+- Я сделаю — I will do (and finish it)
+
+**Time phrases:** завтра (tomorrow), на следующей неделе (next week), в будущем году (next year)` },
+  { courseSlug: 'russian', level: 'Beginner', order: 51, title: 'Listen: Vacation Plans', type: 'Listening',
+    listenText: 'Chto ty budesh delat letom? Ya budu puteshestvovat. A ya budu rabotat i uchit angliyskiy. Kogda ty poedesh? V avguste.',
+    body: 'Listen to people talking about their vacation plans. Notice the use of "буду + infinitive" for future actions.' },
+  { courseSlug: 'russian', level: 'Beginner', order: 52, title: 'Months & Seasons', type: 'Reading',
+    body: `Months in Russian:
+
+Январь, Февраль, Март, Апрель, Май, Июнь, Июль, Август, Сентябрь, Октябрь, Ноябрь, Декабрь
+
+Seasons:
+- весна — spring
+- лето — summer
+- осень — autumn/fall
+- зима — winter
+
+**In which month?** — в январе, в феврале...
+**In which season?** — весной, летом, осенью, зимой` },
+  { courseSlug: 'russian', level: 'Beginner', order: 53, title: 'Practice: Your Future Plans', type: 'Practice',
+    practiceTask: 'Write 5 sentences about your plans for next summer. Use the future tense (буду + infinitive). Say where you will go, what you will do, what you will study, etc.' },
+
+  // Unit 12: Shopping
+  { courseSlug: 'russian', level: 'Beginner', order: 54, title: 'Shopping Phrases', type: 'Reading',
+    body: `Shopping vocabulary:
+
+- магазин — shop/store
+- супермаркет — supermarket
+- рынок — market
+- цена — price
+- скидка — discount
+
+**Key phrases:**
+- Сколько стоит? — How much does it cost?
+- Это дорого! — That's expensive!
+- Это дёшево! — That's cheap!
+- У вас есть...? — Do you have...?
+- Я ищу... — I am looking for...
+- Дайте, пожалуйста... — Give me, please...` },
+  { courseSlug: 'russian', level: 'Beginner', order: 55, title: 'Listen: At the Shop', type: 'Listening',
+    listenText: 'Zdravstvuyte! U vas yest khleb? Da, vot on. Skolko on stoit? Sorok rubley. Vozmite, pozhaluysta. Spasibo!',
+    body: 'Listen to a typical shopping exchange. Notice how to ask for items and prices.' },
+  { courseSlug: 'russian', level: 'Beginner', order: 56, title: 'Clothing Vocabulary', type: 'Reading',
+    body: `Clothing items:
+
+- куртка — jacket
+- пальто — coat
+- рубашка — shirt
+- футболка — T-shirt
+- брюки — pants/trousers
+- джинсы — jeans
+- юбка — skirt
+- платье — dress
+- обувь — shoes
+- шапка — hat
+- шарф — scarf
+
+**Colors:** красный (red), синий (blue), зелёный (green), жёлтый (yellow), чёрный (black), белый (white), серый (grey)` },
+  { courseSlug: 'russian', level: 'Beginner', order: 57, title: 'Practice: Go Shopping', type: 'Practice',
+    practiceTask: 'Write a shopping dialog in Russian. Include: greeting the shop assistant, asking for an item, asking the price, saying if it is expensive or cheap, buying it, and thanking.' },
+
+  // Unit 13: At the Supermarket
+  { courseSlug: 'russian', level: 'Beginner', order: 58, title: 'Supermarket Vocabulary', type: 'Reading',
+    body: `Food shopping vocabulary:
+
+- молоко — milk
+- яйца — eggs
+- масло — butter
+- сыр — cheese
+- колбаса — sausage
+- мясо — meat
+- курица — chicken
+- рыба — fish
+- овощи — vegetables
+- фрукты — fruit
+- сахар — sugar
+- мука — flour
+
+**Quantities:**
+- килограмм — kilogram
+- грамм — gram
+- литр — liter
+- пакет — bag
+- бутылка — bottle
+- штука — piece/item
+
+Example: "Дайте, пожалуйста, килограмм яблок и бутылку молока."` },
+  { courseSlug: 'russian', level: 'Beginner', order: 59, title: 'Listen: Let\'s Go to the Supermarket!', type: 'Listening',
+    listenText: 'Chto nam nuzhno kupit? Nuzhno moloko, khlheb i yaytsa. A yeshchyo nuzhna chicken? Da, i kuritsu. Poydyom v supermarket!',
+    body: 'Listen to a dialog about grocery shopping. Notice "нужно" (need) and "дайте, пожалуйста" (give me, please).' },
+  { courseSlug: 'russian', level: 'Beginner', order: 60, title: 'Accusative Case for Direct Objects', type: 'Reading',
+    body: `When you buy or see something, the item goes into **accusative case**:
+
+| Masculine (no change if inanimate) | Feminine (-а → -у) |
+|-----------------------------------|-------------------|
+| Я вижу **стол** (table) | Я вижу **книгу** (book) |
+| Я покупаю **хлеб** (bread) | Я покупаю **машину** (car) |
+
+**Animate masculine** (people/animals) changes:
+- Я вижу **брата** (brother — animate)
+- Я вижу **стол** (table — inanimate)
+
+**Neuter** (no change): молоко, письмо, окно` },
+  { courseSlug: 'russian', level: 'Beginner', order: 61, title: 'Practice: Shopping List', type: 'Practice',
+    practiceTask: 'Write a shopping list in Russian (6+ items with quantities). Then write a short dialog where you enter a shop and buy 3 of those items. Use the accusative case correctly.' },
+
+  // Unit 14: Hobbies
+  { courseSlug: 'russian', level: 'Beginner', order: 62, title: 'Talking About Hobbies', type: 'Reading',
+    body: `Hobbies and interests:
+
+- Я люблю... — I like / I love...
+  - читать — to read
+  - петь — to sing
+  - танцевать — to dance
+  - рисовать — to draw
+  - играть в футбол — to play football
+  - смотреть фильмы — to watch movies
+  - слушать музыку — to listen to music
+  - путешествовать — to travel
+  - фотографировать — to take photos
+
+- Мне нравится... — I like... (literally "to me it pleases")
+  Same verb in infinitive after it.
+
+**Question:** Что ты любишь делать? — What do you like to do?` },
+  { courseSlug: 'russian', level: 'Beginner', order: 63, title: 'Listen: My Hobby', type: 'Listening',
+    listenText: 'Chto ty lyubish delat? Ya lyublyu chitat i risovat. A moy brat lyubit igrat v futbol. Mne nravitsya slushat muziku.',
+    body: 'Listen to people discussing their hobbies. Note: "Я люблю + infinitive" vs "Мне нравится + infinitive".' },
+  { courseSlug: 'russian', level: 'Beginner', order: 64, title: 'The Verb "To Like"', type: 'Reading',
+    body: `Two ways to say "to like" in Russian:
+
+**1. Любить (to love/like strongly) — conjugated:**
+- Я люблю, Ты любишь, Он/она любит
+- Мы любим, Вы любите, Они любят
+
+**2. Нравиться (to please) — reflexive:**
+After мне, тебе, ему, ей, нам, вам, им
+
+- Мне нравится музыка. — I like music. (lit: to me music pleases)
+- Мне нравятся фильмы. — I like films. (plural)
+- Тебе нравится этот фильм? — Do you like this film?
+
+Use любить for people and strong passions.
+Use нравиться for things/activities you find pleasant.` },
+  { courseSlug: 'russian', level: 'Beginner', order: 65, title: 'Practice: Talk About Your Hobbies', type: 'Practice',
+    practiceTask: 'Write 5 sentences in Russian about your hobbies. Say: (1) what you love to do, (2) what you like, (3) what your friend/family likes, (4) what you don\'t like, (5) what you want to try. Use both люблю and нравится.' },
+
+  // Unit 15: Describing Places
+  { courseSlug: 'russian', level: 'Beginner', order: 66, title: 'Describing Things', type: 'Reading',
+    body: `Russian adjectives agree with nouns in gender:
+
+**Masculine:** -ый/-ий — хороший дом (good house)
+**Feminine:** -ая/-яя — хорошая книга (good book)
+**Neuter:** -ое/-ее — хорошее окно (good window)
+**Plural:** -ые/-ие — хорошие дома (good houses)
+
+**Common adjectives:**
+- большой — big
+- маленький — small
+- красивый — beautiful
+- новый — new
+- старый — old
+- хороший — good
+- плохой — bad
+- интересный — interesting` },
+  { courseSlug: 'russian', level: 'Beginner', order: 67, title: 'Listen: What a Beautiful Room!', type: 'Listening',
+    listenText: 'Kakaya krasivaya komnata! Zdes bolshoye okno i novaya mebel. Na stene visyat krasivye kartiny. Mne ochen nravitsya!',
+    body: `Key phrases:
+- Какая красивая комната! — What a beautiful room!
+- Здесь большое окно — There is a big window here.
+- Мне очень нравится! — I really like it!` },
+  { courseSlug: 'russian', level: 'Beginner', order: 68, title: 'Rooms & Furniture', type: 'Reading',
+    body: `Rooms in a house:
+
+- комната — room
+- спальня — bedroom
+- гостиная — living room
+- кухня — kitchen
+- ванная — bathroom
+- коридор — hallway
+
+Furniture:
+- стол — table
+- стул — chair
+- кровать — bed
+- шкаф — wardrobe
+- диван — sofa
+- книжная полка — bookshelf
+- ковёр — carpet
+
+**Preposition:** на (on), под (under), в (in), за (behind), около (near)` },
+  { courseSlug: 'russian', level: 'Beginner', order: 69, title: 'Practice: Describe Your Room', type: 'Practice',
+    practiceTask: 'Write 6 sentences describing your room in Russian. Use adjectives (size, color, quality) and prepositions of location (на, в, под, около). Say what furniture is in the room and where things are located.' },
+
+  // Unit 16: Health
+  { courseSlug: 'russian', level: 'Beginner', order: 70, title: 'Health & Body', type: 'Reading',
+    body: `Body parts vocabulary:
+
+- голова — head
+- рука — arm/hand
+- нога — leg/foot
+- спина — back
+- живот — stomach
+- сердце — heart
+- глаз — eye
+- ухо — ear
+
+**Health phrases:**
+- У меня болит голова. — I have a headache.
+- У меня болит живот. — I have a stomach ache.
+- Я простудился / простудилась. — I caught a cold (m/f).
+- У меня температура. — I have a fever.
+- Выздоравливай! — Get well soon! (informal)` },
+  { courseSlug: 'russian', level: 'Beginner', order: 71, title: 'Listen: At the Doctor', type: 'Listening',
+    listenText: 'Chto u vas bolit? U menya bolit golova i garlo. U vas temperatura? Da, tridtsat sem i pyat. Eto prostuda. Prinyom lekarstvo.',
+    body: `At the doctor:
+- Что у вас болит? — What hurts? (formal)
+- У меня болит... — It hurts... (the part)
+- Врач — doctor
+- Лекарство — medicine
+- Больница — hospital` },
+  { courseSlug: 'russian', level: 'Beginner', order: 72, title: 'Modal Verbs: Need & Must', type: 'Reading',
+    body: `Expressing necessity in Russian:
+
+**Нужно** (need to / must) — impersonal:
+- Мне нужно в больницу. — I need to go to the hospital.
+- Вам нужно отдохнуть. — You need to rest.
+- Ему нужно лекарство. — He needs medicine.
+
+**Должен / должна / должны** (must):
+- Я должен работать. — I must work. (male)
+- Я должна учиться. — I must study. (female)
+- Они должны прийти. — They must come.
+
+**Можно** (may / allowed):
+- Можно войти? — May I come in?
+- Здесь можно курить? — Can you smoke here?` },
+  { courseSlug: 'russian', level: 'Beginner', order: 73, title: 'Practice: Health Dialog', type: 'Practice',
+    practiceTask: 'Write a dialog in Russian where one person is sick and the other gives advice. Include: greeting, saying what hurts, suggesting a doctor, advising rest, saying "get well soon".' },
+
+  // Unit 17: Clothing & Shopping
+  { courseSlug: 'russian', level: 'Beginner', order: 74, title: 'I Need a Jacket', type: 'Reading',
+    body: `Shopping for clothes:
+
+- Мне нужна куртка. — I need a jacket.
+- Мне нужен костюм. — I need a suit.
+- Мне нужно платье. — I need a dress.
+
+**Нужен/нужна/нужно/нужны** agrees with the item:
+- Masculine: нужен (костюм)
+- Feminine: нужна (куртка)
+- Neuter: нужно (пальто)
+- Plural: нужны (джинсы)
+
+**Trying on:**
+- Можно померить? — Can I try it on?
+- Где примерочная? — Where is the fitting room?
+- Мне маловато. — It's a bit small for me.
+- Мне великовато. — It's a bit big for me.` },
+  { courseSlug: 'russian', level: 'Beginner', order: 75, title: 'Listen: Clothes Shopping', type: 'Listening',
+    listenText: 'Mne nuzhna kurtka. Kakoy tsvet vy khotite? Siniy ili chorniy. Vozmite vot etu. Mozhno pomerit? Da, konechno.',
+    body: 'Listen to a clothes shopping dialog. Practice asking for items by color, trying them on, and paying.' },
+  { courseSlug: 'russian', level: 'Beginner', order: 76, title: 'More Clothing & Fashion', type: 'Reading',
+    body: `Fashion vocabulary:
+
+- модный — fashionable
+- удобный — comfortable
+- размер — size
+- цвет — color
+- большой — big/large
+- маленький — small
+
+**Shoe vocabulary:**
+- туфли — shoes
+- кроссовки — sneakers
+- сапоги — boots
+- тапки — slippers
+
+**Size questions:**
+- Какой у вас размер? — What size do you wear?
+- Сорок второй. — Size 42.` },
+  { courseSlug: 'russian', level: 'Beginner', order: 77, title: 'Practice: Go Clothes Shopping', type: 'Practice',
+    practiceTask: 'Write a clothes shopping dialog in Russian. Include: greeting, saying what you need, asking for a different color, trying it on, discussing if it fits, asking the price, and buying.' },
+
+  // Unit 18: Reading Practice
+  { courseSlug: 'russian', level: 'Beginner', order: 78, title: 'Read: At the Train Station', type: 'Reading',
+    body: `Read the following Russian text about a train station:
+
+Вокзал — большое здание. Там много людей. Поезда приходят и уходят. Люди ждут свои поезда на платформе. В здании вокзала есть кассы, магазины и кафе. Я люблю путешествовать на поезде. Это удобно и интересно.
+
+**Vocabulary:**
+- вокзал — train station
+- поезд — train
+- платформа — platform
+- касса — ticket office
+- ждать — to wait
+- люди — people
+- путешествовать — to travel
+- удобно — convenient` },
+  { courseSlug: 'russian', level: 'Beginner', order: 79, title: 'Read: My City', type: 'Reading',
+    body: `Read about a Russian city:
+
+Мой город небольшой, но красивый. В центре есть парк и музей. В музее интересные выставки. Рядом с парком находится кафе. Я люблю гулять по городу с друзьями. Здесь живут мои родители и брат.
+
+**Vocabulary:**
+- город — city
+- центр — center
+- парк — park
+- музей — museum
+- выставка — exhibition
+- рядом — nearby
+- гулять — to walk
+- родители — parents` },
+  { courseSlug: 'russian', level: 'Beginner', order: 80, title: 'Read: A Letter to a Friend', type: 'Reading',
+    body: `Read this letter from Masha to her friend:
+
+Привет, Анна! Как у тебя дела? У меня всё хорошо. Я сейчас учу русский язык. Это трудно, но очень интересно. Вчера я была в парке. Там красиво. На следующей неделе я поеду в Москву. Я очень рада! Пиши мне. Целую, Маша.
+
+**Vocabulary:**
+- привет — hi
+- дела — matters/things
+- учить — to study/learn
+- трудно — difficult
+- интересно — interesting
+- красиво — beautiful
+- рада — glad (female)
+- целую — (I) kiss/hugs` },
+  { courseSlug: 'russian', level: 'Beginner', order: 81, title: 'Practice: Write a Short Letter', type: 'Practice',
+    practiceTask: 'Write a short letter in Russian to a friend (5-7 sentences). Tell them how you are, what you are studying, what you did yesterday, and what your plans are for next week. End with "Целую" (hugs).' },
+
+  // Unit 19: Grammar Review
+  { courseSlug: 'russian', level: 'Beginner', order: 82, title: 'Noun Genders', type: 'Reading',
+    body: `Russian nouns have three genders. You can tell by looking at the ending:
+
+**Masculine:** consonant or -й
+- дом (house), стол (table), музей (museum)
+
+**Feminine:** -а, -я, or -ь
+- книга (book), семья (family), ночь (night)
+
+**Neuter:** -о, -е, or -мя
+- окно (window), море (sea), имя (name)
+
+**Plural endings:**
+- Masculine: дом → дома (add -а / change last consonant)
+- Feminine: книга → книги (-а → -ы/-и)
+- Neuter: окно → окна (-о → -а)` },
+  { courseSlug: 'russian', level: 'Beginner', order: 83, title: 'Basic Cases Overview', type: 'Reading',
+    body: `Russian has 6 cases. Here's what each one does:
+
+**1. Nominative (Кто? Что?) — Who? What?**
+Dictionary form. Subject of sentence.
+- "Это **книга**." — This is a book.
+
+**2. Accusative (Кого? Что?) — Whom? What?**
+Direct object. After "to see", "to read", "to buy".
+- "Я читаю **книгу**." — I read a book.
+
+**3. Genitive (Кого? Чего?) — Of whom? Of what?**
+Possession, negation, after "from", quantity.
+- "У меня нет **книги**." — I don't have a book.
+
+**4. Dative (Кому? Чему?) — To whom? To what?**
+Indirect object. After "to give", "to help".
+- "Я даю книгу **другу**." — I give a book to a friend.
+
+**5. Instrumental (Кем? Чем?) — With whom? With what?**
+After "with", "by", and after the verb "to be" (in past/future).
+- "Я пишу **ручкой**." — I write with a pen.
+
+**6. Prepositional (О ком? О чём?) — About whom? About what?**
+After "about", "in", "at", "on" (location).
+- "Я думаю **о книге**." — I think about the book.` },
+  { courseSlug: 'russian', level: 'Beginner', order: 84, title: 'Personal Pronouns', type: 'Reading',
+    body: `Personal pronouns in Russian:
+
+| Case | I | You (inf) | He | She | We | You (for) | They |
+|------|---|-----------|----|-----|----|-----------|------|
+| Nom | я | ты | он | она | мы | вы | они |
+| Acc | меня | тебя | его | её | нас | вас | их |
+| Gen | меня | тебя | его | её | нас | вас | их |
+| Dat | мне | тебе | ему | ей | нам | вам | им |
+| Ins | мной | тобой | ним | ней | нами | вами | ними |
+| Pre | мне | тебе | нём | ней | нас | вас | них |
+
+**Important:** after prepositions, the 3rd person pronouns add an "н-": у него, с ней, о них` },
+  { courseSlug: 'russian', level: 'Beginner', order: 85, title: 'Practice: Grammar Exercises', type: 'Practice',
+    practiceTask: `Complete these exercises in Russian:
+1. Write the plural forms of: дом, книга, окно, сад, ручка
+2. Put these into accusative case: Я вижу (стол), Я читаю (книга), Я покупаю (хлеб)
+3. Translate: "I don't have a sister", "I give a book to my friend", "I write with a pen"` },
+
+  // Unit 20: Prepositions & Directions
+  { courseSlug: 'russian', level: 'Beginner', order: 86, title: 'Directions & Location', type: 'Reading',
+    body: `Asking for and giving directions:
+
+**Questions:**
+- Где находится...? — Where is... located?
+- Как пройти в...? — How do I get to...?
+- Это далеко? — Is it far?
+
+**Directions:**
+- прямо — straight ahead
+- налево — to the left
+- направо — to the right
+- за углом — around the corner
+- рядом с — next to
+- напротив — opposite
+
+**Prepositions of location:**
+- в / внутри — in / inside
+- на — on
+- под — under
+- над — above / over
+- между — between
+- около — near / around` },
+  { courseSlug: 'russian', level: 'Beginner', order: 87, title: 'Listen: Finding Your Way', type: 'Listening',
+    listenText: 'Gde nakhoditsya biblioteka? Idite pryamo, potom na parvo. Biblioteka za uglom, ryadom s parkom. Spasibo!',
+    body: 'Listen to directions being given. Practice understanding and remembering the sequence of movements.' },
+  { courseSlug: 'russian', level: 'Beginner', order: 88, title: 'Transport Vocabulary', type: 'Reading',
+    body: `Getting around:
+
+- автобус — bus
+- троллейбус — trolleybus
+- трамвай — tram
+- метро — metro
+- такси — taxi
+- поезд — train
+- самолёт — airplane
+- машина — car
+
+**Phrases:**
+- Где остановка автобуса? — Where is the bus stop?
+- Сколько стоит билет? — How much is a ticket?
+- Мне нужен билет до Москвы. — I need a ticket to Moscow.
+- Это место занято? — Is this seat taken?` },
+  { courseSlug: 'russian', level: 'Beginner', order: 89, title: 'Practice: Ask for Directions', type: 'Practice',
+    practiceTask: 'Write a dialog in Russian where you ask for directions to a museum. Include: greeting, asking for directions, following the instructions, thanking. Then write directions from your school/home to a nearby landmark.' },
+
+  // Unit 21: Final Review
+  { courseSlug: 'russian', level: 'Beginner', order: 90, title: 'Review: Phrases & Greetings', type: 'Reading',
+    body: `**Comprehensive review of essential phrases:**
+
+**Greetings:**
+- Здравствуйте — Hello (formal)
+- Привет! — Hi (informal)
+- Доброе утро! — Good morning!
+- Добрый день! — Good afternoon!
+- Добрый вечер! — Good evening!
+- До свидания! — Goodbye!
+- Пока! — Bye! (informal)
+
+**Introductions:**
+- Меня зовут... — My name is...
+- Очень приятно! — Nice to meet you!
+- Откуда вы? — Where are you from?
+
+**Courtesies:**
+- Спасибо / Большое спасибо — Thank you / Thank you very much
+- Пожалуйста — Please / You're welcome
+- Извините! — Excuse me / Sorry (formal)
+- Не за что! — Don't mention it!` },
+  { courseSlug: 'russian', level: 'Beginner', order: 91, title: 'Review: Verbs & Tenses', type: 'Reading',
+    body: `**Verb conjugation review (present tense):**
+
+Говорить (to speak):
+Я говорю, Ты говоришь, Он/она говорит, Мы говорим, Вы говорите, Они говорят
+
+**Past tense:**
+говорил (m), говорила (f), говорили (pl)
+
+**Future tense:**
+Я буду говорить, Ты будешь говорить...
+
+**Key irregular verbs:**
+- быть (to be): я есть (but usually omitted in present)
+- есть (to eat): я ем, ты ешь, он ест, мы едим, вы едите, они едят
+- хотеть (to want): я хочу, ты хочешь, он хочет, мы хотим, вы хотите, они хотят` },
+  { courseSlug: 'russian', level: 'Beginner', order: 92, title: 'Review: Numbers & Time', type: 'Reading',
+    body: `**Numbers 1-100 review:**
+
+1-10: один, два, три, четыре, пять, шесть, семь, восемь, девять, десять
+11-20: одиннадцать, двенадцать, тринадцать, четырнадцать, пятнадцать, шестнадцать, семнадцать, восемнадцать, девятнадцать, двадцать
+
+Tens: тридцать, сорок, пятьдесят, шестьдесят, семьдесят, восемьдесят, девяносто, сто
+
+**Time expressions:**
+- сейчас — now
+- сегодня — today
+- завтра — tomorrow
+- вчера — yesterday
+- каждый день — every day
+- обычно — usually
+- иногда — sometimes
+- всегда — always
+- никогда — never` },
+  { courseSlug: 'russian', level: 'Beginner', order: 93, title: 'Final Practice: Tell Me About Yourself', type: 'Practice',
+    practiceTask: `Write 10 sentences in Russian introducing yourself and telling about your life. Include:
+
+1. Your name and where you are from
+2. Your profession / what you study
+3. Where you live
+4. Your family (how many people)
+5. What you like to do (hobbies)
+6. Your daily routine
+7. What languages you speak
+8. Where you have been or want to go
+9. Your future plans
+10. A question for the reader
+
+This is your final speaking/writing practice for the A1 course!` },
 
   // Korean, Chinese, Amharic — one reading each
   { courseSlug: 'korean', level: 'Beginner', order: 1, title: 'Hangul: The Korean Alphabet', type: 'Reading',
@@ -424,6 +1408,9 @@ const placements = [
   { courseSlug: 'russian', questions: [
     { prompt: 'The Cyrillic letter "В" sounds like:', options: ['B', 'V', 'W'], answer: 1 },
     { prompt: '"Privet" means:', options: ['Goodbye', 'Hello (informal)', 'Thank you'], answer: 1 },
+    { prompt: 'Formal "you" in Russian is:', options: ['ты', 'вы', 'он'], answer: 1 },
+    { prompt: 'How do you say "Goodbye" formally?', options: ['Пока', 'Привет', 'До свидания'], answer: 2 },
+    { prompt: 'Russian for "thank you":', options: ['Пожалуйста', 'Спасибо', 'Извините'], answer: 1 },
   ] },
   { courseSlug: 'arabic', questions: [
     { prompt: 'Arabic is written:', options: ['Left to right', 'Right to left', 'Top to bottom'], answer: 1 },
@@ -446,6 +1433,9 @@ const placements = [
   { courseSlug: 'russian', questions: [
     { prompt: '"Privet" means:', options: ['Goodbye', 'Hello (informal)', 'Thank you'], answer: 1 },
     { prompt: 'The Cyrillic letter "В" sounds like:', options: ['B', 'V', 'W'], answer: 1 },
+    { prompt: 'Russian for "I have" (literally "by me there is"):', options: ['Я имею', 'У меня есть', 'У меня нет'], answer: 1 },
+    { prompt: '"Меня зовут" means:', options: ['I am called', 'I live', 'I work'], answer: 0 },
+    { prompt: 'What case does the preposition "в" use for locations?', options: ['Accusative', 'Prepositional', 'Genitive'], answer: 1 },
   ] },
 ];
 
@@ -483,6 +1473,34 @@ const quizzes = [
     { prompt: '한글 (Hangul) is:', options: ['Chinese characters', 'The Korean alphabet', 'Japanese writing'], answer: 1, explanation: 'Hangul is the Korean alphabet, created in the 15th century.' },
     { prompt: '"안녕하세요" means:', options: ['Thank you', 'Hello', 'Goodbye'], answer: 1, explanation: 'Annyeonghaseyo = Hello (formal).' },
   ] },
+  { courseSlug: 'russian', title: 'Alphabet & Greetings', level: 'Beginner', questions: [
+    { prompt: 'How many letters does the Russian alphabet have?', options: ['26', '33', '31'], answer: 1, explanation: 'The Russian alphabet has 33 letters — 10 vowels, 21 consonants, and 2 signs.' },
+    { prompt: '"Здравствуйте" is:', options: ['Goodbye (formal)', 'Hello (formal)', 'Thank you'], answer: 1, explanation: 'Здравствуйте is the formal way to say hello in Russian.' },
+    { prompt: '"Меня зовут Анна" means:', options: ['I like Anna', 'My name is Anna', 'I see Anna'], answer: 1, explanation: 'Меня зовут literally means "they call me".' },
+    { prompt: '"Привет" is used with:', options: ['Strangers', 'Friends (informal)', 'Bosses'], answer: 1, explanation: 'Привет is informal, used between friends and relatives.' },
+    { prompt: 'Fill in: "До ___!" (Goodbye formal)', options: ['свидания', 'встречи', 'завтра'], answer: 0, explanation: 'До свидания! is the formal goodbye.' },
+  ] },
+  { courseSlug: 'russian', title: 'Phrases & Introductions', level: 'Beginner', questions: [
+    { prompt: '"Очень приятно" means:', options: ['Very nice (to meet you)', 'Very tasty', 'Very big'], answer: 0, explanation: 'Очень приятно = "very pleasant/very nice to meet you".' },
+    { prompt: '"Как вас зовут?" is addressed to:', options: ['A friend', 'A stranger (formal)', 'A child'], answer: 1, explanation: 'Как вас зовут uses formal "вас".' },
+    { prompt: '"Это мой друг" means:', options: ['This is my friend', 'That is my dog', 'This is good'], answer: 0, explanation: 'Друг = friend, мой = my.' },
+    { prompt: 'Russian for "How are things?":', options: ['Как дела?', 'Как вы?', 'Что это?'], answer: 0, explanation: 'Как дела? literally means "how are things/affairs?".' },
+    { prompt: 'Respond to "Как дела?" with "Good":', options: ['Плохо', 'Хорошо', 'Нормально'], answer: 1, explanation: 'Хорошо = good/well.' },
+  ] },
+  { courseSlug: 'russian', title: 'Daily Life & Numbers', level: 'Beginner', questions: [
+    { prompt: 'What is 15 in Russian?', options: ['Пять', 'Пятнадцать', 'Пятьдесят'], answer: 1, explanation: 'Пятнадцать = 15 (пять + надцать).' },
+    { prompt: '"Я читаю" means:', options: ['I am reading', 'I am writing', 'I am speaking'], answer: 0, explanation: 'Читать = to read.' },
+    { prompt: '"Во сколько ты встаёшь?" asks:', options: ['Where do you live?', 'What time do you wake up?', 'How are you?'], answer: 1, explanation: 'Вставать = to get up/wake.' },
+    { prompt: 'Saturday in Russian:', options: ['Воскресенье', 'Суббота', 'Пятница'], answer: 1, explanation: 'Суббота = Saturday, Воскресенье = Sunday.' },
+    { prompt: '"У меня есть брат" means:', options: ['I have a brother', 'My brother is here', 'I like my brother'], answer: 0, explanation: 'У меня есть = I have (literally "by me there is").' },
+  ] },
+  { courseSlug: 'russian', title: 'Restaurant & Shopping', level: 'Beginner', questions: [
+    { prompt: '"Счёт, пожалуйста!" is said:', options: ['When entering a shop', 'When asking for the bill', 'When greeting someone'], answer: 1, explanation: 'Счёт = bill/check, said at the end of a meal.' },
+    { prompt: '"Сколько это стоит?" means:', options: ['How much does this cost?', 'What is this?', 'Where is this?'], answer: 0, explanation: 'Сколько = how much, стоит = costs.' },
+    { prompt: 'Russian for "tasty":', options: ['Красивый', 'Вкусный', 'Интересный'], answer: 1, explanation: 'Вкусный means tasty/delicious.' },
+    { prompt: '"Мне нужна куртка" uses нужна because куртка is:', options: ['Masculine', 'Feminine', 'Neuter'], answer: 1, explanation: 'Куртка (jacket) is feminine, so the form is нужна.' },
+    { prompt: '"Приятного аппетита!" is said:', options: ['Before a meal', 'After a meal', 'When meeting someone'], answer: 0, explanation: 'It means "Enjoy your meal!" and is said before eating.' },
+  ] },
 ];
 
 const flashcards = [
@@ -514,6 +1532,58 @@ const flashcards = [
   { courseSlug: 'korean', title: 'Korean Particles', cards: [
     { front: '은/는', back: 'Subject/topic marker' }, { front: '을/를', back: 'Object marker' },
     { front: '에', back: 'Time/location marker' }, { front: '에서', back: 'Action location ("at/in")' },
+  ] },
+  { courseSlug: 'russian', title: 'Russian Alphabet', cards: [
+    { front: 'А а', back: 'a (like "father")' }, { front: 'Б б', back: 'b (like "book")' },
+    { front: 'В в', back: 'v (like "voice")' }, { front: 'Г г', back: 'g (like "go")' },
+    { front: 'Д д', back: 'd (like "door")' }, { front: 'Е е', back: 'ye (like "yes")' },
+    { front: 'Ё ё', back: 'yo (like "york")' }, { front: 'Ж ж', back: 'zh (like "treasure")' },
+    { front: 'З з', back: 'z (like "zebra")' }, { front: 'И и', back: 'ee (like "see")' },
+    { front: 'Й й', back: 'y (short, like "boy")' }, { front: 'К к', back: 'k (like "kite")' },
+    { front: 'Л л', back: 'l (like "love")' }, { front: 'М м', back: 'm (like "mom")' },
+    { front: 'Н н', back: 'n (like "no")' }, { front: 'О о', back: 'o (like "more")' },
+    { front: 'П п', back: 'p (like "park")' }, { front: 'Р р', back: 'r (rolled r)' },
+    { front: 'С с', back: 's (like "sun")' }, { front: 'Т т', back: 't (like "top")' },
+    { front: 'У у', back: 'oo (like "boot")' }, { front: 'Ф ф', back: 'f (like "fox")' },
+    { front: 'Х х', back: 'kh (like "Bach")' }, { front: 'Ц ц', back: 'ts (like "cats")' },
+    { front: 'Ч ч', back: 'ch (like "chip")' }, { front: 'Ш ш', back: 'sh (like "shop")' },
+    { front: 'Щ щ', back: 'shch (like "fresh cheese")' }, { front: 'Ы ы', back: 'i (deep "ill")' },
+    { front: 'Ь ь', back: 'soft sign (softens consonant)' }, { front: 'Ъ ъ', back: 'hard sign (no sound)' },
+    { front: 'Э э', back: 'e (like "met")' }, { front: 'Ю ю', back: 'yu (like "you")' },
+    { front: 'Я я', back: 'ya (like "yard")' },
+  ] },
+  { courseSlug: 'russian', title: 'Greetings & Basics', cards: [
+    { front: 'Здравствуйте!', back: 'Hello! (formal)' }, { front: 'Привет!', back: 'Hi! (informal)' },
+    { front: 'До свидания!', back: 'Goodbye (formal)' }, { front: 'Пока!', back: 'Bye! (informal)' },
+    { front: 'Спасибо', back: 'Thank you' }, { front: 'Пожалуйста', back: 'Please / You\'re welcome' },
+    { front: 'Извините!', back: 'Excuse me! (formal)' }, { front: 'Как дела?', back: 'How are things?' },
+    { front: 'Хорошо', back: 'Good / Well' }, { front: 'Нормально', back: 'Fine / Okay' },
+    { front: 'Отлично', back: 'Excellent' }, { front: 'Да / Нет', back: 'Yes / No' },
+  ] },
+  { courseSlug: 'russian', title: 'Numbers 1-20', cards: [
+    { front: '1', back: 'один' }, { front: '2', back: 'два' }, { front: '3', back: 'три' },
+    { front: '4', back: 'четыре' }, { front: '5', back: 'пять' }, { front: '6', back: 'шесть' },
+    { front: '7', back: 'семь' }, { front: '8', back: 'восемь' }, { front: '9', back: 'девять' },
+    { front: '10', back: 'десять' }, { front: '11', back: 'одиннадцать' }, { front: '15', back: 'пятнадцать' },
+    { front: '20', back: 'двадцать' }, { front: '50', back: 'пятьдесят' }, { front: '100', back: 'сто' },
+  ] },
+  { courseSlug: 'russian', title: 'Common Verbs', cards: [
+    { front: 'читать', back: 'to read' }, { front: 'писать', back: 'to write' },
+    { front: 'говорить', back: 'to speak' }, { front: 'слушать', back: 'to listen' },
+    { front: 'работать', back: 'to work' }, { front: 'готовить', back: 'to cook' },
+    { front: 'делать', back: 'to do' }, { front: 'смотреть', back: 'to watch' },
+    { front: 'любить', back: 'to love / to like' }, { front: 'есть / кушать', back: 'to eat' },
+    { front: 'пить', back: 'to drink' }, { front: 'идти / ходить', back: 'to go / to walk' },
+    { front: 'ехать', back: 'to go (by transport)' }, { front: 'быть', back: 'to be' },
+  ] },
+  { courseSlug: 'russian', title: 'Food & Drink', cards: [
+    { front: 'хлеб', back: 'bread' }, { front: 'молоко', back: 'milk' },
+    { front: 'вода', back: 'water' }, { front: 'мясо', back: 'meat' },
+    { front: 'рыба', back: 'fish' }, { front: 'сыр', back: 'cheese' },
+    { front: 'яйцо', back: 'egg' }, { front: 'сахар', back: 'sugar' },
+    { front: 'соль', back: 'salt' }, { front: 'фрукты', back: 'fruit' },
+    { front: 'овощи', back: 'vegetables' }, { front: 'кофе', back: 'coffee' },
+    { front: 'чай', back: 'tea' }, { front: 'сок', back: 'juice' },
   ] },
 ];
 
@@ -560,6 +1630,35 @@ const exams = [
     { prompt: '"As-salaamu alaykum" means:', options: ['Good morning', 'Peace be upon you', 'Thank you'], answer: 1 },
     { prompt: '"Shukran" is:', options: ['Hello', 'Please', 'Thank you'], answer: 2 },
     { prompt: '"Wahid" is the number:', options: ['One', 'Two', 'Three'], answer: 0 },
+  ] },
+  { courseSlug: 'russian', level: 'Beginner', kind: 'Theoretical', title: 'Russian A1 — Final Exam', questions: [
+    { prompt: 'How many letters does the Russian alphabet have?', options: ['26', '33', '31'], answer: 1 },
+    { prompt: '"Здравствуйте" is used when:', options: ['Greeting a friend', 'Greeting formally', 'Saying goodbye'], answer: 1 },
+    { prompt: '"Извините" is:', options: ['Thank you', 'Excuse me / Sorry (formal)', 'Please'], answer: 1 },
+    { prompt: 'Which is correct for "I am reading"?', options: ['Я читаю', 'Я читал', 'Я буду читать'], answer: 0 },
+    { prompt: '"До свидания" means:', options: ['Hello', 'Goodbye', 'See you tomorrow'], answer: 1 },
+    { prompt: 'Formal "you" in Russian:', options: ['ты', 'вы', 'они'], answer: 1 },
+    { prompt: '"У меня есть" means:', options: ['I have', 'I am', 'I need'], answer: 0 },
+    { prompt: 'The letter "В" sounds like:', options: ['B', 'V', 'W'], answer: 1 },
+    { prompt: '"Сколько это стоит?" asks about:', options: ['Time', 'Price', 'Distance'], answer: 1 },
+    { prompt: 'Russian for "good":', options: ['Хорошо', 'Плохо', 'Красиво'], answer: 0 },
+    { prompt: '"Меня зовут Джон" means:', options: ['I like John', 'My name is John', 'I see John'], answer: 1 },
+    { prompt: 'Which month is "январь"?', options: ['January', 'June', 'December'], answer: 0 },
+    { prompt: '"Приятного аппетита!" is said:', options: ['Before eating', 'After eating', 'When meeting'], answer: 0 },
+    { prompt: 'The plural of "книга" (book) is:', options: ['книги', 'книгу', 'книгой'], answer: 0 },
+    { prompt: '"Я хочу" means:', options: ['I can', 'I want', 'I have'], answer: 1 },
+  ] },
+  { courseSlug: 'russian', level: 'Beginner', kind: 'Practical', title: 'Russian A1 — Speaking Practice', tasks: [
+    'Introduce yourself in Russian: say your name, where you are from, and one hobby.',
+    'Count from 1 to 20 in Russian out loud.',
+    'Say 3 foods you like in Russian: "Я люблю..."',
+    'Ask "How are you?" in formal and informal Russian.',
+    'Describe your family in 3 sentences.',
+    'Say what time you wake up and what you do in the morning.',
+    'Order a coffee in Russian: ask for it, say please, ask the price, thank.',
+    'Name 3 countries in Russian and say "I am from..."',
+    'Say "I have a brother/friend" and "I don\'t have a sister" in Russian.',
+    'Say goodbye in both formal and informal Russian.',
   ] },
 ];
 

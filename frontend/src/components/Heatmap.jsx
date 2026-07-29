@@ -26,9 +26,9 @@ export default function Heatmap({ data = [], weeks = 12, className = '' }) {
   const maxVal = Math.max(...cells.map((c) => c.value), 1);
 
   const getColor = (v) => {
-    if (v === 0) return '#1F1822';
+    if (v === 0) return '#5A3A28';
     const i = Math.min(Math.floor((v / maxVal) * 4), 3);
-    return ['#CC883A44', '#CC883A77', '#CC883ABB', '#CC883A'][i];
+    return ['#E08E7944', '#E08E7977', '#E08E79BB', '#E08E79'][i];
   };
 
   const dayLabels = ['', 'Mon', '', 'Wed', '', 'Fri', ''];
@@ -48,10 +48,10 @@ export default function Heatmap({ data = [], weeks = 12, className = '' }) {
   return (
     <svg width={w} height={h} className={className}>
       {monthLabels.map((m, i) => (
-        <text key={i} x={m.x} y={11} textAnchor="start" fill="rgba(207,200,154,0.25)" fontSize="9">{m.label}</text>
+        <text key={i} x={m.x} y={11} textAnchor="start" fill="rgba(236,229,206,0.25)" fontSize="9">{m.label}</text>
       ))}
       {dayLabels.map((d, i) => d ? (
-        <text key={i} x={padL - 4} y={padT + i * (SIZE + GAP) + SIZE - 2} textAnchor="end" fill="rgba(207,200,154,0.25)" fontSize="8">{d}</text>
+        <text key={i} x={padL - 4} y={padT + i * (SIZE + GAP) + SIZE - 2} textAnchor="end" fill="rgba(236,229,206,0.25)" fontSize="8">{d}</text>
       ) : null)}
       {cells.map((c, i) => (
         <rect key={i} x={padL + c.x} y={padT + c.y} width={SIZE} height={SIZE} rx={3} fill={getColor(c.value)}>

@@ -41,16 +41,16 @@ export default function ExamForm() {
     } catch { toast.error('Failed to save'); }
   };
 
-  const label = 'text-xs text-[#CFC89A]/60 mb-1 block';
-  const input = 'w-full bg-[#322938] border border-[#CFC89A]/10 rounded-lg px-3 py-2 text-[#CFC89A] text-sm focus:outline-none focus:border-amber/40 transition-colors';
+  const label = 'text-xs text-[#ECE5CE]/60 mb-1 block';
+  const input = 'w-full bg-[#774F38] border border-[#ECE5CE]/10 rounded-lg px-3 py-2 text-[#ECE5CE] text-sm focus:outline-none focus:border-amber/40 transition-colors';
 
   return (
     <div className="pt-24 pb-16">
       <div className="mx-auto max-w-3xl px-5">
         <div className="flex items-center justify-between mb-6">
           <div>
-            <h1 className="text-2xl font-display font-bold text-[#CFC89A]">{isEdit ? 'Edit' : 'New'} Exam</h1>
-            <p className="text-[#CFC89A]/40 text-sm mt-1">{slug}</p>
+            <h1 className="text-2xl font-display font-bold text-[#ECE5CE]">{isEdit ? 'Edit' : 'New'} Exam</h1>
+            <p className="text-[#ECE5CE]/40 text-sm mt-1">{slug}</p>
           </div>
           <Link to={`/admin/courses/${slug}/exams`} className="btn-outline py-2 px-4 text-sm">← Back</Link>
         </div>
@@ -73,11 +73,11 @@ export default function ExamForm() {
           </div>
           <div className="card p-6 space-y-4">
             <div className="flex items-center justify-between">
-              <h3 className="font-semibold text-[#CFC89A]">Questions ({form.questions.length})</h3>
+              <h3 className="font-semibold text-[#ECE5CE]">Questions ({form.questions.length})</h3>
               <button type="button" onClick={addQuestion} className="btn-outline py-1 px-3 text-xs">+ Add</button>
             </div>
             {form.questions.map((q, qi) => (
-              <div key={qi} className="border border-[#CFC89A]/10 rounded-lg p-4 space-y-3">
+              <div key={qi} className="border border-[#ECE5CE]/10 rounded-lg p-4 space-y-3">
                 <div className="flex items-start justify-between gap-2">
                   <input className={`${input} flex-1`} placeholder={`Question ${qi + 1}`} value={q.question} onChange={(e) => handleQuestionChange(qi, 'question', e.target.value)} />
                   <button type="button" onClick={() => removeQuestion(qi)} className="btn-outline py-1 px-2 text-xs text-red-400/70 shrink-0">×</button>
@@ -86,7 +86,7 @@ export default function ExamForm() {
                   <div key={oi} className="flex items-center gap-2">
                     <input type="radio" name={`correct-${qi}`} checked={q.correct === oi} onChange={() => handleQuestionChange(qi, 'correct', oi)} className="accent-amber" />
                     <input className={`${input} flex-1`} placeholder={`Option ${oi + 1}`} value={opt} onChange={(e) => handleOptionChange(qi, oi, e.target.value)} />
-                    <span className="text-[10px] text-[#CFC89A]/30 w-12 text-right">{q.correct === oi ? '✓ correct' : ''}</span>
+                    <span className="text-[10px] text-[#ECE5CE]/30 w-12 text-right">{q.correct === oi ? '✓ correct' : ''}</span>
                   </div>
                 ))}
               </div>

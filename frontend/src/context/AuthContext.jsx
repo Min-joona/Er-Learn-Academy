@@ -34,6 +34,12 @@ export function AuthProvider({ children }) {
     return data.assignedLevel;
   };
 
+  const purchase = async (courseSlug) => {
+    const { data } = await api.post('/api/auth/purchase', { courseSlug });
+    persist(data.user, null);
+    return data.message;
+  };
+
   const updateProgress = async (courseSlug, progress) => {
     try {
       const { data } = await api.post('/api/auth/progress', { courseSlug, progress });
@@ -56,7 +62,7 @@ export function AuthProvider({ children }) {
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, register, enroll, updateProgress, logout, refreshUser }}>
+    <AuthContext.Provider value={{ user, login, register, enroll, purchase, updateProgress, logout, refreshUser }}>
       {children}
     </AuthContext.Provider>
   );

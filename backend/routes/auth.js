@@ -1,6 +1,7 @@
 const express = require('express');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
+const { Course } = require('../models/Content');
 const { protect } = require('../middleware/auth');
 
 const router = express.Router();
@@ -50,6 +51,21 @@ router.post('/enroll', protect, async (req, res) => {
   }
   await req.user.save();
   res.json({ user: publicUser(req.user), assignedLevel: level });
+});
+
+// Purchase a paid course — creates enrollment after gating price.
+router.post('/purchase', protect, async (req, res) => {
+  const { courseSlug } = req.body;
+  const course = await Course.findOne({ slug: courseSlug });
+  if (!course) return res.status(404).json({ message: 'Course not found' });
+  if (!course.price || course.price <= 0) return res.status(400).json({ message: 'Course is free — use /enroll instead' });
+
+  const existing = req.user.enrollments.find((e) => e.courseSlug === courseSlug);
+  if (existing) return res.json({ user: publicUser(req.user), message: 'Already enrolled' });
+
+  req.user.enrollments.push({ courseSlug, instructionLanguage: 'English', level: 'Beginner', progress: 0 });
+  await req.user.save();
+  res.json({ user: publicUser(req.user), message: 'Course purchased and enrolled' });
 });
 
 // Update progress on a course.

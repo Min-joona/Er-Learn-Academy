@@ -26,16 +26,16 @@ export default function TypingDrillForm() {
     } catch { toast.error('Failed to save'); }
   };
 
-  const label = 'text-xs text-[#CFC89A]/60 mb-1 block';
-  const input = 'w-full bg-[#322938] border border-[#CFC89A]/10 rounded-lg px-3 py-2 text-[#CFC89A] text-sm focus:outline-none focus:border-amber/40 transition-colors';
+  const label = 'text-xs text-[#ECE5CE]/60 mb-1 block';
+  const input = 'w-full bg-[#774F38] border border-[#ECE5CE]/10 rounded-lg px-3 py-2 text-[#ECE5CE] text-sm focus:outline-none focus:border-amber/40 transition-colors';
 
   return (
     <div className="pt-24 pb-16">
       <div className="mx-auto max-w-2xl px-5">
         <div className="flex items-center justify-between mb-6">
           <div>
-            <h1 className="text-2xl font-display font-bold text-[#CFC89A]">{isEdit ? 'Edit' : 'New'} Typing Drill</h1>
-            <p className="text-[#CFC89A]/40 text-sm mt-1">{slug}</p>
+            <h1 className="text-2xl font-display font-bold text-[#ECE5CE]">{isEdit ? 'Edit' : 'New'} Typing Drill</h1>
+            <p className="text-[#ECE5CE]/40 text-sm mt-1">{slug}</p>
           </div>
           <Link to={`/admin/courses/${slug}/typing-drills`} className="btn-outline py-2 px-4 text-sm">← Back</Link>
         </div>

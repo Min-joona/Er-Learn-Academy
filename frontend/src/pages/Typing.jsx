@@ -63,24 +63,24 @@ function Tester({ drill }) {
         <div className="flex gap-4">
           <div className="text-center">
             <div className="text-2xl font-bold text-amber tabular-nums">{wpm}</div>
-            <div className="text-[10px] text-[#CFC89A]/40 uppercase tracking-wider">WPM</div>
+            <div className="text-[10px] text-[#ECE5CE]/40 uppercase tracking-wider">WPM</div>
           </div>
           <div className="text-center">
             <div className="text-2xl font-bold text-sage tabular-nums">{accuracy}%</div>
-            <div className="text-[10px] text-[#CFC89A]/40 uppercase tracking-wider">Accuracy</div>
+            <div className="text-[10px] text-[#ECE5CE]/40 uppercase tracking-wider">Accuracy</div>
           </div>
           <div className="text-center">
-            <div className="text-2xl font-bold text-[#CFC89A]/30 tabular-nums">{drill.targetWpm}</div>
-            <div className="text-[10px] text-[#CFC89A]/40 uppercase tracking-wider">Goal</div>
+            <div className="text-2xl font-bold text-[#ECE5CE]/30 tabular-nums">{drill.targetWpm}</div>
+            <div className="text-[10px] text-[#ECE5CE]/40 uppercase tracking-wider">Goal</div>
           </div>
         </div>
-        <div className="text-sm text-[#CFC89A]/30">
+        <div className="text-sm text-[#ECE5CE]/30">
           {typed.length}/{drill.text.length} chars
         </div>
       </div>
 
       {/* Progress bar */}
-      <div className="h-1 rounded-full bg-[#CFC89A]/10 mb-4 overflow-hidden">
+      <div className="h-1 rounded-full bg-[#ECE5CE]/10 mb-4 overflow-hidden">
         <div className="h-full rounded-full bg-gradient-to-r from-amber to-rust transition-all duration-200" style={{ width: `${progress}%` }} />
       </div>
 
@@ -88,11 +88,11 @@ function Tester({ drill }) {
       <div
         ref={containerRef}
         onClick={() => inputRef.current?.focus()}
-        className="cursor-text rounded-2xl border-2 border-[#CFC89A]/10 bg-[#322938]/80 p-5 md:p-8 mb-4 min-h-[120px] transition-all duration-300 focus-within:border-amber/30 focus-within:shadow-lg focus-within:shadow-amber/5"
+        className="cursor-text rounded-2xl border-2 border-[#ECE5CE]/10 bg-[#774F38]/80 p-5 md:p-8 mb-4 min-h-[120px] transition-all duration-300 focus-within:border-amber/30 focus-within:shadow-lg focus-within:shadow-amber/5"
       >
         <div className="font-mono text-lg md:text-xl leading-[1.8] tracking-wide select-none overflow-hidden" style={{ wordSpacing: '0.25em' }}>
           {drill.text.split('').map((ch, i) => {
-            let cls = 'text-[#CFC89A]/20';
+            let cls = 'text-[#ECE5CE]/20';
             if (i < typed.length) cls = typed[i] === ch ? 'text-amber' : 'bg-rust/30 text-rust rounded';
             const isCursor = i === typed.length;
             return (
@@ -113,7 +113,7 @@ function Tester({ drill }) {
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256"><path d="M197.67,186.37a8,8,0,0,1,0,11.32C183.47,211.89,164.46,224,144,224A96,96,0,0,1,92.37,49.39L80.59,68.19a8,8,0,0,1-13.18-9L90.12,26.32a8,8,0,0,1,11.58-2.18l34.62,26.74a8,8,0,0,1-9.18,13.11L113.1,54.77A80,80,0,1,0,208,144a79.69,79.69,0,0,0-21.21-54.26,8,8,0,0,1,11.68-10.94A96,96,0,0,1,224,144a95.72,95.72,0,0,1-26.33,66.37Z"></path></svg>
           Restart
         </button>
-        <p className="text-xs text-[#CFC89A]/30">Click the text or press any key to start typing</p>
+        <p className="text-xs text-[#ECE5CE]/30">Click the text or press any key to start typing</p>
       </div>
 
       {/* Tip */}
@@ -132,8 +132,8 @@ function Tester({ drill }) {
             {wpm >= drill.targetWpm ? 'Goal achieved!' : 'Keep practicing!'}
           </p>
           <div className="flex justify-center gap-6 mt-3">
-            <div><span className="text-xl font-bold text-amber tabular-nums">{wpm}</span><span className="text-sm text-[#CFC89A]/40 ml-1">WPM</span></div>
-            <div><span className="text-xl font-bold text-sage tabular-nums">{accuracy}%</span><span className="text-sm text-[#CFC89A]/40 ml-1">accuracy</span></div>
+            <div><span className="text-xl font-bold text-amber tabular-nums">{wpm}</span><span className="text-sm text-[#ECE5CE]/40 ml-1">WPM</span></div>
+            <div><span className="text-xl font-bold text-sage tabular-nums">{accuracy}%</span><span className="text-sm text-[#ECE5CE]/40 ml-1">accuracy</span></div>
           </div>
           <button onClick={reset} className="btn-primary mt-4 py-2 px-6 text-sm">
             Try again
@@ -151,7 +151,7 @@ function Tester({ drill }) {
               className="flex-1 rounded-t transition-all duration-150"
               style={{
                 height: `${Math.min(100, (w / (drill.targetWpm * 1.5)) * 100)}%`,
-                background: w >= drill.targetWpm ? '#CC883A' : '#CC883A40',
+                background: w >= drill.targetWpm ? '#E08E79' : '#E08E7940',
               }}
             />
           ))}
@@ -184,8 +184,8 @@ export default function Typing() {
         {/* Header */}
         <div className="text-center mb-8">
           <span className="text-4xl mb-3 block">⌨️</span>
-          <h1 className="text-3xl md:text-4xl font-display font-bold text-[#CFC89A]">Typing Mastery</h1>
-          <p className="text-[#CFC89A]/50 mt-1">Learn to type faster and more accurately — one drill at a time.</p>
+          <h1 className="text-3xl md:text-4xl font-display font-bold text-[#ECE5CE]">Typing Mastery</h1>
+          <p className="text-[#ECE5CE]/50 mt-1">Learn to type faster and more accurately — one drill at a time.</p>
         </div>
 
         <div className="grid lg:grid-cols-[280px_1fr] gap-6">
@@ -194,16 +194,16 @@ export default function Typing() {
             <div className="card p-4 sticky top-24">
               <div className="flex gap-1 mb-4">
                 {['All', 'Beginner', 'Intermediate', 'Advanced'].map((l) => (
-                  <button key={l} onClick={() => setFilterLevel(l)} className={`flex-1 py-1.5 rounded-lg text-xs font-medium transition-all ${filterLevel === l ? 'bg-amber text-white' : 'bg-[#CFC89A]/5 text-[#CFC89A]/40 hover:text-[#CFC89A]/70'}`}>
+                  <button key={l} onClick={() => setFilterLevel(l)} className={`flex-1 py-1.5 rounded-lg text-xs font-medium transition-all ${filterLevel === l ? 'bg-amber text-white' : 'bg-[#ECE5CE]/5 text-[#ECE5CE]/40 hover:text-[#ECE5CE]/70'}`}>
                     {l === 'All' ? 'All' : l.slice(0, 4)}
                   </button>
                 ))}
               </div>
               <div className="space-y-1 max-h-[60vh] overflow-y-auto no-scrollbar">
                 {filtered.map((d) => (
-                  <button key={d._id} onClick={() => setActive(d)} className={`flex w-full items-center justify-between rounded-lg border px-3 py-2.5 text-left text-sm transition-all ${active?._id === d._id ? 'border-amber bg-amber/5 text-[#CFC89A]' : 'border-transparent text-[#CFC89A]/40 hover:text-[#CFC89A]/70 hover:bg-[#CFC89A]/5'}`}>
+                  <button key={d._id} onClick={() => setActive(d)} className={`flex w-full items-center justify-between rounded-lg border px-3 py-2.5 text-left text-sm transition-all ${active?._id === d._id ? 'border-amber bg-amber/5 text-[#ECE5CE]' : 'border-transparent text-[#ECE5CE]/40 hover:text-[#ECE5CE]/70 hover:bg-[#ECE5CE]/5'}`}>
                     <span className="font-medium truncate mr-2">{d.title}</span>
-                    <span className={`shrink-0 pill text-[10px] ${(levelColors)[d.level] || 'bg-[#CFC89A]/5 text-[#CFC89A]/30'}`}>{d.targetWpm}wpm</span>
+                    <span className={`shrink-0 pill text-[10px] ${(levelColors)[d.level] || 'bg-[#ECE5CE]/5 text-[#ECE5CE]/30'}`}>{d.targetWpm}wpm</span>
                   </button>
                 ))}
               </div>
@@ -216,8 +216,8 @@ export default function Typing() {
               <div key={active._id} className="card p-5 md:p-8">
                 <div className="flex items-center justify-between mb-4">
                   <div>
-                    <h2 className="text-xl font-display font-bold text-[#CFC89A]">{active.title}</h2>
-                    <span className={`inline-block mt-1 pill text-xs ${levelColors[active.level] || 'bg-[#CFC89A]/5 text-[#CFC89A]/30'}`}>{active.level}</span>
+                    <h2 className="text-xl font-display font-bold text-[#ECE5CE]">{active.title}</h2>
+                    <span className={`inline-block mt-1 pill text-xs ${levelColors[active.level] || 'bg-[#ECE5CE]/5 text-[#ECE5CE]/30'}`}>{active.level}</span>
                   </div>
                 </div>
                 <Tester drill={active} />
@@ -225,7 +225,7 @@ export default function Typing() {
             ) : (
               <div className="card text-center py-16">
                 <p className="text-4xl mb-3">⌨️</p>
-                <p className="text-[#CFC89A]/50">Select a drill to start typing.</p>
+                <p className="text-[#ECE5CE]/50">Select a drill to start typing.</p>
               </div>
             )}
           </div>

@@ -42,8 +42,8 @@ export default function AdminDashboard() {
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
           <div>
-            <h1 className="text-3xl font-display font-bold text-[#CFC89A]">Admin Panel</h1>
-            <p className="text-[#CFC89A]/50 mt-1">Manage your academy.</p>
+            <h1 className="text-3xl font-display font-bold text-[#ECE5CE]">Admin Panel</h1>
+            <p className="text-[#ECE5CE]/50 mt-1">Manage your academy.</p>
           </div>
           <div className="flex gap-2">
             <Link to="/admin/analytics" className="btn-outline py-2 px-4 text-sm">Analytics</Link>
@@ -60,22 +60,22 @@ export default function AdminDashboard() {
             { label: 'Total Courses', value: stats.total, color: 'text-amber' },
             { label: 'Free Courses', value: stats.free, color: 'text-sage' },
             { label: 'Paid Courses', value: stats.paid, color: 'text-amber' },
-            { label: 'Categories', value: stats.categories, color: 'text-[#CFC89A]' },
+            { label: 'Categories', value: stats.categories, color: 'text-[#ECE5CE]' },
           ].map((s) => (
             <div key={s.label} className="card p-5 text-center">
               <div className={`text-2xl font-bold ${s.color} tabular-nums`}>{s.value}</div>
-              <div className="text-xs text-[#CFC89A]/40 mt-1">{s.label}</div>
+              <div className="text-xs text-[#ECE5CE]/40 mt-1">{s.label}</div>
             </div>
           ))}
         </div>
 
         {/* Tabs */}
-        <div className="flex gap-1 border-b border-[#CFC89A]/10 mb-6">
+        <div className="flex gap-1 border-b border-[#ECE5CE]/10 mb-6">
           {[
             { id: 'courses', label: 'Courses', icon: '📚' },
             { id: 'users', label: 'Users', icon: '👥' },
           ].map((t) => (
-            <button key={t.id} onClick={() => setActiveTab(t.id)} className={`flex items-center gap-1.5 px-4 py-3 text-sm font-medium border-b-2 transition-all ${activeTab === t.id ? 'text-amber border-amber' : 'text-[#CFC89A]/40 border-transparent hover:text-[#CFC89A]/70'}`}>
+            <button key={t.id} onClick={() => setActiveTab(t.id)} className={`flex items-center gap-1.5 px-4 py-3 text-sm font-medium border-b-2 transition-all ${activeTab === t.id ? 'text-amber border-amber' : 'text-[#ECE5CE]/40 border-transparent hover:text-[#ECE5CE]/70'}`}>
               <span>{t.icon}</span> {t.label}
             </button>
           ))}
@@ -83,33 +83,33 @@ export default function AdminDashboard() {
 
         {/* Courses Table */}
         {activeTab === 'courses' && (
-          <div className="rounded-2xl border border-[#CFC89A]/10 overflow-hidden">
+          <div className="rounded-2xl border border-[#ECE5CE]/10 overflow-hidden">
             <div className="overflow-x-auto">
               <table className="w-full text-left">
                 <thead>
-                  <tr className="bg-[#CFC89A]/5 border-b border-[#CFC89A]/10">
-                    <th className="p-4 text-xs font-semibold text-[#CFC89A]/40 uppercase tracking-wider">Course</th>
-                    <th className="p-4 text-xs font-semibold text-[#CFC89A]/40 uppercase tracking-wider hidden md:table-cell">Category</th>
-                    <th className="p-4 text-xs font-semibold text-[#CFC89A]/40 uppercase tracking-wider hidden sm:table-cell">Price</th>
-                    <th className="p-4 text-xs font-semibold text-[#CFC89A]/40 uppercase tracking-wider text-right">Actions</th>
+                  <tr className="bg-[#ECE5CE]/5 border-b border-[#ECE5CE]/10">
+                    <th className="p-4 text-xs font-semibold text-[#ECE5CE]/40 uppercase tracking-wider">Course</th>
+                    <th className="p-4 text-xs font-semibold text-[#ECE5CE]/40 uppercase tracking-wider hidden md:table-cell">Category</th>
+                    <th className="p-4 text-xs font-semibold text-[#ECE5CE]/40 uppercase tracking-wider hidden sm:table-cell">Price</th>
+                    <th className="p-4 text-xs font-semibold text-[#ECE5CE]/40 uppercase tracking-wider text-right">Actions</th>
                   </tr>
                 </thead>
                 <tbody>
                   {courses.map((course) => (
-                    <tr key={course._id} className="border-b border-[#CFC89A]/5 hover:bg-[#CFC89A]/[0.02] transition-colors">
+                    <tr key={course._id} className="border-b border-[#ECE5CE]/5 hover:bg-[#ECE5CE]/[0.02] transition-colors">
                       <td className="p-4">
                         <div className="flex items-center gap-3">
                           <span className="text-xl">{course.flag}</span>
                           <div>
-                            <p className="font-semibold text-[#CFC89A] text-sm">{course.title}</p>
-                            <p className="text-xs text-[#CFC89A]/30">{course.slug}</p>
+                            <p className="font-semibold text-[#ECE5CE] text-sm">{course.title}</p>
+                            <p className="text-xs text-[#ECE5CE]/30">{course.slug}</p>
                           </div>
                         </div>
                       </td>
-                      <td className="p-4 text-sm text-[#CFC89A]/50 hidden md:table-cell">
-                        <span className="pill bg-[#CFC89A]/5 text-[#CFC89A]/50 text-[10px]">{course.category}</span>
+                      <td className="p-4 text-sm text-[#ECE5CE]/50 hidden md:table-cell">
+                        <span className="pill bg-[#ECE5CE]/5 text-[#ECE5CE]/50 text-[10px]">{course.category}</span>
                       </td>
-                      <td className="p-4 text-sm text-[#CFC89A]/60 hidden sm:table-cell">${course.price}</td>
+                      <td className="p-4 text-sm text-[#ECE5CE]/60 hidden sm:table-cell">${course.price}</td>
                       <td className="p-4 text-right">
                         <div className="flex items-center justify-end gap-1.5 flex-wrap">
                           <Link to={`/admin/courses/${course.slug}/lessons`} className="p-2 rounded-lg bg-amber/10 text-amber hover:bg-amber/20 transition-colors" title="Lessons">
@@ -144,7 +144,7 @@ export default function AdminDashboard() {
               </table>
             </div>
             {courses.length === 0 && !loading && (
-              <div className="text-center py-12 text-[#CFC89A]/30">
+              <div className="text-center py-12 text-[#ECE5CE]/30">
                 <p className="text-3xl mb-2">📭</p>
                 <p>No courses yet. Create your first one.</p>
               </div>
@@ -159,33 +159,33 @@ export default function AdminDashboard() {
 
         {/* Users tab */}
         {activeTab === 'users' && (
-          <div className="rounded-2xl border border-[#CFC89A]/10 overflow-hidden">
+          <div className="rounded-2xl border border-[#ECE5CE]/10 overflow-hidden">
             <div className="overflow-x-auto">
               <table className="w-full text-left">
                 <thead>
-                  <tr className="bg-[#CFC89A]/5 border-b border-[#CFC89A]/10">
-                    <th className="p-4 text-xs font-semibold text-[#CFC89A]/40 uppercase tracking-wider">Name</th>
-                    <th className="p-4 text-xs font-semibold text-[#CFC89A]/40 uppercase tracking-wider hidden sm:table-cell">Email</th>
-                    <th className="p-4 text-xs font-semibold text-[#CFC89A]/40 uppercase tracking-wider">Role</th>
-                    <th className="p-4 text-xs font-semibold text-[#CFC89A]/40 uppercase tracking-wider hidden md:table-cell">Joined</th>
+                  <tr className="bg-[#ECE5CE]/5 border-b border-[#ECE5CE]/10">
+                    <th className="p-4 text-xs font-semibold text-[#ECE5CE]/40 uppercase tracking-wider">Name</th>
+                    <th className="p-4 text-xs font-semibold text-[#ECE5CE]/40 uppercase tracking-wider hidden sm:table-cell">Email</th>
+                    <th className="p-4 text-xs font-semibold text-[#ECE5CE]/40 uppercase tracking-wider">Role</th>
+                    <th className="p-4 text-xs font-semibold text-[#ECE5CE]/40 uppercase tracking-wider hidden md:table-cell">Joined</th>
                   </tr>
                 </thead>
                 <tbody>
                   {users.map((u) => (
-                    <tr key={u._id} className="border-b border-[#CFC89A]/5 hover:bg-[#CFC89A]/[0.02] transition-colors">
-                      <td className="p-4 text-sm text-[#CFC89A]">{u.name}</td>
-                      <td className="p-4 text-sm text-[#CFC89A]/50 hidden sm:table-cell">{u.email}</td>
+                    <tr key={u._id} className="border-b border-[#ECE5CE]/5 hover:bg-[#ECE5CE]/[0.02] transition-colors">
+                      <td className="p-4 text-sm text-[#ECE5CE]">{u.name}</td>
+                      <td className="p-4 text-sm text-[#ECE5CE]/50 hidden sm:table-cell">{u.email}</td>
                       <td className="p-4">
-                        <span className={`pill text-[10px] ${u.role === 'admin' ? 'bg-amber/10 text-amber' : u.role === 'teacher' ? 'bg-sage/10 text-sage' : 'bg-[#CFC89A]/5 text-[#CFC89A]/50'}`}>{u.role}</span>
+                        <span className={`pill text-[10px] ${u.role === 'admin' ? 'bg-amber/10 text-amber' : u.role === 'teacher' ? 'bg-sage/10 text-sage' : 'bg-[#ECE5CE]/5 text-[#ECE5CE]/50'}`}>{u.role}</span>
                       </td>
-                      <td className="p-4 text-xs text-[#CFC89A]/30 hidden md:table-cell">{new Date(u.createdAt).toLocaleDateString()}</td>
+                      <td className="p-4 text-xs text-[#ECE5CE]/30 hidden md:table-cell">{new Date(u.createdAt).toLocaleDateString()}</td>
                     </tr>
                   ))}
                 </tbody>
               </table>
             </div>
             {users.length === 0 && (
-              <div className="text-center py-12 text-[#CFC89A]/30">
+              <div className="text-center py-12 text-[#ECE5CE]/30">
                 <p className="text-3xl mb-2">👥</p>
                 <p>No users yet.</p>
               </div>

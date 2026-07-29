@@ -60,12 +60,12 @@ export default function CourseForm() {
   return (
     <div className="pt-24 pb-16">
       <div className="mx-auto max-w-3xl px-5">
-        <Link to="/admin/courses" className="inline-flex items-center gap-2 text-sm text-[#CFC89A]/50 hover:text-amber mb-6 transition-colors">
+        <Link to="/admin/courses" className="inline-flex items-center gap-2 text-sm text-[#ECE5CE]/50 hover:text-amber mb-6 transition-colors">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256"><path d="M224,128a8,8,0,0,1-8,8H59.31l58.35,58.34a8,8,0,0,1-11.32,11.32l-72-72a8,8,0,0,1,0-11.32l72-72a8,8,0,0,1,11.32,11.32L59.31,120H216A8,8,0,0,1,224,128Z"></path></svg>
           Back to Dashboard
         </Link>
 
-        <h1 className="text-3xl font-display font-bold text-[#CFC89A] mb-8">
+        <h1 className="text-3xl font-display font-bold text-[#ECE5CE] mb-8">
           {isEdit ? 'Edit Course' : 'New Course'}
         </h1>
 
@@ -133,7 +133,7 @@ export default function CourseForm() {
 
 function Field({ label, children, required }) {
   return (
-    <label className="flex flex-col gap-1.5 text-sm font-medium text-[#CFC89A]/70">
+    <label className="flex flex-col gap-1.5 text-sm font-medium text-[#ECE5CE]/70">
       {label} {required && <span className="text-rust">*</span>}
       {children}
     </label>

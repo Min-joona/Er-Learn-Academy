@@ -38,9 +38,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
               position="top-center"
               toastOptions={{
                 duration: 4000,
-                style: { background: '#322938', color: '#CFC89A', border: '1px solid rgba(204,136,58,0.2)', borderRadius: '12px', backdropFilter: 'blur(20px)' },
-                success: { iconTheme: { primary: '#CC883A', secondary: '#322938' } },
-                error: { iconTheme: { primary: '#A14016', secondary: '#322938' } },
+                style: { background: '#774F38', color: '#ECE5CE', border: '1px solid rgba(224,142,121,0.2)', borderRadius: '12px', backdropFilter: 'blur(20px)' },
+                success: { iconTheme: { primary: '#E08E79', secondary: '#774F38' } },
+                error: { iconTheme: { primary: '#F1D4AF', secondary: '#774F38' } },
               }}
             />
             <div className="grain-overlay" />

@@ -1,10 +1,10 @@
 {
-  "name": "Eritrea Learn Academy",
-  "short_name": "Eri Learn",
+  "name": "Eritrea Academy",
+  "short_name": "EriLearn",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#faf8f3",
-  "theme_color": "#0f766e",
+  "background_color": "#774F38",
+  "theme_color": "#774F38",
   "icons": [
     { "src": "/icon-512.png", "type": "image/png", "sizes": "512x512", "purpose": "any maskable" },
     { "src": "/apple-touch-icon.png", "type": "image/png", "sizes": "180x180" }

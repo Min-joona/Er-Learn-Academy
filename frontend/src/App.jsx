@@ -89,7 +89,7 @@ export default function App() {
             <Route path="*" element={suspense(<NotFound />)} />
           </Routes>
         </main>
-        <footer className="border-t border-[#CFC89A]/5 py-8 text-center text-sm text-[#CFC89A]/30">
+        <footer className="border-t border-[#ECE5CE]/5 py-8 text-center text-sm text-[#ECE5CE]/30">
           <p>© {new Date().getFullYear()} Eritrea Academy — built with purpose.</p>
         </footer>
       </div>

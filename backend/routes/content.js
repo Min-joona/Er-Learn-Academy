@@ -1,7 +1,18 @@
 const express = require('express');
+const jwt = require('jsonwebtoken');
+const User = require('../models/User');
 const { Course, Lesson, Quiz, Flashcard, Placement, Exam, TypingDrill } = require('../models/Content');
 
 const router = express.Router();
+
+const optionalAuth = async (req) => {
+  const header = req.headers.authorization;
+  if (!header || !header.startsWith('Bearer ')) return null;
+  try {
+    const decoded = jwt.verify(header.split(' ')[1], process.env.JWT_SECRET);
+    return await User.findById(decoded.id);
+  } catch { return null; }
+};
 
 // GET /api/courses  (optionally ?category=)
 router.get('/courses', async (req, res) => {
@@ -13,6 +24,15 @@ router.get('/courses', async (req, res) => {
 router.get('/courses/:slug', async (req, res) => {
   const course = await Course.findOne({ slug: req.params.slug });
   if (!course) return res.status(404).json({ message: 'Course not found' });
+
+  const user = await optionalAuth(req);
+  const isEnrolled = user?.enrollments?.some((e) => e.courseSlug === course.slug);
+  const isFree = !course.price || course.price <= 0;
+
+  if (!isFree && !isEnrolled) {
+    return res.json({ course, locked: true, message: 'Purchase required to access content' });
+  }
+
   const [lessons, quizzes, flashcards, exams, placement] = await Promise.all([
     Lesson.find({ courseSlug: course.slug }).sort({ level: 1, order: 1 }),
     Quiz.find({ courseSlug: course.slug }),
@@ -20,7 +40,7 @@ router.get('/courses/:slug', async (req, res) => {
     Exam.find({ courseSlug: course.slug }),
     Placement.findOne({ courseSlug: course.slug }),
   ]);
-  res.json({ course, lessons, quizzes, flashcards, exams, placement });
+  res.json({ course, lessons, quizzes, flashcards, exams, placement, locked: false });
 });
 
 // GET /api/content/placement/:slug

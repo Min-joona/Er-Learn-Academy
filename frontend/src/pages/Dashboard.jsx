@@ -11,6 +11,7 @@ import Heatmap from '../components/Heatmap';
 import RadarChart from '../components/RadarChart';
 import { useAuth } from '../context/AuthContext';
 import { useTheme } from '../context/ThemeContext';
+import toast from 'react-hot-toast';
 
 const navItems = [
   { icon: House, label: 'Home', to: '/dashboard' },
@@ -71,17 +72,17 @@ export default function Dashboard() {
     },
     dailyGoal: { studied: 0, target: 120 },
     skills: [
-      { label: 'English', value: 78, max: 100, color: '#CC883A', hours: 42 },
-      { label: 'Computer', value: 55, max: 100, color: '#89A194', hours: 28 },
-      { label: 'Typing', value: 82, max: 100, color: '#A14016', hours: 18 },
-      { label: 'Tigrigna', value: 45, max: 100, color: '#CFC89A', hours: 8 },
-      { label: 'Arabic', value: 30, max: 100, color: '#CC883A', hours: 5 },
+      { label: 'English', value: 78, max: 100, color: '#E08E79', hours: 42 },
+      { label: 'Computer', value: 55, max: 100, color: '#C5E0DC', hours: 28 },
+      { label: 'Typing', value: 82, max: 100, color: '#F1D4AF', hours: 18 },
+      { label: 'Tigrigna', value: 45, max: 100, color: '#ECE5CE', hours: 8 },
+      { label: 'Arabic', value: 30, max: 100, color: '#E08E79', hours: 5 },
     ],
     badges: [
-      { name: 'Early Bird', icon: Sun, date: 'Apr 2026', color: '#CC883A' },
-      { name: 'Night Owl', icon: Moon, date: 'May 2026', color: '#89A194' },
-      { name: '10 Hour Club', icon: Clock, date: 'May 2026', color: '#A14016' },
-      { name: 'First Flame', icon: Fire, date: 'Jun 2026', color: '#CC883A' },
+      { name: 'Early Bird', icon: Sun, date: 'Apr 2026', color: '#E08E79' },
+      { name: 'Night Owl', icon: Moon, date: 'May 2026', color: '#C5E0DC' },
+      { name: '10 Hour Club', icon: Clock, date: 'May 2026', color: '#F1D4AF' },
+      { name: 'First Flame', icon: Fire, date: 'Jun 2026', color: '#E08E79' },
     ],
     leaderboard: [
       { name: 'Yonas G.', avatar: 'YG', hours: '47h', streak: 8, isYou: false, rank: 1 },
@@ -107,7 +108,7 @@ export default function Dashboard() {
           <Link key={item.label} to={item.to} title={item.label}
             className="w-10 h-10 rounded-xl flex items-center justify-center text-white/30 hover:text-amber hover:bg-amber/10 transition-all group relative">
             <item.icon size={20} />
-            <span className="absolute left-12 top-1/2 -translate-y-1/2 bg-[#1F1822] text-[#CFC89A] text-[10px] px-2 py-1 rounded-md opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity whitespace-nowrap z-50 border border-white/5">
+            <span className="absolute left-12 top-1/2 -translate-y-1/2 bg-[#5A3A28] text-[#ECE5CE] text-[10px] px-2 py-1 rounded-md opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity whitespace-nowrap z-50 border border-white/5">
               {item.label}
             </span>
           </Link>
@@ -120,7 +121,7 @@ export default function Dashboard() {
           {/* Top bar */}
           <div className="flex items-center justify-between mb-6">
             <div>
-              <h1 className="text-xl font-display font-bold text-[#CFC89A]">Dashboard</h1>
+              <h1 className="text-xl font-display font-bold text-[#ECE5CE]">Dashboard</h1>
               <p className="text-xs text-white/25 mt-0.5">Welcome back, {mock.name.split(' ')[0]}</p>
             </div>
             <div className="flex items-center gap-3">
@@ -134,7 +135,7 @@ export default function Dashboard() {
                     <div key={d} className="flex flex-col items-center gap-0.5">
                       <span className="text-[8px] text-white/20 uppercase">{d[0]}</span>
                       <div className={`w-[18px] h-[18px] rounded-full flex items-center justify-center text-[9px] font-bold ${
-                        isToday ? 'bg-amber text-[#1F1822]' : filled ? 'bg-amber/30 text-amber' : 'bg-white/5 text-white/15'
+                        isToday ? 'bg-amber text-[#5A3A28]' : filled ? 'bg-amber/30 text-amber' : 'bg-white/5 text-white/15'
                       }`}>
                         {isToday ? '✓' : ''}
                       </div>
@@ -142,9 +143,9 @@ export default function Dashboard() {
                   );
                 })}
               </div>
-              <button className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center text-white/30 hover:text-amber transition-colors relative">
+              <button onClick={() => toast('No new notifications')} className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center text-white/30 hover:text-amber transition-colors relative">
                 <Bell size={16} />
-                <span className="absolute -top-0.5 -right-0.5 w-3.5 h-3.5 bg-amber rounded-full text-[8px] font-bold text-[#1F1822] flex items-center justify-center">2</span>
+                <span className="absolute -top-0.5 -right-0.5 w-3.5 h-3.5 bg-amber rounded-full text-[8px] font-bold text-[#5A3A28] flex items-center justify-center">2</span>
               </button>
               <button onClick={toggleTheme} className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center text-white/30 hover:text-amber transition-colors">
                 {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
@@ -162,18 +163,18 @@ export default function Dashboard() {
 
               {/* Profile Banner */}
               <div className="relative rounded-2xl overflow-hidden border border-white/[0.06]">
-                <div className="h-28 bg-gradient-to-r from-amber/10 via-sage/5 to-[#1F1822] relative">
-                  <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(circle at 30% 50%, #CC883A 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
+                <div className="h-28 bg-gradient-to-r from-amber/10 via-sage/5 to-[#5A3A28] relative">
+                  <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(circle at 30% 50%, #E08E79 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
                 </div>
                 <div className="px-5 pb-4">
                   <div className="flex items-end justify-between -mt-10">
                     <div className="flex items-end gap-4">
-                      <div className="w-[72px] h-[72px] rounded-2xl bg-gradient-to-br from-amber to-rust flex items-center justify-center text-2xl font-bold text-white shadow-lg border-2 border-[#1F1822] shrink-0">
+                      <div className="w-[72px] h-[72px] rounded-2xl bg-gradient-to-br from-amber to-rust flex items-center justify-center text-2xl font-bold text-white shadow-lg border-2 border-[#5A3A28] shrink-0">
                         {mock.avatar}
                       </div>
                       <div className="pb-0.5">
                         <div className="flex items-center gap-2">
-                          <h2 className="text-lg font-bold text-[#CFC89A]">{mock.name}</h2>
+                          <h2 className="text-lg font-bold text-[#ECE5CE]">{mock.name}</h2>
                           <span className="text-xs bg-amber/10 text-amber px-2 py-0.5 rounded-full font-medium">@{mock.username}</span>
                           <span className="flex items-center gap-1 text-[10px] bg-white/5 text-white/40 px-2 py-0.5 rounded-full">
                             <Fire size={10} weight="fill" className="text-amber" /> {mock.stats.streak}d
@@ -193,7 +194,7 @@ export default function Dashboard() {
                     </div>
                     <div className="flex items-center gap-2 pb-0.5">
                       <span className="text-[10px] bg-amber/10 text-amber px-2.5 py-1 rounded-full font-medium">{mock.tier}</span>
-                      <button className="text-[11px] border border-white/10 text-white/40 hover:text-amber hover:border-amber/30 px-3 py-1 rounded-full transition-colors">Follow</button>
+                      <button onClick={() => toast.success('Followed!')} className="text-[11px] border border-white/10 text-white/40 hover:text-amber hover:border-amber/30 px-3 py-1 rounded-full transition-colors">Follow</button>
                     </div>
                   </div>
                 </div>
@@ -227,7 +228,7 @@ export default function Dashboard() {
                   </div>
                   <div className="flex items-center gap-2 text-[10px] text-white/20">
                     <span>Less</span>
-                    {['#1F1822', '#CC883A44', '#CC883A77', '#CC883ABB', '#CC883A'].map((c, i) => (
+                    {['#5A3A28', '#E08E7944', '#E08E7977', '#E08E79BB', '#E08E79'].map((c, i) => (
                       <div key={i} className="w-3 h-3 rounded" style={{ background: c }} />
                     ))}
                     <span>More</span>
@@ -243,7 +244,7 @@ export default function Dashboard() {
                 {['overview', 'activity', 'followers', 'following'].map((tab) => (
                   <button key={tab} onClick={() => setActiveSection(tab)}
                     className={`text-[11px] px-3.5 py-1.5 rounded-full font-medium transition-all capitalize ${
-                      activeSection === tab ? 'bg-amber text-[#1F1822]' : 'text-white/30 hover:text-white/50'
+                      activeSection === tab ? 'bg-amber text-[#5A3A28]' : 'text-white/30 hover:text-white/50'
                     }`}>
                     {tab}{tab === 'followers' ? ' (12)' : tab === 'following' ? ' (5)' : ''}
                   </button>
@@ -384,7 +385,7 @@ export default function Dashboard() {
               {/* Streak Widget */}
               <div className="rounded-xl border border-white/[0.06] bg-white/[0.02] p-5 text-center">
                 <Fire size={28} className="mx-auto text-amber mb-2" weight="fill" />
-                <div className="text-lg font-bold text-[#CFC89A]">{mock.stats.streak} DAY STREAK</div>
+                <div className="text-lg font-bold text-[#ECE5CE]">{mock.stats.streak} DAY STREAK</div>
                 <p className="text-[10px] text-white/20 mt-0.5 mb-4">Streak active today 🔥</p>
                 <div className="flex justify-center gap-2">
                   {days.map((d, i) => {
@@ -393,7 +394,7 @@ export default function Dashboard() {
                     const isToday = i === todayIdx;
                     return (
                       <div key={d} className={`w-8 h-8 rounded-lg flex items-center justify-center text-[10px] font-bold ${
-                        isToday ? 'bg-amber text-[#1F1822] ring-2 ring-amber/40' : filled ? 'bg-amber/25 text-amber' : 'bg-white/5 text-white/15'
+                        isToday ? 'bg-amber text-[#5A3A28] ring-2 ring-amber/40' : filled ? 'bg-amber/25 text-amber' : 'bg-white/5 text-white/15'
                       }`}>
                         {d[0]}
                       </div>
@@ -409,7 +410,7 @@ export default function Dashboard() {
                     <Crown size={16} className="text-amber" weight="fill" />
                     <h3 className="text-[11px] uppercase tracking-widest text-white/30 font-medium">Leaderboard</h3>
                   </div>
-                  <Link to="#leaderboard" className="text-[10px] text-amber/60 hover:text-amber">See All</Link>
+                  <button onClick={() => toast('Full leaderboard coming soon')} className="text-[10px] text-amber/60 hover:text-amber">See All</button>
                 </div>
                 <div className="space-y-3">
                   {mock.leaderboard.map((u, i) => (
@@ -442,7 +443,7 @@ export default function Dashboard() {
               <div className="rounded-xl border border-white/[0.06] bg-white/[0.02] p-5">
                 <div className="flex items-center justify-between mb-4">
                   <h3 className="text-[11px] uppercase tracking-widest text-white/30 font-medium">Suggested</h3>
-                  <Link to="#find" className="text-[10px] text-amber/60 hover:text-amber">Find People</Link>
+                  <button onClick={() => toast('Find people feature coming soon')} className="text-[10px] text-amber/60 hover:text-amber">Find People</button>
                 </div>
                 <div className="space-y-3">
                   {mock.suggestions.map((s, i) => (
@@ -454,7 +455,7 @@ export default function Dashboard() {
                           <Fire size={9} className="text-amber" weight="fill" /> {s.streak} day streak
                         </div>
                       </div>
-                      <button className="text-[10px] border border-white/10 text-white/30 hover:text-amber hover:border-amber/30 px-2.5 py-0.5 rounded-full transition-colors shrink-0">View</button>
+                      <button onClick={() => toast('Profile view coming soon')} className="text-[10px] border border-white/10 text-white/30 hover:text-amber hover:border-amber/30 px-2.5 py-0.5 rounded-full transition-colors shrink-0">View</button>
                     </div>
                   ))}
                 </div>
@@ -465,14 +466,14 @@ export default function Dashboard() {
       </div>
 
       {/* Floating CTA */}
-      <Link to="/courses" className="fixed bottom-6 right-6 z-40 flex items-center gap-2 bg-amber text-[#1F1822] px-5 py-3 rounded-full font-semibold text-sm shadow-lg shadow-amber/20 hover:shadow-amber/30 hover:bg-amber/90 transition-all">
+      <Link to="/courses" className="fixed bottom-6 right-6 z-40 flex items-center gap-2 bg-amber text-[#5A3A28] px-5 py-3 rounded-full font-semibold text-sm shadow-lg shadow-amber/20 hover:shadow-amber/30 hover:bg-amber/90 transition-all">
         <GameController size={18} weight="fill" />
         Start Learning
         <CaretRight size={14} />
       </Link>
 
       {/* Mobile bottom nav */}
-      <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-[#1F1822]/95 backdrop-blur-lg border-t border-white/[0.06] z-50 flex justify-around py-2 px-2">
+      <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-[#5A3A28]/95 backdrop-blur-lg border-t border-white/[0.06] z-50 flex justify-around py-2 px-2">
         {navItems.slice(0, 5).map((item) => (
           <Link key={item.label} to={item.to}
             className="flex flex-col items-center gap-0.5 px-2 py-1 rounded-lg text-white/25 hover:text-amber transition-colors">

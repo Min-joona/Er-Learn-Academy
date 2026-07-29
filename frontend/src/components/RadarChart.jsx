@@ -24,25 +24,25 @@ export default function RadarChart({ data = [], size = 200, levels = 5 }) {
   return (
     <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`}>
       {Array.from({ length: levels }, (_, i) => (
-        <path key={i} d={ring(i)} fill="none" stroke="rgba(207,200,154,0.08)" strokeWidth="1" />
+        <path key={i} d={ring(i)} fill="none" stroke="rgba(236,229,206,0.08)" strokeWidth="1" />
       ))}
       {data.map((_, i) => {
         const p = pt(i, r);
-        return <line key={i} x1={cx} y1={cy} x2={p.x} y2={p.y} stroke="rgba(207,200,154,0.08)" strokeWidth="1" />;
+        return <line key={i} x1={cx} y1={cy} x2={p.x} y2={p.y} stroke="rgba(236,229,206,0.08)" strokeWidth="1" />;
       })}
       {data.map((d, i) => {
         const p = pt(i, r * 1.15);
         return (
-          <text key={i} x={p.x} y={p.y} textAnchor="middle" dominantBaseline="middle" fill="rgba(207,200,154,0.4)" fontSize="9" fontWeight="500">
+          <text key={i} x={p.x} y={p.y} textAnchor="middle" dominantBaseline="middle" fill="rgba(236,229,206,0.4)" fontSize="9" fontWeight="500">
             {d.label}
           </text>
         );
       })}
       {data.map((d, i) => {
         const p = pt(i, r * (d.value / (d.max || 100)));
-        return <circle key={i} cx={p.x} cy={p.y} r="2.5" fill="#CC883A" />;
+        return <circle key={i} cx={p.x} cy={p.y} r="2.5" fill="#E08E79" />;
       })}
-      <path d={dataPath} fill="rgba(204,136,58,0.12)" stroke="#CC883A" strokeWidth="1.5" strokeLinejoin="round" />
+      <path d={dataPath} fill="rgba(224,142,121,0.12)" stroke="#E08E79" strokeWidth="1.5" strokeLinejoin="round" />
     </svg>
   );
 }

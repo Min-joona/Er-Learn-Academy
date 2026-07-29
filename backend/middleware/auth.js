@@ -7,8 +7,8 @@ const protect = async (req, res, next) => {
   if (header && header.startsWith('Bearer ')) token = header.split(' ')[1];
   if (!token) return res.status(401).json({ message: 'Not authorized' });
   try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    req.user = await User.findById(decoded.id);
+    const decoded = jwt.verify(token, process.env.JWT_SECRET, { algorithms: ['HS256'] });
+    req.user = await User.findById(decoded.id).select('-loginAttempts -lockUntil');
     if (!req.user) return res.status(401).json({ message: 'User not found' });
     next();
   } catch {

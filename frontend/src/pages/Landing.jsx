@@ -41,12 +41,9 @@ function AnimatedCounter({ value, suffix, isVisible }) {
   const ref = useRef(null);
   useEffect(() => {
     if (!isVisible || !ref.current) return;
-    let animeMod;
     import('animejs').then((m) => {
-      animeMod = m.default;
       const obj = { val: 0 };
-      animeMod({
-        targets: obj,
+      m.animate(obj, {
         val: value,
         duration: 2000,
         easing: 'easeOutCubic',
@@ -66,12 +63,11 @@ function AnimatedSection({ children, className, delay = 0, direction = 'up' }) {
     import('animejs').then((m) => {
       const offset = direction === 'up' ? 60 : direction === 'down' ? -60 : direction === 'left' ? 60 : -60;
       const axis = direction === 'left' || direction === 'right' ? 'translateX' : 'translateY';
-      m.default({
-        targets: ref.current.children.length ? ref.current.children : ref.current,
+      m.animate(ref.current.children.length ? ref.current.children : ref.current, {
         opacity: [0, 1],
         [axis]: [offset, 0],
         duration: 800,
-        delay: m.default.stagger(100, { start: delay }),
+        delay: m.stagger(100, { start: delay }),
         easing: 'easeOutCubic',
       });
     });
@@ -161,36 +157,30 @@ export default function Landing() {
   }, []);
 
   useEffect(() => {
-    let animeMod;
     import('animejs').then((m) => {
-      animeMod = m.default;
-      const tl = animeMod.timeline({ easing: 'easeOutCubic' });
-      tl.add({
-        targets: '.hero-title .char',
+      const tl = m.createTimeline({ defaults: { easing: 'easeOutCubic' } });
+      tl.add('.hero-title .char', {
         translateY: [80, 0],
         opacity: [0, 1],
         duration: 600,
-        delay: animeMod.stagger(30, { start: 400 }),
+        delay: m.stagger(30, { start: 400 }),
       })
-      .add({
-        targets: '.hero-sub',
+      .add('.hero-sub', {
         translateY: [20, 0],
         opacity: [0, 1],
         duration: 500,
       }, '-=300')
-      .add({
-        targets: '.hero-cta > *',
+      .add('.hero-cta > *', {
         translateY: [20, 0],
         opacity: [0, 1],
         duration: 400,
-        delay: animeMod.stagger(80),
+        delay: m.stagger(80),
       }, '-=200')
-      .add({
-        targets: '.hero-stats > *',
+      .add('.hero-stats > *', {
         translateY: [30, 0],
         opacity: [0, 1],
         duration: 500,
-        delay: animeMod.stagger(80),
+        delay: m.stagger(80),
       }, '-=200');
     });
   }, []);

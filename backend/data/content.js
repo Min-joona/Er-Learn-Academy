@@ -51,7 +51,7 @@ const courses = [
   {
     slug: 'russian', title: 'Russian', titleTi: 'ሩስኛ', category: 'Language', flag: '🇷🇺',
     description: 'The Cyrillic alphabet, pronunciation, and everyday Russian — taught step by step.',
-    price: 39, levels: LEVELS, instructionLanguages: ['English', 'Tigrigna', 'Arabic'], focus: ['Reading', 'Listening', 'Practice'],
+    price: 0, levels: LEVELS, instructionLanguages: ['English', 'Tigrigna', 'Arabic'], focus: ['Reading', 'Listening', 'Practice'],
     image: 'https://images.unsplash.com/photo-1520106212299-d99c443e4568?w=800&h=500&fit=crop',
     modules: ['Alphabet & phonetics', 'Unit 1: "Hello!"', 'Unit 2: Ordering coffee', 'Unit 3: Professions', 'Unit 4: Daily activities', 'Unit 5: Where are you from?', 'Unit 6: Daily routine', 'Unit 7: Making plans', 'Unit 8: Travel experiences', 'Unit 9: Family & living', 'Unit 10: At a restaurant', 'Unit 11: Future plans', 'Unit 12: Shopping', 'Unit 13: At the supermarket', 'Unit 14: Hobbies', 'Unit 15: Describing places', 'Unit 16: Health', 'Unit 17: Clothing', 'Reading practice', 'Grammar review', 'Final review'],
   },

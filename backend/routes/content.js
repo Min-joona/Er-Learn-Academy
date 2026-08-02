@@ -32,7 +32,10 @@ router.get('/courses/:slug', async (req, res) => {
     const isEnrolled = user?.enrollments?.some((e) => e.courseSlug === course.slug);
     const isFree = !course.price || course.price <= 0;
     if (!isFree && !isEnrolled) {
-      return res.json({ course, locked: true, message: 'Purchase required to access content' });
+      const sanitized = { ...course.toObject() };
+      delete sanitized.levels;
+      delete sanitized.modules;
+      return res.json({ course: sanitized, locked: true, message: 'Purchase required to access content' });
     }
     const [lessons, quizzes, flashcards, exams, placement] = await Promise.all([
       Lesson.find({ courseSlug: course.slug }).sort({ level: 1, order: 1 }),

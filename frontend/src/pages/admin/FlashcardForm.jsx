@@ -26,33 +26,30 @@ export default function FlashcardForm() {
     } catch { toast.error('Failed to save'); }
   };
 
-  const label = 'text-xs text-foreground/60 mb-1 block';
-  const input = 'w-full bg-base border border-foreground/10 rounded-lg px-3 py-2 text-foreground text-sm focus:outline-none focus:border-amber/40 transition-colors';
-
   return (
     <div className="pt-24 pb-16">
       <div className="mx-auto max-w-2xl px-5">
         <div className="flex items-center justify-between mb-6">
           <div>
-            <h1 className="text-2xl font-display font-bold text-foreground">{isEdit ? 'Edit' : 'New'} Flashcard</h1>
-            <p className="text-foreground/40 text-sm mt-1">{slug}</p>
+            <h1 className="text-2xl font-bold" style={{ color: 'rgb(var(--color-text))' }}>{isEdit ? 'Edit' : 'New'} Flashcard</h1>
+            <p className="text-sm mt-1" style={{ color: 'rgba(var(--color-text-muted), 0.6)' }}>{slug}</p>
           </div>
-          <Link to={`/admin/courses/${slug}/flashcards`} className="btn-outline py-2 px-4 text-sm">← Back</Link>
+          <Link to={`/admin/courses/${slug}/flashcards`} className="povir-btn-secondary py-2 px-4 text-sm">← Back</Link>
         </div>
-        <form onSubmit={handleSubmit} className="card p-6 space-y-4">
+        <form onSubmit={handleSubmit} className="povir-card p-6 space-y-4">
           <div>
-            <label className={label}>Front (question)</label>
-            <textarea rows={2} className={input} value={form.front} onChange={(e) => setForm({ ...form, front: e.target.value })} />
+            <label className="text-xs mb-1 block" style={{ color: 'rgba(var(--color-text-muted), 0.7)' }}>Front (question)</label>
+            <textarea rows={2} className="povir-input" value={form.front} onChange={(e) => setForm({ ...form, front: e.target.value })} />
           </div>
           <div>
-            <label className={label}>Back (answer)</label>
-            <textarea rows={2} className={input} value={form.back} onChange={(e) => setForm({ ...form, back: e.target.value })} />
+            <label className="text-xs mb-1 block" style={{ color: 'rgba(var(--color-text-muted), 0.7)' }}>Back (answer)</label>
+            <textarea rows={2} className="povir-input" value={form.back} onChange={(e) => setForm({ ...form, back: e.target.value })} />
           </div>
           <div>
-            <label className={label}>Level</label>
-            <input type="number" min={1} className={input} value={form.level} onChange={(e) => setForm({ ...form, level: Number(e.target.value) })} />
+            <label className="text-xs mb-1 block" style={{ color: 'rgba(var(--color-text-muted), 0.7)' }}>Level</label>
+            <input type="number" min={1} className="povir-input" value={form.level} onChange={(e) => setForm({ ...form, level: Number(e.target.value) })} />
           </div>
-          <button type="submit" className="btn-primary">{isEdit ? 'Update' : 'Create'}</button>
+          <button type="submit" className="povir-btn-primary">{isEdit ? 'Update' : 'Create'}</button>
         </form>
       </div>
     </div>

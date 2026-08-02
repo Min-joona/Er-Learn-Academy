@@ -17,6 +17,9 @@ const schemas = {
 
   settings: Joi.object({
     name: Joi.string().trim().min(2).max(50).optional(),
+    bio: Joi.string().allow('').max(160).optional(),
+    location: Joi.string().allow('').max(100).optional(),
+    website: Joi.string().allow('').max(200).optional(),
     currentPassword: Joi.string().optional(),
     newPassword: Joi.string().min(8).max(128)
       .pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/, 'password strength')

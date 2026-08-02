@@ -68,6 +68,20 @@ app.use('/api/auth', require('./routes/auth'));
 app.use('/api/content', require('./routes/content'));
 app.use('/api/admin', require('./routes/admin'));
 
+const contactLimiter = rateLimit({ windowMs: 60 * 60 * 1000, max: 5, standardHeaders: true, legacyHeaders: false, message: { message: 'Too many messages. Try again later.' } });
+
+app.post('/api/contact', contactLimiter, async (req, res) => {
+  try {
+    const { name, email, message } = req.body;
+    if (!name || !email || !message) return res.status(400).json({ message: 'All fields required' });
+    const { notifyContact } = require('./utils/email');
+    await notifyContact({ name, email, message });
+    res.json({ message: 'Message sent successfully' });
+  } catch {
+    res.status(500).json({ message: 'Failed to send message' });
+  }
+});
+
 app.post('/api/seed', async (req, res) => {
   if (!process.env.SEED_TOKEN || req.headers['x-seed-token'] !== process.env.SEED_TOKEN) {
     return res.status(403).json({ message: 'Forbidden' });

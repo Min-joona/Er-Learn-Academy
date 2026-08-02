@@ -1,4 +1,5 @@
 const rateLimit = require('express-rate-limit');
+const { ipKeyGenerator } = rateLimit;
 const { securityEvent } = require('../utils/logger');
 
 const authLimiter = rateLimit({
@@ -7,7 +8,7 @@ const authLimiter = rateLimit({
   standardHeaders: true,
   legacyHeaders: false,
   message: { message: 'Too many login attempts. Try again in 15 minutes.' },
-  keyGenerator: (req) => `${req.ip}-${req.body?.email || 'unknown'}`,
+  keyGenerator: ipKeyGenerator((ip, req) => `${ip}-${req.body?.email || 'unknown'}`),
   handler: (req, res, next, options) => {
     securityEvent('rate_limit_exceeded', { ip: req.ip, email: req.body?.email, route: req.originalUrl });
     res.status(429).json(options.message);

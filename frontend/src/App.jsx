@@ -1,8 +1,8 @@
 import { lazy, Suspense, useEffect } from 'react';
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
+import DashboardLayout from './components/DashboardLayout';
 import { useAuth } from './context/AuthContext';
-import { AnimatePresence } from 'framer-motion';
 
 const Landing = lazy(() => import('./pages/Landing'));
 const Login = lazy(() => import('./pages/Login'));
@@ -30,11 +30,11 @@ const NotFound = lazy(() => import('./pages/NotFound'));
 
 function PageLoader() {
   return (
-    <div className="fixed inset-0 grid place-items-center bg-base z-50">
+    <div className="fixed inset-0 grid place-items-center z-50" style={{ background: 'rgb(var(--color-bg))' }}>
       <div className="flex flex-col items-center gap-3">
         <div className="relative w-12 h-12">
-          <div className="absolute inset-0 rounded-full border-2 border-amber/20 animate-spin-slow" />
-          <div className="absolute inset-1 rounded-full border-2 border-transparent border-t-amber animate-spin" />
+          <div className="absolute inset-0 rounded-full border-2" style={{ borderColor: 'rgba(var(--color-text-muted), 0.2)' }} />
+          <div className="absolute inset-1 rounded-full border-2 border-transparent animate-spin" style={{ borderTopColor: 'rgb(var(--color-primary))' }} />
         </div>
       </div>
     </div>
@@ -52,47 +52,49 @@ export default function App() {
 
   const suspense = (el) => <Suspense fallback={<PageLoader />}>{el}</Suspense>;
 
+  const isDashboard = location.pathname.startsWith('/dashboard') || location.pathname.startsWith('/settings');
+
   return (
-    <AnimatePresence mode="wait">
-      <div key={location.pathname} className="relative min-h-screen flex flex-col">
-        <Navbar />
-        <main className="flex-1">
-          <Routes location={location}>
-            <Route path="/" element={suspense(<Landing />)} />
-            <Route path="/login" element={user ? <Navigate to="/dashboard" /> : suspense(<Login />)} />
-            <Route path="/register" element={user ? <Navigate to="/dashboard" /> : suspense(<Register />)} />
-            <Route path="/courses" element={suspense(<Courses />)} />
-            <Route path="/courses/:slug" element={suspense(<CourseDetail />)} />
-            <Route path="/typing" element={suspense(<Typing />)} />
-            <Route path="/dashboard" element={suspense(guard(<Dashboard />))} />
-            <Route path="/settings" element={suspense(guard(<Settings />))} />
-            <Route path="/teacher" element={suspense(adminGuard(<TeacherDashboard />))} />
-            <Route path="/admin" element={suspense(adminGuard(<AdminDashboard />))} />
-            <Route path="/admin/courses" element={suspense(adminGuard(<AdminDashboard />))} />
-            <Route path="/admin/courses/new" element={suspense(adminGuard(<CourseForm />))} />
-            <Route path="/admin/courses/:slug/edit" element={suspense(adminGuard(<CourseForm />))} />
-            <Route path="/admin/courses/:slug/lessons" element={suspense(adminGuard(<LessonManager />))} />
-            <Route path="/admin/courses/:slug/quizzes" element={suspense(adminGuard(<QuizManager />))} />
-            <Route path="/admin/analytics" element={suspense(adminGuard(<Analytics />))} />
-            <Route path="/admin/courses/:slug/flashcards" element={suspense(adminGuard(<FlashcardManager />))} />
-            <Route path="/admin/courses/:slug/flashcards/:id" element={suspense(adminGuard(<FlashcardForm />))} />
-            <Route path="/admin/courses/:slug/flashcards/:id/edit" element={suspense(adminGuard(<FlashcardForm />))} />
-            <Route path="/admin/courses/:slug/exams" element={suspense(adminGuard(<ExamManager />))} />
-            <Route path="/admin/courses/:slug/exams/:id" element={suspense(adminGuard(<ExamForm />))} />
-            <Route path="/admin/courses/:slug/exams/:id/edit" element={suspense(adminGuard(<ExamForm />))} />
-            <Route path="/admin/courses/:slug/typing-drills" element={suspense(adminGuard(<TypingDrillManager />))} />
-            <Route path="/admin/courses/:slug/typing-drills/:id" element={suspense(adminGuard(<TypingDrillForm />))} />
-            <Route path="/admin/courses/:slug/typing-drills/:id/edit" element={suspense(adminGuard(<TypingDrillForm />))} />
-            <Route path="/admin/courses/:slug/placement" element={suspense(adminGuard(<PlacementManager />))} />
-            <Route path="/admin/courses/:slug/placement/:id" element={suspense(adminGuard(<PlacementForm />))} />
-            <Route path="/admin/courses/:slug/placement/:id/edit" element={suspense(adminGuard(<PlacementForm />))} />
-            <Route path="*" element={suspense(<NotFound />)} />
-          </Routes>
-        </main>
-        <footer className="border-t border-foreground/5 py-8 text-center text-sm text-foreground/30">
+    <div className="relative min-h-screen flex flex-col" style={{ background: 'rgb(var(--color-bg))' }}>
+      {!isDashboard && <Navbar />}
+      <main className="flex-1">
+        <Routes location={location}>
+          <Route path="/" element={suspense(<Landing />)} />
+          <Route path="/login" element={user ? <Navigate to="/dashboard" /> : suspense(<Login />)} />
+          <Route path="/register" element={user ? <Navigate to="/dashboard" /> : suspense(<Register />)} />
+          <Route path="/courses" element={suspense(<Courses />)} />
+          <Route path="/courses/:slug" element={suspense(<CourseDetail />)} />
+          <Route path="/typing" element={suspense(<Typing />)} />
+          <Route path="/dashboard" element={suspense(guard(<DashboardLayout><Dashboard /></DashboardLayout>))} />
+          <Route path="/settings" element={suspense(guard(<DashboardLayout><Settings /></DashboardLayout>))} />
+          <Route path="/teacher" element={suspense(adminGuard(<TeacherDashboard />))} />
+          <Route path="/admin" element={suspense(adminGuard(<AdminDashboard />))} />
+          <Route path="/admin/courses" element={suspense(adminGuard(<AdminDashboard />))} />
+          <Route path="/admin/courses/new" element={suspense(adminGuard(<CourseForm />))} />
+          <Route path="/admin/courses/:slug/edit" element={suspense(adminGuard(<CourseForm />))} />
+          <Route path="/admin/courses/:slug/lessons" element={suspense(adminGuard(<LessonManager />))} />
+          <Route path="/admin/courses/:slug/quizzes" element={suspense(adminGuard(<QuizManager />))} />
+          <Route path="/admin/analytics" element={suspense(adminGuard(<Analytics />))} />
+          <Route path="/admin/courses/:slug/flashcards" element={suspense(adminGuard(<FlashcardManager />))} />
+          <Route path="/admin/courses/:slug/flashcards/:id" element={suspense(adminGuard(<FlashcardForm />))} />
+          <Route path="/admin/courses/:slug/flashcards/:id/edit" element={suspense(adminGuard(<FlashcardForm />))} />
+          <Route path="/admin/courses/:slug/exams" element={suspense(adminGuard(<ExamManager />))} />
+          <Route path="/admin/courses/:slug/exams/:id" element={suspense(adminGuard(<ExamForm />))} />
+          <Route path="/admin/courses/:slug/exams/:id/edit" element={suspense(adminGuard(<ExamForm />))} />
+          <Route path="/admin/courses/:slug/typing-drills" element={suspense(adminGuard(<TypingDrillManager />))} />
+          <Route path="/admin/courses/:slug/typing-drills/:id" element={suspense(adminGuard(<TypingDrillForm />))} />
+          <Route path="/admin/courses/:slug/typing-drills/:id/edit" element={suspense(adminGuard(<TypingDrillForm />))} />
+          <Route path="/admin/courses/:slug/placement" element={suspense(adminGuard(<PlacementManager />))} />
+          <Route path="/admin/courses/:slug/placement/:id" element={suspense(adminGuard(<PlacementForm />))} />
+          <Route path="/admin/courses/:slug/placement/:id/edit" element={suspense(adminGuard(<PlacementForm />))} />
+          <Route path="*" element={suspense(<NotFound />)} />
+        </Routes>
+      </main>
+      {!isDashboard && (
+        <footer className="py-8 text-center text-sm" style={{ borderTop: '1px solid rgba(var(--color-border), 0.6)', color: 'rgba(var(--color-text-muted), 0.5)' }}>
           <p>© {new Date().getFullYear()} Eritrea Academy — built with purpose.</p>
         </footer>
-      </div>
-    </AnimatePresence>
+      )}
+    </div>
   );
 }

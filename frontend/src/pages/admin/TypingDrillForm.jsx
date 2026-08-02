@@ -26,27 +26,24 @@ export default function TypingDrillForm() {
     } catch { toast.error('Failed to save'); }
   };
 
-  const label = 'text-xs text-foreground/60 mb-1 block';
-  const input = 'w-full bg-base border border-foreground/10 rounded-lg px-3 py-2 text-foreground text-sm focus:outline-none focus:border-amber/40 transition-colors';
-
   return (
     <div className="pt-24 pb-16">
       <div className="mx-auto max-w-2xl px-5">
         <div className="flex items-center justify-between mb-6">
           <div>
-            <h1 className="text-2xl font-display font-bold text-foreground">{isEdit ? 'Edit' : 'New'} Typing Drill</h1>
-            <p className="text-foreground/40 text-sm mt-1">{slug}</p>
+            <h1 className="text-2xl font-bold" style={{ color: 'rgb(var(--color-text))' }}>{isEdit ? 'Edit' : 'New'} Typing Drill</h1>
+            <p className="text-sm mt-1" style={{ color: 'rgba(var(--color-text-muted), 0.6)' }}>{slug}</p>
           </div>
-          <Link to={`/admin/courses/${slug}/typing-drills`} className="btn-outline py-2 px-4 text-sm">← Back</Link>
+          <Link to={`/admin/courses/${slug}/typing-drills`} className="povir-btn-secondary py-2 px-4 text-sm">← Back</Link>
         </div>
-        <form onSubmit={handleSubmit} className="card p-6 space-y-4">
+        <form onSubmit={handleSubmit} className="povir-card p-6 space-y-4">
           <div>
-            <label className={label}>Title</label>
-            <input className={input} value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value })} />
+            <label className="text-xs mb-1 block" style={{ color: 'rgba(var(--color-text-muted), 0.7)' }}>Title</label>
+            <input className="povir-input" value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value })} />
           </div>
           <div>
-            <label className={label}>Category</label>
-            <select className={input} value={form.category} onChange={(e) => setForm({ ...form, category: e.target.value })}>
+            <label className="text-xs mb-1 block" style={{ color: 'rgba(var(--color-text-muted), 0.7)' }}>Category</label>
+            <select className="povir-input" value={form.category} onChange={(e) => setForm({ ...form, category: e.target.value })}>
               <option>General</option>
               <option>Home Row</option>
               <option>Top Row</option>
@@ -57,14 +54,14 @@ export default function TypingDrillForm() {
             </select>
           </div>
           <div>
-            <label className={label}>Level</label>
-            <input type="number" min={1} className={input} value={form.level} onChange={(e) => setForm({ ...form, level: Number(e.target.value) })} />
+            <label className="text-xs mb-1 block" style={{ color: 'rgba(var(--color-text-muted), 0.7)' }}>Level</label>
+            <input type="number" min={1} className="povir-input" value={form.level} onChange={(e) => setForm({ ...form, level: Number(e.target.value) })} />
           </div>
           <div>
-            <label className={label}>Text (what the user will type)</label>
-            <textarea rows={6} className={input + ' font-mono text-sm leading-relaxed'} value={form.text} onChange={(e) => setForm({ ...form, text: e.target.value })} placeholder="Paste or type the drill text here..." />
+            <label className="text-xs mb-1 block" style={{ color: 'rgba(var(--color-text-muted), 0.7)' }}>Text (what the user will type)</label>
+            <textarea rows={6} className="povir-input font-mono text-sm leading-relaxed" value={form.text} onChange={(e) => setForm({ ...form, text: e.target.value })} placeholder="Paste or type the drill text here..." />
           </div>
-          <button type="submit" className="btn-primary">{isEdit ? 'Update' : 'Create'}</button>
+          <button type="submit" className="povir-btn-primary">{isEdit ? 'Update' : 'Create'}</button>
         </form>
       </div>
     </div>

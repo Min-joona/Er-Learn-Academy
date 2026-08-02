@@ -11,8 +11,8 @@
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "cloudinary": "^2.10.0",
     "cors": "^2.8.6",
-    "csv-parser": "^3.2.1",
     "dotenv": "^16.6.1",
     "express": "^4.19.2",
     "express-mongo-sanitize": "^2.2.0",
@@ -22,8 +22,8 @@
     "jsonwebtoken": "^9.0.3",
     "mongoose": "^8.24.1",
     "multer": "^2.2.0",
-    "pino": "^10.3.1",
-    "xlsx": "^0.18.5"
+    "nodemailer": "^9.0.3",
+    "pino": "^10.3.1"
   },
   "devDependencies": {
     "nodemon": "^3.1.4"
